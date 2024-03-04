@@ -8,7 +8,7 @@ use App\Models\Commande;
 
 class HomeController extends Controller
 {
-    function index(){
+    public function index(){
 
         return view("index");
     }
