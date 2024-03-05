@@ -8,14 +8,16 @@ import Login from "../pages/Login";
 import Favourites from "../pages/Favourites";
 import Contact from "../pages/Contact";
 import Layout from "../layouts/Layout";
+import { useState } from "react";
 
+var ishome = true
 export const router = createBrowserRouter([
     {
         element: <Layout />,
         children: [
             {
                 path: "/",
-                element: <Home />,
+                element: <Home ishome={ishome} />,
             },
             {
                 path: "/properties-list",
