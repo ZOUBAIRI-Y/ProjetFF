@@ -1,10 +1,11 @@
-:root {
-    --primary: #054457;
-    --primary-light: #0c80a3;
-    --success: #69B99D;
-    --success-light: #C7E5DB;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+
+/* style for home page ------------------- */
 .hero_section_homepage{
     width: 100%;
     height: 100vh;
@@ -13,10 +14,35 @@
     background-position: center;
 }
 .hero_section_main {
-    height: 90vh;
+    height: 80vh;
     width: 50%;
 }
-.input-group input, .input-group button{
-    height: 50px;
+.input-group input, .search_link_btn{
+    min-height: 50px;
     border-radius: 25px;
+    padding: 0.8rem;
+    
 }
+.search_link_btn {
+    width: 5em;
+}
+
+
+/* home page style Ends----------------------- */
+
+/* style for the property cart */
+
+
+
+/* property card style Ends ------------------------------ */
+
+/* properties list page style */
+.total_sortProperties_bar {
+    padding: 0.3rem;
+}
+.sort_select {
+    width: 8rem;
+}
+
+
+/* properties list page style Ends */

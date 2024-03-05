@@ -5,7 +5,7 @@ export default function Header({ishome}) {
 
     return (
         <>
-            <nav className={ishome?'navbar navbar-expand-md':'navbar navbar-expand-md navbar-info bg-info p-0'}>
+            <nav className={ishome?'navbar navbar-expand-md':'navbar navbar-expand-md navbar-info bg-info p-1'}>
                 <div className="container-fluid">
                     <Link to={"/"} className="navbar-brand text-secondary fw-bolder fs-3">
                         Location

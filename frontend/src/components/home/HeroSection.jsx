@@ -1,13 +1,20 @@
+import { Link } from "react-router-dom";
 import Header from "../../layouts/Header";
 
-export default function HeroSection({ishome}) {
+export default function HeroSection({ ishome }) {
     return (
         <>
             <header className="hero_section_homepage">
-                <Header ishome={ishome}/>
+                <Header ishome={ishome} />
                 <div className="hero_section_main container d-flex flex-column align-items-center justify-content-center">
-                    <h1 className="text-primary fw-bolder fs-1 text-center">Where you love to live? <br/> or rent?</h1>
-                    <p className="text-light">Appartments or houses for rent are <strong className="text-secondary">Now</strong> available</p>
+                    <h1 className="text-primary fw-bolder fs-1 text-center">
+                        Where you love to live? <br /> or rent?
+                    </h1>
+                    <p className="text-light text-center">
+                        Appartments or houses for rent are{" "}
+                        <strong className="text-secondary">Now</strong>{" "}
+                        available
+                    </p>
                     <div className="input-group">
                         <input
                             type="text"
@@ -15,15 +22,11 @@ export default function HeroSection({ishome}) {
                             className="form-control"
                             placeholder="search by city or lessor name"
                             aria-label="Recipient's username"
-                            aria-describedby="button-addon2"
+                            aria-describedby="link-addon2"
                         />
-                        <button
-                            className="btn btn-success text-white"
-                            type="button"
-                            id="button-addon2"
-                        >
+                        <Link to={'properties-list'} className="btn btn-success text-white search_link_btn" id="link-addon2">
                             Search
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </header>
