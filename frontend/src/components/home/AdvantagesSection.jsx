@@ -4,11 +4,11 @@ function AdvantagesSection() {
     <div className="advantages_section container mt-5">
     <h5 className="text-secondary">Our advantages</h5>
     <h2 className="text-primary">Giving you peace of mind</h2>
-    <ul className="list-group advantages-list mt-3 d-flex flex-row justify-content-between flex-wrap ">
+    <ul className="list-group advantages-list mt-3">
         <li className="list-group-item border-0">
             <i class="bi bi-heart-fill"></i>
             <h6 >Comfortable</h6>
-            <p className="">
+            <p>
                 Enjoy lifestyle amenities designed to provide every
                 homeowners modern comfort, a stone's throw away from
                 schools, churches, and hospitals.

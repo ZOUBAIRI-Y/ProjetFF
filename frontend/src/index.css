@@ -36,6 +36,13 @@
     width: 5em;
 }
 
+.advantages-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 .advantages-list li {
     width: 30%;
     text-align: justify;
@@ -47,6 +54,23 @@
 }
 .advantages-list li p {
     color: var(--light);
+}
+
+.popular_cities_section {
+    /* margin-top: 7rem; */
+    
+}
+.popularCitiesSec_img {
+    /* width: 50%;
+    float: left;
+    margin-right: 2rem; */
+    
+}
+.popularCitiesSec_list {
+    /* padding: 1rem;
+    float: right; */
+
+    
 }
 
 /* home page style Ends----------------------- */
