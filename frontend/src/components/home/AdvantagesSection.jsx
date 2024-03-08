@@ -3,7 +3,7 @@ function AdvantagesSection() {
         <div className="advantages_section container mt-5 mb-5">
             <h5 className="text-secondary">Our advantages</h5>
             <h2 className="text-primary">Giving you peace of mind</h2>
-            <ul className="list-group advantages-list mt-3">
+            <ul className="list-group advantages_list mt-3">
                 <li className="list-group-item border-0">
                     <i class="bi bi-heart-fill"></i>
                     <h6>Comfortable</h6>

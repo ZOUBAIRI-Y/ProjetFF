@@ -12,9 +12,48 @@
     --warning: #b99d69;
     --light: #73788c;
     --danger: #b02a37;
+    --altlight: #cddbd6;
+    --altdark: #001810;
 }
 
+/* Layout header style ------------------------ */
+.header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+
+/* Layout header style Ends ------------------------ */
+
+/* Layout footer style ------------------------ */
+.footer {
+    position:static ;
+    bottom: 0;
+    width: 100%;
+}
+.footer_services_list li {
+    background: none;
+}
+.footer_services_list li a {
+    font-size: 0.8rem;
+}
+
+.socialMedia_footer a {
+    color: var(--altlight);
+    margin: 0.4rem;
+    background-color: var(--success);
+    padding: 0.3rem;
+    border-radius: 1em;
+}
+
+.socialMedia_footer a:hover {
+    color: var(--success);
+    background-color: var(--altlight);
+}
+/* Layout footer style Ends ------------------------ */
+
 /* style for home page ------------------- */
+/* hero section */
 .hero_section_homepage {
     width: 100%;
     height: 100vh;
@@ -26,17 +65,26 @@
     height: 80vh;
     width: 50%;
 }
-.input-group input,
-.search_link_btn {
+.input_btn_header_group {
+    width: 100%;
+}
+
+.input_btn_header_group input,
+.search_link_header_btn {
     min-height: 50px;
     border-radius: 25px;
     padding: 0.8rem;
 }
-.search_link_btn {
+.search_link_header_btn {
     width: 5em;
 }
+/* latest listings section */
+.seeMore_link:hover {
+    text-decoration: underline;
+}
 
-.advantages-list {
+/* Advantages list section */
+.advantages_list {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -47,34 +95,37 @@
     color: var(--secondary);
 }
 
-.advantages-list li {
+.advantages_list li {
     width: 30%;
     text-align: justify;
     border: 0;
     background: none;
 }
-.advantages-list li h6 {
+.advantages_list li h6 {
     color: var(--primary);
 }
-.advantages-list li p {
+.advantages_list li p {
     color: var(--light);
 }
 
+/* Popular cities section */
 .popular_cities_section {
     /* margin-top: 7rem; */
-    
 }
 .popularCitiesSec_img {
     /* width: 50%;
     float: left;
     margin-right: 2rem; */
-    
 }
 .popularCitiesSec_list {
     /* padding: 1rem;
-    float: right; */ 
+    float: right; */
 }
 
+/* Top lessors section */
+.topLessors_list li {
+    background: none;
+}
 .topLessors_list li {
     width: 50%;
 }
@@ -84,11 +135,38 @@
     border-radius: 50%;
 }
 
+.ourValue_img {
+    width: 70%;
+}
+
+
+
 /* home page style Ends----------------------- */
 
-/* style for the property cart */
-
-/* property card style Ends ------------------------------ */
+/* style for the property component */
+.property_component {
+    width: 20rem;
+}
+.property_component_img_container {
+    width: 100%;
+    border-radius: 0.3rem 0.3rem 0 0;
+}
+.property_component_img {
+    width: 100%;
+    border-radius: 0.3rem 0.3rem 0 0;
+}
+.property_infos {
+    width: 100%;
+}
+.moreDetails_link {
+    display: block;
+    float: right;
+}
+.call_now_btn {
+    display: block;
+    width: 100%;
+}
+/* property component style Ends ------------------------------ */
 
 /* properties list page style */
 .total_sortProperties_bar {

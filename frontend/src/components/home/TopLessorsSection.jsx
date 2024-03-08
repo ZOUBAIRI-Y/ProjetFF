@@ -1,4 +1,5 @@
 import ApartmentImg from "../../assets/lessor_rating.jpg";
+import luffy from "../../assets/luffy.jpg"
 
 function TopLessorsSection() {
     return (
@@ -11,7 +12,9 @@ function TopLessorsSection() {
                     {/* the top rated cities list */}
                     <li className="list-group-item border-0">
                         <div className="row">
-                            <div className="lessor_image_container border col-2"></div>
+                            <div className="lessor_image_container border border-light col-2" >
+                                
+                            </div>
                             <div className="col">
                                 <span>Zoubairi yassine</span>
                             </div>
@@ -19,7 +22,7 @@ function TopLessorsSection() {
                     </li>
                     <li className="list-group-item border-0">
                         <div className="row">
-                            <div className="lessor_image_container border col-2"></div>
+                            <div className="lessor_image_container border border-light col-2"></div>
                             <div className="col">
                                 <span>Ighoumran youssef</span>
                             </div>
@@ -27,7 +30,7 @@ function TopLessorsSection() {
                     </li>
                     <li className="list-group-item border-0">
                         <div className="row">
-                            <div className="lessor_image_container border col-2"></div>
+                            <div className="lessor_image_container border border-light col-2"></div>
                             <div className="col">
                                 <span>Ighoumran youssef</span>
                             </div>
@@ -35,7 +38,7 @@ function TopLessorsSection() {
                     </li>
                     <li className="list-group-item border-0">
                         <div className="row">
-                            <div className="lessor_image_container border col-2"></div>
+                            <div className="lessor_image_container border border-light col-2"></div>
                             <div className="col">
                                 <span>Qortoubi abdelhkim</span>
                             </div>

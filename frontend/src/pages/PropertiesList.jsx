@@ -5,7 +5,6 @@ import Header from "../layouts/Header";
 export default function PropertiesList() {
     return (
         <>
-            <Header />
             <FormPropertiesList />
             <div className="total_sortProperties_bar container bg-altlight mt-3">
                 <p className="float-start text-primary fw-medium">? properties</p>
