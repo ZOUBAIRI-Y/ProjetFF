@@ -10,13 +10,13 @@ export default function Home({ ishome }) {
         <>
             <HeroSection ishome={ishome} />
             <LatestListingsSection />
-            <div className="container-fluid bg-info pt-1 mt-5">
+            <div className="container-fluid bg-info pt-4 pb-4 mt-5">
                 <AdvantagesSection />
             </div>
-            <div className="container mt-5 pt-3">
+            <div className="container mt-5 pt-5 pb-5 ">
                 <PopularCitiesSection />
             </div>
-            <div className="container mt-5 pt-3">
+            <div className="container mt-5 pt-5 pb-5">
                 <TopLessorsSection />
             </div>
         </>

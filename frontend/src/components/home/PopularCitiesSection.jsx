@@ -8,9 +8,9 @@ function PopularCitiesSection() {
             </div>
             <div className="popularCitiesSec_list col-sm p-3">
                 <h5 className="text-secondary">Discover</h5>
-                <h2 className="text-primary">Latest listings</h2>
+                <h2 className="text-primary">Popular cities</h2>
                 <p className="text-light">
-                    Here are the most recent listings, Find the perfect for you
+                    Here are the most popular places for rent{" "}
                 </p>
                 <ul className="list-group">
                     {/* the top rated cities list */}

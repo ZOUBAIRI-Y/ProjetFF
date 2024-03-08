@@ -43,6 +43,10 @@
     justify-content: space-between;
 }
 
+.bi-shield-fill-check {
+    color: var(--secondary);
+}
+
 .advantages-list li {
     width: 30%;
     text-align: justify;
@@ -68,9 +72,16 @@
 }
 .popularCitiesSec_list {
     /* padding: 1rem;
-    float: right; */
+    float: right; */ 
+}
 
-    
+.topLessors_list li {
+    width: 50%;
+}
+.lessor_image_container {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
 }
 
 /* home page style Ends----------------------- */
