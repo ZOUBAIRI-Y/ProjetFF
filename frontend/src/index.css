@@ -1,70 +1,204 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+    --primary: #054457;
+    --secondary: #4ba586;
+    --success: #69b99d;
+    --info: #c7e5db;
+    --warning: #b99d69;
+    --light: #73788c;
+    --danger: #b02a37;
+    --altlight: #cddbd6;
+    --altdark: #001810;
+}
+/* #isHome {
+    display: none;
+} */
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+/* Layout header style ------------------------ */
+/* .header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+} */
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Layout header style Ends ------------------------ */
+/* Layout main content style */
+.mainPage_content{
+    min-height: 100vh;
 }
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+/* Layout footer style ------------------------ */
+.footer {
+    position:static ;
+    bottom: 0;
+    width: 100%;
 }
-a:hover {
-  color: #535bf2;
+.footer_services_list li {
+    background: none;
 }
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.footer_services_list li a {
+    font-size: 0.8rem;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.socialMedia_footer a {
+    color: var(--altlight);
+    margin: 0.4rem;
+    background-color: var(--success);
+    padding: 0.3rem;
+    border-radius: 1em;
 }
 
+.socialMedia_footer a:hover {
+    color: var(--success);
+    background-color: var(--altlight);
+}
+/* Layout footer style Ends ------------------------ */
+
+/* style for home page ------------------- */
+/* hero section */
+.hero_section_homepage {
+    width: 100%;
+    height: 100vh;
+    background: url("./assets/Hero section.png");
+    background-size: cover;
+    background-position: center;
+}
+.hero_section_main {
+    height: 80vh;
+    width: 50%;
+}
+.input_btn_header_group {
+    width: 100%;
+}
+
+.input_btn_header_group input,
+.search_link_header_btn {
+    min-height: 50px;
+    border-radius: 25px;
+    padding: 0.8rem;
+}
+.search_link_header_btn {
+    width: 5em;
+}
+/* latest listings section */
+.seeMore_link:hover {
+    text-decoration: underline;
+}
+
+/* Advantages list section */
+.advantages_list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.bi-shield-fill-check {
+    color: var(--secondary);
+}
+
+.advantages_list li {
+    width: 30%;
+    text-align: justify;
+    border: 0;
+    background: none;
+}
+.advantages_list li h6 {
+    color: var(--primary);
+}
+.advantages_list li p {
+    color: var(--light);
+}
+
+/* Popular cities section */
+.popular_cities_section {
+    /* margin-top: 7rem; */
+}
+.popularCitiesSec_img {
+    /* width: 50%;
+    float: left;
+    margin-right: 2rem; */
+}
+.popularCitiesSec_list {
+    /* padding: 1rem;
+    float: right; */
+}
+
+/* Top lessors section */
+.topLessors_list li {
+    background: none;
+}
+.topLessors_list li {
+    width: 50%;
+}
+.lessor_image_container {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+}
+
+.ourValue_img {
+    width: 70%;
+}
+
+
+
+/* home page style Ends----------------------- */
+
+/* style for the property component */
+.property_component {
+    width: 20rem;
+}
+.property_component_img_container {
+    width: 100%;
+    border-radius: 0.3rem 0.3rem 0 0;
+}
+.property_component_img {
+    width: 100%;
+    border-radius: 0.3rem 0.3rem 0 0;
+}
+.property_infos {
+    width: 100%;
+}
+.moreDetails_link {
+    display: block;
+    float: right;
+}
+.call_now_btn {
+    display: block;
+    width: 100%;
+}
+/* property component style Ends ------------------------------ */
+
+/* properties list page style */
+.total_sortProperties_bar {
+    padding: 0.3rem;
+}
+.sort_select {
+    width: 8rem;
+}
+
+/* properties list page style Ends */
+
+/* Lessor pages style -------------------------------------------------- */
+    /* side bar styles */
+
+.sideBar_container{
+    height: 100vh;
+}
+.lessor_img_container {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 2rem;
+}
+.lessor_name {
+    height: 4rem;
+    line-height: 4rem;
+}
+
+
+/* Lessor pages style Ends -------------------------------------------------- */
