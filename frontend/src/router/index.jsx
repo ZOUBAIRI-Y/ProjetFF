@@ -9,15 +9,20 @@ import Favourites from "../pages/Favourites";
 import Contact from "../pages/Contact";
 import Layout from "../layouts/Layout";
 import { useState } from "react";
+import ManageListings from "../pages/lessor/ManageListings";
+import HomeLessor from "../pages/lessor/HomeLessor";
+import MyAccount from "../pages/lessor/MyAccount";
+import AddListing from "../pages/lessor/AddListing";
 
-var ishome = true
+
 export const router = createBrowserRouter([
     {
         element: <Layout />,
         children: [
+            // visitor routes
             {
                 path: "/",
-                element: <Home ishome={ishome} />,
+                element: <Home/>,
             },
             {
                 path: "/properties-list",
@@ -51,6 +56,25 @@ export const router = createBrowserRouter([
                 path: "*",
                 element: <p>Not found!</p>,
             },
+
+            // lessor routes
+
+            {
+                path: "/lessor/home",
+                element: <HomeLessor/>
+            },
+            {
+                path: "/lessor/manage-listings",
+                element: <ManageListings />
+            },
+            {
+                path: "/lessor/add-listing",
+                element: <AddListing />
+            },
+            {
+                path: "/lessor/my-account",
+                element: <MyAccount />
+            }
         ],
     },
 ]);

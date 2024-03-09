@@ -9,7 +9,6 @@ import ourValue_img from "../assets/ourValue_img.png";
 export default function Home() {
     return (
         <>
-            <HeroSection/>
             <LatestListingsSection />
             <div className="container-fluid bg-info pt-4 pb-4 mt-5">
                 <AdvantagesSection />
@@ -44,7 +43,6 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-            
         </>
     );
 }

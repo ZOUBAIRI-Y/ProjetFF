@@ -87,13 +87,13 @@ export default function Footer() {
                     <h5 className="text-altlight text-center">Follow us on</h5>
                     <div className="d-flex flex-row justify-content-center socialMedia_footer">
                         <a href="#">
-                            <i class="bi bi-instagram"></i>
+                            <i className="bi bi-instagram"></i>
                         </a>
                         <a href="#">
-                            <i class="bi bi-youtube"></i>
+                            <i className="bi bi-youtube"></i>
                         </a>
                         <a href="#">
-                            <i class="bi bi-facebook"></i>
+                            <i className="bi bi-facebook"></i>
                         </a>
                     </div>
                 </div>

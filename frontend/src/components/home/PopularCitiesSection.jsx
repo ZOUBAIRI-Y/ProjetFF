@@ -15,7 +15,7 @@ function PopularCitiesSection() {
                 <ul className="list-group">
                     {/* the top rated cities list */}
                     <li className="list-group-item border-0 text-light">
-                        <i class="bi bi-geo-alt-fill"></i>
+                        <i className="bi bi-geo-alt-fill"></i>
                         <span>Agadir</span>
                     </li>
                 </ul>

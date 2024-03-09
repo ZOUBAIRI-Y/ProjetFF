@@ -15,13 +15,16 @@
     --altlight: #cddbd6;
     --altdark: #001810;
 }
+/* #isHome {
+    display: none;
+} */
 
 /* Layout header style ------------------------ */
-.header {
+/* .header {
     position: sticky;
     top: 0;
     width: 100%;
-}
+} */
 
 /* Layout header style Ends ------------------------ */
 
@@ -177,3 +180,18 @@
 }
 
 /* properties list page style Ends */
+
+/* Lessor pages style -------------------------------------------------- */
+    /* side bar styles */
+.lessor_img_container {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 2rem;
+}
+.lessor_name {
+    height: 4rem;
+    line-height: 4rem;
+}
+
+
+/* Lessor pages style Ends -------------------------------------------------- */

@@ -5,7 +5,7 @@ function AdvantagesSection() {
             <h2 className="text-primary">Giving you peace of mind</h2>
             <ul className="list-group advantages_list mt-3">
                 <li className="list-group-item border-0">
-                    <i class="bi bi-heart-fill"></i>
+                    <i className="bi bi-heart-fill"></i>
                     <h6>Comfortable</h6>
                     <p>
                         Enjoy lifestyle amenities designed to provide every
@@ -14,7 +14,7 @@ function AdvantagesSection() {
                     </p>
                 </li>
                 <li className="list-group-item">
-                    <i class="bi bi-wallet-fill"></i>
+                    <i className="bi bi-wallet-fill"></i>
                     <h6>Best price</h6>
                     <p>
                         Not sure what you should be charging for your property?
@@ -23,7 +23,7 @@ function AdvantagesSection() {
                     </p>
                 </li>
                 <li className="list-group-item">
-                    <i class="bi bi-shield-fill-check"></i>
+                    <i className="bi bi-shield-fill-check"></i>
                     <h6>Extra security</h6>
                     <p>
                         You can connect with potential tenants without having to
@@ -32,7 +32,7 @@ function AdvantagesSection() {
                     </p>
                 </li>
                 <li className="list-group-item">
-                    <i class="bi bi-geo-alt-fill"></i>
+                    <i className="bi bi-geo-alt-fill"></i>
                     <h6>Strategic location</h6>
                     <p>
                         located in the city center close to the shopping center.
@@ -41,7 +41,7 @@ function AdvantagesSection() {
                     </p>
                 </li>
                 <li className="list-group-item">
-                    <i class="bi bi-star-fill"></i>
+                    <i className="bi bi-star-fill"></i>
                     <h6>Luxury</h6>
                     <p>
                         Find out how we provide the highest standard of
@@ -50,7 +50,7 @@ function AdvantagesSection() {
                     </p>
                 </li>
                 <li className="list-group-item">
-                    <i class="bi bi-heart-fill"></i>
+                    <i className="bi bi-heart-fill"></i>
                     <h6>Efficient</h6>
                     <p>
                         Schedule visits to multiple properties at once in one
