@@ -1,6 +1,6 @@
 export default function Footer() {
     return (
-        <div className="container-fluid bg-primary mt-5 p-5">
+        <div className="container-fluid bg-primary p-5">
             <div className="row">
                 <div className="col-3">
                     <h3 className="text-success">Location</h3>

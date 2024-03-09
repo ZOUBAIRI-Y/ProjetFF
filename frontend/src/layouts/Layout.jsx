@@ -10,7 +10,7 @@ export default function Layout() {
             <header className="header">
                 <Header currentPath={currentPath}/>
             </header>
-            <main>
+            <main className="mainPage_content">
                 <Outlet />
             </main>
             <footer className="footer">

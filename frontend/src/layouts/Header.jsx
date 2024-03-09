@@ -71,7 +71,7 @@ export default function Header({ currentPath }) {
                                     </li>
                                     <li className="nav-item ms-4">
                                         <Link
-                                            to={"/signup"}
+                                            to={"#"}
                                             className="nav-link text-success fw-medium"
                                         >
                                             SignOut
