@@ -25,7 +25,7 @@ class AuthController extends Controller
             $userResource = new UserResource($user);
             return response()->json(["user" => $userResource, "token" => $token]);
         }
-        return response($status = 401)->json(["message" => "invalid username or password"]);
+        return response()->json(["message" => "invalid username or password"], 401);
     }
     public function signup()
     {
@@ -37,8 +37,8 @@ class AuthController extends Controller
         ]);
 
         $user = User::create([
-            "first_name" => $validated["firstname"],
-            "last_name" => $validated["lastname"],
+            "firstname" => $validated["firstname"],
+            "lastname" => $validated["lastname"],
             "email" => $validated["email"],
             "password" => Hash::make($validated["password"])
         ]);
