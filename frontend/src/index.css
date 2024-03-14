@@ -150,6 +150,7 @@
 /* home page style Ends----------------------- */
 
 /* style for the property component */
+
 .property_component {
     width: 20rem;
 }
@@ -200,5 +201,52 @@
     line-height: 4rem;
 }
 
+
+    /* add listing page */
+.listing_form {
+    
+}
+.listing_form input, .listing_form select, .description_inp {
+    margin-top: 0.2rem;
+}
+.month_daily_inp {
+    width: 100%;
+    display: block;
+}
+.housing_category_inp {
+    width: 100%;
+}
+.address_inp {
+    width: 100%;
+}
+.rooms_num_inp, .baths_num_inp {
+    width: 50%;
+    display: inline; 
+}
+.price_inp, .deposit_inp {
+    margin-right: 0.1rem;
+}
+.price_inp, .deposit_inp, .space_inp {
+    width: 33%;
+    display: inline;
+}
+
+.description_inp {
+    width: 100%;
+}
+.phone_inp {
+    width: 100%;
+}
+.photos_inp, .video_inp {
+    width: 50%;
+    display: inline;
+}
+.when_ready_inp {
+    width: 100%;
+}
+.additional_features_area div {
+    display: inline-block;
+    margin: 0.2rem;
+}
 
 /* Lessor pages style Ends -------------------------------------------------- */
