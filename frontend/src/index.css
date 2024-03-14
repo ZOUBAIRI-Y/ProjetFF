@@ -185,19 +185,32 @@
 /* properties list page style Ends */
 
 /* Lessor pages style -------------------------------------------------- */
-    /* side bar styles */
+   
 
+    /* side bar styles */
 .sideBar_container{
     height: 100vh;
 }
 .lessor_img_container {
-    width: 4rem;
-    height: 4rem;
-    border-radius: 2rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1.5rem;
 }
 .lessor_name {
-    height: 4rem;
-    line-height: 4rem;
+    height: 3rem;
+    line-height: 3rem;
+}
+
+
+    /* manage listings page style */
+.img_container img{
+    width: 100%;
+    height: auto;
+}
+.property_actions button{
+    font-size: 1rem;
+    padding: 0.6em;
+    width: 11rem;
 }
 
 
