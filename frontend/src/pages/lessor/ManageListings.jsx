@@ -6,10 +6,10 @@ export default function ManageListings() {
     return (
         <div className="d-flex flex-row justify-content-center">           
                 <LessorSidebar/>
-                <div className="container pt-5">
+                <div className="container pt-5 m-0">
                     <h2 className="text-primary d-inline">My listings</h2>
                     <Link to={"/add-listing"}>
-                        <button className="btn btn-success text-white float-end">
+                        <button className="btn btn-success add_listing_btn text-white float-end">
                             Add listing
                         </button>
                     </Link>

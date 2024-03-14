@@ -3,13 +3,11 @@ import LessorSidebar from "../../layouts/LessorSidebar";
 
 export default function AddListing() {
     return (
-        <div className="container-fluid row">
-            <div className="sideBar_container col-3 bg-info">
-                <LessorSidebar />
-            </div>
-            <div className="add_listing_main">
+        <div className="d-flex flex-row justify-content-center">
+            <LessorSidebar />
+            <div className="container m-0 p-3">
 
             </div>
         </div>
-    );
+    )
 }
