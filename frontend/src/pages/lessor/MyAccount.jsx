@@ -11,19 +11,28 @@ export default function MyAccount() {
                 </button>
                 <form className="account_info mt-3">
                     <div className="personal_infos border rounded pt-1 p-3 bg-altlight">
-                        <p className="text-dark mt-1">
+                        <div className="row m-0 mt-2">
+                            <div className="col-sm lessor_name ps-0">
+                                <label
+                                    htmlFor="lessorName"
+                                    className="fw-medium"
+                                >
+                                    Lessor name
+                                </label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="lessor name"
+                                />
+                            </div>
+                            <div className="col-sm-3 lessor_img_acc_container">
+                                photo
+                            </div>
+                        </div>
+                        <p className="text-dark mt-1 mb-1">
                             <strong>Personal informations</strong>
                         </p>
-                        <div className="lessor_name">
-                            <label htmlFor="lessorName">Lessor name</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                placeholder="lessor name"
-                            />
-                        </div>
-                        <div className="lessor_img_acc_container"></div>
-                        <div className="lessor_firstName mt-1 pe-1">
+                        <div className="lessor_firstName pe-1">
                             <label htmlFor="lessorfirstName">first name</label>
                             <input
                                 type="text"
@@ -31,7 +40,7 @@ export default function MyAccount() {
                                 placeholder="first name"
                             />
                         </div>
-                        <div className="lessor_lastName mt-1 ps-1">
+                        <div className="lessor_lastName ps-1">
                             <label htmlFor="lessorlastName">last name</label>
                             <input
                                 type="text"
@@ -39,7 +48,9 @@ export default function MyAccount() {
                                 placeholder="last name"
                             />
                         </div>
-                        <label htmlFor="lessorAddress" className="mt-1">Address</label>
+                        <label htmlFor="lessorAddress" className="mt-1">
+                            Address
+                        </label>
                         <input
                             type="text"
                             name="lessor_address"
@@ -62,7 +73,9 @@ export default function MyAccount() {
                                 placeholder="phone 2"
                             />
                         </div>
-                        <label htmlFor="lessorEmail" className="mt-1">Email</label>
+                        <label htmlFor="lessorEmail" className="mt-1">
+                            Email
+                        </label>
                         <input
                             type="text"
                             name="lessor_email"
@@ -74,7 +87,9 @@ export default function MyAccount() {
                         <p className="text-dark mt-1">
                             <strong>Change password</strong>
                         </p>
-                        <label htmlFor="currentPassword" className="mt-1">Current password</label>
+                        <label htmlFor="currentPassword" className="mt-1">
+                            Current password
+                        </label>
                         <input
                             type="password"
                             name="current_password"
@@ -90,7 +105,9 @@ export default function MyAccount() {
                             />
                         </div>
                         <div className="confirm_password mt-1 ps-1">
-                            <label htmlFor="confirmPassword">Confirm password</label>
+                            <label htmlFor="confirmPassword">
+                                Confirm password
+                            </label>
                             <input
                                 type="password"
                                 className="form-control"

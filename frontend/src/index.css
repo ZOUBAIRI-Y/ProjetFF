@@ -231,14 +231,12 @@
     padding: 0.5rem;
     width: 6rem;
 }
-.lessor_name {
-    width: 70%;
-    display: inline-block;
-}
+
 .lessor_img_acc_container {
-    width: 3rem;
-    height: 3rem;
-    display: inline-block;
+    width: 5rem;
+    height: 5rem;
+    border: 1px solid rgb(169, 169, 169);
+    border-radius: 1.5rem;
 }
 .lessor_firstName, .lessor_lastName {
     width: 50%;
