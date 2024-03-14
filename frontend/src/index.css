@@ -12,7 +12,7 @@
     --warning: #b99d69;
     --light: #73788c;
     --danger: #b02a37;
-    --altlight: #cddbd6;
+    --altlight: #A6A6A6;
     --altdark: #001810;
 }
 /* #isHome {
@@ -186,67 +186,118 @@
 /* properties list page style Ends */
 
 /* Lessor pages style -------------------------------------------------- */
-    /* side bar styles */
+   
 
-.sideBar_container{
-    height: 100vh;
+    /* side bar styles */
+.lessor_side_bar {
+    width: 25%;
+    border-right: 1px solid rgb(227, 227, 227);
+}
+.lessor_infos {
+    margin: 3rem auto 0;
 }
 .lessor_img_container {
-    width: 4rem;
-    height: 4rem;
-    border-radius: 2rem;
-}
-.lessor_name {
-    height: 4rem;
-    line-height: 4rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 1rem;
 }
 
+.sidBar_nav {
+    margin-top: 1rem;
+}
+
+
+    /* manage listings page styles */
+.add_listing_btn {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.5rem;
+    width: 8rem;
+}
+.img_container img{
+    width: 100%;
+    height: auto;
+}
+.property_actions button{
+    font-size: 1rem;
+    padding: 0.6em;
+    width: 11rem;
+}
+
+
+    /* My account page styles */
+.save_changes_btn {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.5rem;
+    width: 6rem;
+}
+
+.lessor_img_acc_container {
+    width: 5rem;
+    height: 5rem;
+    border: 1px solid rgb(169, 169, 169);
+    border-radius: 1.5rem;
+}
+.lessor_firstName, .lessor_lastName {
+    width: 50%;
+    display: inline-block;
+}
+
+.lessor_phone1, .lessor_phone2 {
+    width: 50%;
+    display: inline-block;
+}
+.new_password, .confirm_password {
+    width: 50%;
+    display: inline-block;
+}
 
     /* add listing page */
-.listing_form {
+    .listing_form {
     
-}
-.listing_form input, .listing_form select, .description_inp {
-    margin-top: 0.2rem;
-}
-.month_daily_inp {
-    width: 100%;
-    display: block;
-}
-.housing_category_inp {
-    width: 100%;
-}
-.address_inp {
-    width: 100%;
-}
-.rooms_num_inp, .baths_num_inp {
-    width: 50%;
-    display: inline; 
-}
-.price_inp, .deposit_inp {
-    margin-right: 0.1rem;
-}
-.price_inp, .deposit_inp, .space_inp {
-    width: 33%;
-    display: inline;
-}
-
-.description_inp {
-    width: 100%;
-}
-.phone_inp {
-    width: 100%;
-}
-.photos_inp, .video_inp {
-    width: 50%;
-    display: inline;
-}
-.when_ready_inp {
-    width: 100%;
-}
-.additional_features_area div {
-    display: inline-block;
-    margin: 0.2rem;
-}
+    }
+    .listing_form input, .listing_form select, .description_inp {
+        margin-top: 0.2rem;
+    }
+    .month_daily_inp {
+        width: 100%;
+        display: block;
+    }
+    .housing_category_inp {
+        width: 100%;
+    }
+    .address_inp {
+        width: 100%;
+    }
+    .rooms_num_inp, .baths_num_inp {
+        width: 50%;
+        display: inline; 
+    }
+    .price_inp, .deposit_inp {
+        margin-right: 0.1rem;
+    }
+    .price_inp, .deposit_inp, .space_inp {
+        width: 33%;
+        display: inline;
+    }
+    
+    .description_inp {
+        width: 100%;
+    }
+    .phone_inp {
+        width: 100%;
+    }
+    .photos_inp, .video_inp {
+        width: 50%;
+        display: inline;
+    }
+    .when_ready_inp {
+        width: 100%;
+    }
+    .additional_features_area div {
+        display: inline-block;
+        margin: 0.2rem;
+    }
 
 /* Lessor pages style Ends -------------------------------------------------- */
