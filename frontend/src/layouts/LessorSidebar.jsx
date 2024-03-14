@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 function LessorSidebar() {
     return (
-        <div className="p-3 lessor_side_bar">
+        <div className="p-2 lessor_side_bar">
             <div className="row lessor_infos">
                 <div className="col-2 border border-primary lessor_img_container "></div>
-                <span className="col lessor_name text-primary align-self-center fw-bold ">
-                    Full Name
+                <span className="col lessor_name_sideBar text-primary align-self-center fw-bold p-0 ms-2">
+                    Mr. ZOUBAIRI
                 </span>
             </div>
             <ul className="navbar-nav justify-content-end sidBar_nav flex-grow-1 pe-3">

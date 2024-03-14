@@ -12,13 +12,8 @@ export default function MyAccount() {
                 <form className="account_info mt-3">
                     <div className="personal_infos border rounded pt-1 p-3 bg-altlight">
                         <div className="row m-0 mt-2">
-                            <div className="col-sm lessor_name ps-0">
-                                <label
-                                    htmlFor="lessorName"
-                                    className="fw-medium"
-                                >
-                                    Lessor name
-                                </label>
+                            <div className="col-sm lessor_name_myAcc ps-0">
+                                <p className="text-dark m-0 "><strong>Lessor name</strong></p>
                                 <input
                                     type="text"
                                     className="form-control"
