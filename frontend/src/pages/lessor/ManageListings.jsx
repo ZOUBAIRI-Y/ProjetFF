@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import LessorSidebar from "../../layouts/LessorSidebar";
 import Property_manage from "../../components/lessor/Property_manage";
+import { useState } from "react";
 
 export default function ManageListings() {
+    const [propertiesList_manage, setPropertiesList] = useState({})
     return (
         <div className="d-flex flex-row justify-content-center">           
                 <LessorSidebar/>
