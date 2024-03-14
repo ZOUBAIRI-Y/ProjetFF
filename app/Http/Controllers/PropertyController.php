@@ -66,6 +66,7 @@ class PropertyController extends Controller
     {
         $property = Property::find($id);
         $this->authorize('update', $property);
+
         if (!$property) {
             return response()->json(['error' => 'property not found'], 404);
         }

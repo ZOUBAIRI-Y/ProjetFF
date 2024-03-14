@@ -19,7 +19,7 @@ class UserController extends Controller
     {
 
         $this->authorize('viewAll', auth()->user());
-        $users = User::withCount('reviews')->where('role', '!=', 'admin')->orderByDesc('reviews_count')->paginate();
+        $users = User::paginate();
         $collection = new UserCollection($users);
 
         return $collection;
