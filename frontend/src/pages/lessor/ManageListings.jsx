@@ -4,11 +4,8 @@ import Property_manage from "../../components/lessor/Property_manage";
 
 export default function ManageListings() {
     return (
-        <>
-            
-                <div className="p-3 float-start me-2">
-                    <LessorSidebar />
-                </div>
+        <div className="d-flex flex-row justify-content-center">           
+                <LessorSidebar/>
                 <div className="container pt-5">
                     <h2 className="text-primary d-inline">My listings</h2>
                     <Link to={"/add-listing"}>
@@ -24,8 +21,8 @@ export default function ManageListings() {
                             <Property_manage />
                         </li>
                     </ul>
-                    <nav className="p-4">
-                        <ul className="pagination justify-content-center">
+                    <nav className="">
+                        <ul className="pagination mt-4 justify-content-center">
                             <li className="page-item disabled">
                                 <a
                                     className="page-link"
@@ -60,6 +57,6 @@ export default function ManageListings() {
                     </nav>
                 </div>
             
-        </>
+        </div>
     );
 }

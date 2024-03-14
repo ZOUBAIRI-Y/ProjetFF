@@ -188,17 +188,21 @@
    
 
     /* side bar styles */
-.sideBar_container{
-    height: 100vh;
+.lessor_side_bar {
+    width: 25%;
+    border-right: 1px solid rgb(227, 227, 227);
+}
+.lessor_infos {
+    margin: 3rem auto 0;
 }
 .lessor_img_container {
     width: 3rem;
     height: 3rem;
     border-radius: 1.5rem;
 }
-.lessor_name {
-    height: 3rem;
-    line-height: 3rem;
+
+.sidBar_nav {
+    margin-top: 1rem;
 }
 
 
