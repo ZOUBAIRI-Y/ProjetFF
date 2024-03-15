@@ -210,14 +210,17 @@
     padding: 0.5rem;
     width: 8rem;
 }
+    /* property_manage component styles */
+
 .img_container img {
     width: 100%;
     height: auto;
+    object-fit: cover;
 }
 .property_actions button {
     font-size: 1rem;
     padding: 0.6em;
-    width: 11rem;
+    width: 10rem;
 }
 
 /* My account page styles */
@@ -252,8 +255,7 @@
 }
 
 /* add listing page */
-.listing_form {
-}
+
 .listing_form input,
 .listing_form select,
 .description_inp {
@@ -269,20 +271,9 @@
 .address_inp {
     width: 100%;
 }
-.rooms_num_inp,
-.baths_num_inp {
+.num_of_rooms, .num_of_baths {
     width: 50%;
-    display: inline;
-}
-.price_inp,
-.deposit_inp {
-    margin-right: 0.1rem;
-}
-.price_inp,
-.deposit_inp,
-.space_inp {
-    width: 33%;
-    display: inline;
+    display: inline-block;
 }
 
 .description_inp {
@@ -291,17 +282,15 @@
 .phone_inp {
     width: 100%;
 }
-.photos_inp,
-.video_inp {
+.photos_inp_container, .videos_inp_container {
     width: 50%;
-    display: inline;
+    display: inline-block;
 }
 .when_ready_inp {
     width: 100%;
 }
 .additional_features_area div {
-    display: inline-block;
-    margin: 0.2rem;
+    width: 25%;
 }
 
 /* Lessor pages style Ends -------------------------------------------------- */

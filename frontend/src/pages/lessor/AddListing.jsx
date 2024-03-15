@@ -3,17 +3,18 @@ import LessorSidebar from "../../layouts/LessorSidebar";
 import { useState } from "react";
 
 export default function AddListing() {
-    const [property_inputs, setPropertyinfos] = useState({
-        
-    })
+    const [property_inputs, setPropertyinfos] = useState({});
     return (
         <div className="d-flex flex-row justify-content-center">
             <LessorSidebar />
             <div className="container m-0 pt-5">
-                <div className="next_previous_step"></div>
-                <form className="listing_form p-3">
+                {/* <div className="next_previous_step"></div> */}
+                <h2 className="text-primary d-inline">Add listing</h2>
+                <form className="listing_form mt-3">
                     <div className="primary_property_infos border rounded pt-1 p-3 bg-altlight">
-                        <p className="text-primary fw-medium m-0">Primary*</p>
+                        <p className="text-dark fw-medium m-0 mt-2">
+                            <strong>Primary*</strong>
+                        </p>
                         <select
                             name="month_daily_inp"
                             className="month_daily_inp form-select"
@@ -35,44 +36,56 @@ export default function AddListing() {
                             placeholder="address"
                             className="address_inp form-control"
                         />
-                        <select
-                            name="rooms_num_inp"
-                            className="rooms_num_inp form-select"
-                        >
-                            <option value="">? of rooms</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="2">3</option>
-                            <option value="2">2</option>
-                            <option value="2">...</option>
-                        </select>
-                        <select
-                            name="baths_num_inp"
-                            className="baths_num_inp form-select"
-                        >
-                            <option value="">? of baths</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="2">...</option>
-                        </select>
-                        <input
-                            type="number"
-                            name="price_inp"
-                            className="price_inp form-control"
-                            placeholder="Price"
-                        />
-                        <input
-                            type="number"
-                            name="deposit_inp"
-                            className="deposit_inp form-control"
-                            placeholder="Deposit"
-                        />
-                        <input
-                            type="number"
-                            name="space_inp"
-                            className="space_inp form-control"
-                            placeholder="Space"
-                        />
+                        <div className="num_of_rooms pe-1">
+                            <select
+                                name="rooms_num_inp"
+                                className="form-select"
+                            >
+                                <option value="">? of rooms</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="2">3</option>
+                                <option value="2">2</option>
+                                <option value="2">...</option>
+                            </select>
+                        </div>
+                        <div className="num_of_baths ps-1">
+                            <select
+                                name="baths_num_inp"
+                                className="form-select"
+                            >
+                                <option value="">? of baths</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="2">...</option>
+                            </select>
+                        </div>
+                        <div className="row m-0">
+                            <div className="col-sm-4 p-0 pe-1">
+                                <input
+                                    type="number"
+                                    name="price_inp"
+                                    className="form-control"
+                                    placeholder="Price"
+                                />
+                            </div>
+                            <div className="col-sm-4 p-0 ps-1 pe-1">
+                                <input
+                                    type="number"
+                                    name="deposit_inp"
+                                    className="form-control"
+                                    placeholder="Deposit"
+                                />
+                            </div>
+                            <div className="col-sm-4 p-0 ps-1">
+                                <input
+                                    type="number"
+                                    name="space_inp"
+                                    className="form-control"
+                                    placeholder="Space"
+                                />
+                            </div>
+                        </div>
                         <textarea className="description_inp form-control" />
                         <input
                             type="number"
@@ -80,69 +93,75 @@ export default function AddListing() {
                             className="phone_inp form-control"
                             placeholder="Phone"
                         />
-                        <input
-                            type="file"
-                            name="photos_inp"
-                            className="photos_inp form-control"
-                        />
-                        <input
-                            type="file"
-                            name="video_inp"
-                            className="video_inp form-control"
-                        />
+                        <div className="photos_inp_container pe-1">
+                            <input
+                                type="file"
+                                name="photos_inp"
+                                className="form-control"
+                            />
+                        </div>
+                        <div className="videos_inp_container ps-1">
+                            <input
+                                type="file"
+                                name="video_inp"
+                                className="form-control"
+                            />
+                        </div>
                         <input
                             type="date"
                             name="when_ready_inp"
                             className="when_ready_inp form-control"
                         />
                     </div>
-                    <p className="text-primary fw-medium mt-3">
-                        Additional features
-                    </p>
-                    <fieldset className="additional_features_area border border-light rounded p-3">
-                        <div className="form-check">
-                            <input
-                                className="form-check-input"
-                                type="checkbox"
-                                value="roof"
-                                name="roof_feat"
-                            />
-                            <label
-                                className="form-check-label"
-                                htmlFor="roof_feat"
-                            >
-                                roof
-                            </label>
-                        </div>
-                        <div className="form-check">
-                            <input
-                                className="form-check-input"
-                                type="checkbox"
-                                value="garage"
-                                name="garage_feat"
-                            />
-                            <label
-                                className="form-check-label"
-                                htmlFor="garage_feat"
-                            >
-                                Garage
-                            </label>
-                        </div>
-                        <div className="form-check">
-                            <input
-                                className="form-check-input"
-                                type="checkbox"
-                                value="internet"
-                                name="internet_feat"
-                            />
-                            <label
-                                className="form-check-label"
-                                htmlFor="internet_feat"
-                            >
-                                Internet
-                            </label>
-                        </div>
-                    </fieldset>
+                    <div className="additional_property_features border rounded pt-1 p-3 bg-altlight mt-2">
+                        <p className="text-dark fw-medium m-0 mt-2">
+                            <strong>Additional features</strong>
+                        </p>
+                        <fieldset className="additional_features_area border rounded d-flex flex-row flex-wrap justify-content-between p-2 mt-2">
+                            <div className="roof_feature_container m-0 form-check">
+                                <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    value="roof"
+                                    name="roof_feat"
+                                />
+                                <label
+                                    className="form-check-label"
+                                    htmlFor="roof_feat"
+                                >
+                                    roof
+                                </label>
+                            </div>
+                            <div className="garage_feature_container m-0 form-check">
+                                <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    value="garage"
+                                    name="garage_feat"
+                                />
+                                <label
+                                    className="form-check-label"
+                                    htmlFor="garage_feat"
+                                >
+                                    Garage
+                                </label>
+                            </div>
+                            <div className="internet_feature_container m-0 form-check">
+                                <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    value="internet"
+                                    name="internet_feat"
+                                />
+                                <label
+                                    className="form-check-label"
+                                    htmlFor="internet_feat"
+                                >
+                                    Internet
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
                 </form>
             </div>
         </div>
