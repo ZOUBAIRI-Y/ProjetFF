@@ -1,9 +1,11 @@
 import { useState } from "react";
 import LessorSidebar from "../../layouts/LessorSidebar";
+import luffy from "../../assets/luffy.jpg"
 
 export default function MyAccount() {
     const [lessorInfos_inputes, setLessorInfos] = useState({
         lessor_name: "",
+        lessor_image: "",
         lessor_firstName: "",
         lessor_lastName: "",
         lessor_address: "",
@@ -41,8 +43,8 @@ export default function MyAccount() {
                                     placeholder="lessor name"
                                 />
                             </div>
-                            <div className="col-sm-3 lessor_img_acc_container">
-                                photo
+                            <div className="col-sm-3 lessor_img_container p-0">
+                                <img src={luffy} alt="profilePic" />
                             </div>
                         </div>
                         <p className="text-dark mt-1 mb-1">

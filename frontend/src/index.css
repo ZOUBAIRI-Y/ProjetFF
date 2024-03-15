@@ -193,10 +193,18 @@
 .lessor_infos {
     margin: 3rem auto 0;
 }
-.lessor_img_container {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 1rem;
+.lessor_side_img_container {
+    width: 50px;
+    height: 50px;
+}
+.lessor_side_img_container img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    border: 1px solid rgb(176, 176, 176);
+    border-radius: 25px;
 }
 
 .sidBar_nav {
@@ -231,9 +239,15 @@
     width: 6rem;
 }
 
-.lessor_img_acc_container {
+.lessor_img_container {
     width: 5rem;
     height: 5rem;
+}
+.lessor_img_container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
     border: 1px solid rgb(169, 169, 169);
     border-radius: 1.5rem;
 }
