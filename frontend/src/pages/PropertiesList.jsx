@@ -19,9 +19,11 @@ export default function PropertiesList() {
                     <option value={"Expensive"}>Expensive</option>
                 </select>
             </div>
-            <div className="properties_list container mt-4 border">
+            <div className="properties_list container mt-4 border d-flex flex-row flex-wrap">
                 {/* here where the list of properties will be rendered */}
-                <Property />
+                <div className="property_container">
+                    <Property />
+                </div>
             </div>
         </>
     );
