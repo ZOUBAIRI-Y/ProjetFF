@@ -1,22 +1,72 @@
 import { Link } from "react-router-dom";
 import LessorSidebar from "../../layouts/LessorSidebar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function AddListing() {
-    const [property_inputs, setPropertyinfos] = useState({});
+    const [property_images, setProperty_imgs] = useState([]);
+    const [property_videos, setProperty_videos] = useState([]);
+    const [additional_features, setFeatures] = useState([]);
+    const [property_inputs, setPropertyinfos] = useState({
+        rental_type: "",
+        housing_category: "",
+        property_address: "",
+        num_of_rooms: "",
+        num_of_baths: "",
+        property_price: 0,
+        property_deposit: 0,
+        property_space: 0,
+        property_description: "",
+        lessor_phone_prop: "",
+        property_images: property_images,
+        property_videos: property_videos,
+        property_time_ready: "",
+        additional_features: additional_features,
+    });
+    const handle_propertyInp_changes = (e) => {
+        setPropertyinfos({
+            ...property_inputs,
+            [e.target.name]: e.target.value,
+        });
+    };
+    const handle_property_imgs = (e) => {
+        setProperty_imgs([...property_images, e.target.value]);
+    }
+    const handle_property_vds = (e) => {
+        setProperty_videos([...property_videos, e.target.value]);
+    }
+    const handle_additional_fts = (e) => {
+        setFeatures([...additional_features, e.target.value]);
+    }
+    useEffect(() => {
+        setPropertyinfos({
+            ...property_inputs,
+            property_images: property_images,
+            property_videos: property_videos,
+            additional_features: additional_features
+        })
+    }, [property_images, property_videos, additional_features])
     return (
         <div className="d-flex flex-row justify-content-center">
             <LessorSidebar />
             <div className="container m-0 pt-5">
                 {/* <div className="next_previous_step"></div> */}
                 <h2 className="text-primary d-inline">Add listing</h2>
+                <button className="btn btn-success add_listing_btn text-white float-end" onClick={()=> {
+                    console.log(property_inputs);
+                }}>
+                    Add
+                </button>
+                {/* <h2 className="text-primary d-inline">Add listing</h2> */}
                 <form className="listing_form mt-3">
                     <div className="primary_property_infos border rounded pt-1 p-3 bg-altlight">
                         <p className="text-dark fw-medium m-0 mt-2">
                             <strong>Primary*</strong>
                         </p>
                         <select
-                            name="month_daily_inp"
+                            name="rental_type"
+                            onChange={(e) =>
+                                handle_propertyInp_changes(e)
+                            }
                             className="month_daily_inp form-select"
                         >
                             <option value="">Monthly/daily</option>
@@ -24,7 +74,10 @@ export default function AddListing() {
                             <option value="daily">Daily</option>
                         </select>
                         <select
-                            name="housing_category_inp"
+                            name="housing_category"
+                            onChange={(e) =>
+                                handle_propertyInp_changes(e)
+                            }
                             className="housing_category_inp form-select"
                         >
                             <option value="apartment">Apartment</option>
@@ -33,25 +86,35 @@ export default function AddListing() {
                         </select>
                         <input
                             type="text"
+                            name="property_address"
+                            onChange={(e) =>
+                                handle_propertyInp_changes(e)
+                            }
                             placeholder="address"
                             className="address_inp form-control"
                         />
                         <div className="num_of_rooms pe-1">
                             <select
-                                name="rooms_num_inp"
+                                name="num_of_rooms"
+                                onChange={(e) =>
+                                    handle_propertyInp_changes(e)
+                                }
                                 className="form-select"
                             >
                                 <option value="">? of rooms</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
-                                <option value="2">3</option>
-                                <option value="2">2</option>
-                                <option value="2">...</option>
+                                <option value="3">3</option>
+                                <option value="4">2</option>
+                                <option value="...">...</option>
                             </select>
                         </div>
                         <div className="num_of_baths ps-1">
                             <select
-                                name="baths_num_inp"
+                                name="num_of_baths"
+                                onChange={(e) =>
+                                    handle_propertyInp_changes(e)
+                                }
                                 className="form-select"
                             >
                                 <option value="">? of baths</option>
@@ -64,7 +127,10 @@ export default function AddListing() {
                             <div className="col-sm-4 p-0 pe-1">
                                 <input
                                     type="number"
-                                    name="price_inp"
+                                    name="property_price"
+                                    onChange={(e) =>
+                                        handle_propertyInp_changes(e)
+                                    }
                                     className="form-control"
                                     placeholder="Price"
                                 />
@@ -72,7 +138,10 @@ export default function AddListing() {
                             <div className="col-sm-4 p-0 ps-1 pe-1">
                                 <input
                                     type="number"
-                                    name="deposit_inp"
+                                    name="property_deposit"
+                                    onChange={(e) =>
+                                        handle_propertyInp_changes(e)
+                                    }
                                     className="form-control"
                                     placeholder="Deposit"
                                 />
@@ -80,36 +149,57 @@ export default function AddListing() {
                             <div className="col-sm-4 p-0 ps-1">
                                 <input
                                     type="number"
-                                    name="space_inp"
+                                    name="property_space"
+                                    onChange={(e) =>
+                                        handle_propertyInp_changes(e)
+                                    }
                                     className="form-control"
                                     placeholder="Space"
                                 />
                             </div>
                         </div>
-                        <textarea className="description_inp form-control" />
+                        <textarea
+                            name="property_description"
+                            onChange={(e) =>
+                                handle_propertyInp_changes(e)
+                            }
+                            className="description_inp form-control"
+                        />
                         <input
                             type="number"
-                            name="phone_inp"
+                            name="lessor_phone_prop"
+                            onChange={(e) =>
+                                handle_propertyInp_changes(e)
+                            }
                             className="phone_inp form-control"
                             placeholder="Phone"
                         />
                         <div className="photos_inp_container pe-1">
                             <input
                                 type="file"
-                                name="photos_inp"
+                                name="property_images"
+                                onChange={(e) =>
+                                    handle_property_imgs(e)
+                                }
                                 className="form-control"
                             />
                         </div>
                         <div className="videos_inp_container ps-1">
                             <input
                                 type="file"
-                                name="video_inp"
+                                name="property_videos"
+                                onChange={(e) =>
+                                    handle_property_vds(e)
+                                }
                                 className="form-control"
                             />
                         </div>
                         <input
                             type="date"
-                            name="when_ready_inp"
+                            name="property_time_ready"
+                            onChange={(e) =>
+                                handle_propertyInp_changes(e)
+                            }
                             className="when_ready_inp form-control"
                         />
                     </div>
@@ -124,6 +214,9 @@ export default function AddListing() {
                                     type="checkbox"
                                     value="roof"
                                     name="roof_feat"
+                                    onChange={(e) =>
+                                        handle_additional_fts(e)
+                                    }
                                 />
                                 <label
                                     className="form-check-label"
@@ -138,6 +231,9 @@ export default function AddListing() {
                                     type="checkbox"
                                     value="garage"
                                     name="garage_feat"
+                                    onChange={(e) =>
+                                        handle_additional_fts(e)
+                                    }
                                 />
                                 <label
                                     className="form-check-label"
@@ -152,6 +248,9 @@ export default function AddListing() {
                                     type="checkbox"
                                     value="internet"
                                     name="internet_feat"
+                                    onChange={(e) =>
+                                        handle_additional_fts(e)
+                                    }
                                 />
                                 <label
                                     className="form-check-label"

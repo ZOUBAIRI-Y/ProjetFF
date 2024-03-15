@@ -204,7 +204,7 @@
 }
 
 /* manage listings page styles */
-.add_listing_btn {
+.add_listing_btn_manage {
     font-size: 1rem;
     font-weight: bold;
     padding: 0.5rem;
@@ -255,6 +255,12 @@
 }
 
 /* add listing page */
+.add_listing_btn {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.5rem;
+    width: 8rem;
+}
 
 .listing_form input,
 .listing_form select,
