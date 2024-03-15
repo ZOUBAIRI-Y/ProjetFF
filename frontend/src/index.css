@@ -12,7 +12,7 @@
     --warning: #b99d69;
     --light: #73788c;
     --danger: #b02a37;
-    --altlight: #A6A6A6;
+    --altlight: #a6a6a6;
     --altdark: #001810;
 }
 /* #isHome {
@@ -28,12 +28,12 @@
 
 /* Layout header style Ends ------------------------ */
 /* Layout main content style */
-.mainPage_content{
+.mainPage_content {
     min-height: 100vh;
 }
 /* Layout footer style ------------------------ */
 .footer {
-    position:static ;
+    position: static;
     bottom: 0;
     width: 100%;
 }
@@ -145,8 +145,6 @@
     width: 70%;
 }
 
-
-
 /* home page style Ends----------------------- */
 
 /* style for the property component */
@@ -186,9 +184,8 @@
 /* properties list page style Ends */
 
 /* Lessor pages style -------------------------------------------------- */
-   
 
-    /* side bar styles */
+/* side bar styles */
 .lessor_side_bar {
     width: 25%;
     border-right: 1px solid rgb(227, 227, 227);
@@ -206,26 +203,24 @@
     margin-top: 1rem;
 }
 
-
-    /* manage listings page styles */
+/* manage listings page styles */
 .add_listing_btn {
     font-size: 1rem;
     font-weight: bold;
     padding: 0.5rem;
     width: 8rem;
 }
-.img_container img{
+.img_container img {
     width: 100%;
     height: auto;
 }
-.property_actions button{
+.property_actions button {
     font-size: 1rem;
     padding: 0.6em;
     width: 11rem;
 }
 
-
-    /* My account page styles */
+/* My account page styles */
 .save_changes_btn {
     font-size: 1rem;
     font-weight: bold;
@@ -239,65 +234,74 @@
     border: 1px solid rgb(169, 169, 169);
     border-radius: 1.5rem;
 }
-.lessor_firstName, .lessor_lastName {
+.lessor_firstName,
+.lessor_lastName {
     width: 50%;
     display: inline-block;
 }
 
-.lessor_phone1, .lessor_phone2 {
+.lessor_phone1,
+.lessor_phone2 {
     width: 50%;
     display: inline-block;
 }
-.new_password, .confirm_password {
+.new_password,
+.confirm_password {
     width: 50%;
     display: inline-block;
 }
 
-    /* add listing page */
-    .listing_form {
-    
-    }
-    .listing_form input, .listing_form select, .description_inp {
-        margin-top: 0.2rem;
-    }
-    .month_daily_inp {
-        width: 100%;
-        display: block;
-    }
-    .housing_category_inp {
-        width: 100%;
-    }
-    .address_inp {
-        width: 100%;
-    }
-    .rooms_num_inp, .baths_num_inp {
-        width: 50%;
-        display: inline; 
-    }
-    .price_inp, .deposit_inp {
-        margin-right: 0.1rem;
-    }
-    .price_inp, .deposit_inp, .space_inp {
-        width: 33%;
-        display: inline;
-    }
-    
-    .description_inp {
-        width: 100%;
-    }
-    .phone_inp {
-        width: 100%;
-    }
-    .photos_inp, .video_inp {
-        width: 50%;
-        display: inline;
-    }
-    .when_ready_inp {
-        width: 100%;
-    }
-    .additional_features_area div {
-        display: inline-block;
-        margin: 0.2rem;
-    }
+/* add listing page */
+.listing_form {
+}
+.listing_form input,
+.listing_form select,
+.description_inp {
+    margin-top: 0.2rem;
+}
+.month_daily_inp {
+    width: 100%;
+    display: block;
+}
+.housing_category_inp {
+    width: 100%;
+}
+.address_inp {
+    width: 100%;
+}
+.rooms_num_inp,
+.baths_num_inp {
+    width: 50%;
+    display: inline;
+}
+.price_inp,
+.deposit_inp {
+    margin-right: 0.1rem;
+}
+.price_inp,
+.deposit_inp,
+.space_inp {
+    width: 33%;
+    display: inline;
+}
+
+.description_inp {
+    width: 100%;
+}
+.phone_inp {
+    width: 100%;
+}
+.photos_inp,
+.video_inp {
+    width: 50%;
+    display: inline;
+}
+.when_ready_inp {
+    width: 100%;
+}
+.additional_features_area div {
+    display: inline-block;
+    margin: 0.2rem;
+}
 
 /* Lessor pages style Ends -------------------------------------------------- */
