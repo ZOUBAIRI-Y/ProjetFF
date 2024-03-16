@@ -1,7 +1,10 @@
 export default function PropertyDetails () {
     return (
         <>
-            <div>Hi from PropertyDetails page</div>
+            <div className="carousel_propDetails">
+
+            </div>
+            
         </>
     )
 }

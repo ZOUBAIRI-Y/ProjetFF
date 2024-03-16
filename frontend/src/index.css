@@ -12,7 +12,7 @@
     --warning: #b99d69;
     --light: #73788c;
     --danger: #b02a37;
-    --altlight: #cddbd6;
+    --altlight: #a6a6a6;
     --altdark: #001810;
 }
 /* #isHome {
@@ -28,12 +28,12 @@
 
 /* Layout header style Ends ------------------------ */
 /* Layout main content style */
-.mainPage_content{
+.mainPage_content {
     min-height: 100vh;
 }
 /* Layout footer style ------------------------ */
 .footer {
-    position:static ;
+    position: static;
     bottom: 0;
     width: 100%;
 }
@@ -145,31 +145,45 @@
     width: 70%;
 }
 
+/* home page style Ends------------------------ */
 
-
-/* home page style Ends----------------------- */
-
-/* style for the property component */
+/* styles for the property component */
 .property_component {
-    width: 20rem;
+    width: 300px;
+    height: 400px;
 }
-.property_component_img_container {
+.carousel {
     width: 100%;
+    height: 50%;
+    position: relative;
+    border-radius: 0.3rem 0.3rem 0 0;
+    
+}
+.carousel-inner {
+    width: 100%;
+    height: 100%;
     border-radius: 0.3rem 0.3rem 0 0;
 }
-.property_component_img {
+.carousel-item {
     width: 100%;
-    border-radius: 0.3rem 0.3rem 0 0;
+    height: 100%;
+    border-radius:  0.3rem 0.3rem 0 0;
 }
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius:  0.3rem 0.3rem 0 0;
+}
+
 .property_infos {
     width: 100%;
 }
-.moreDetails_link {
-    display: block;
-    float: right;
+.num_of_rooms, .num_of_baths {
+
 }
 .call_now_btn {
-    display: block;
     width: 100%;
 }
 /* property component style Ends ------------------------------ */
@@ -182,23 +196,142 @@
     width: 8rem;
 }
 
-/* properties list page style Ends */
+/* properties list page style Ends --------------------------------- */
+
+/* property details page styles ------------------------------------ */
+
+
+
+/* property details page styles Ends -------------------------------- */
 
 /* Lessor pages style -------------------------------------------------- */
-    /* side bar styles */
 
-.sideBar_container{
-    height: 100vh;
+/* side bar styles */
+.lessor_side_bar {
+    width: 25%;
+    border-right: 1px solid rgb(227, 227, 227);
 }
+.lessor_infos {
+    margin: 3rem auto 0;
+}
+.lessor_side_img_container {
+    width: 50px;
+    height: 50px;
+}
+.lessor_side_img_container img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    border: 1px solid rgb(176, 176, 176);
+    border-radius: 25px;
+}
+
+.sidBar_nav {
+    margin-top: 1rem;
+}
+
+/* manage listings page styles */
+.add_listing_btn_manage {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.5rem;
+    width: 8rem;
+}
+    /* property_manage component styles */
+
+.img_container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+.property_actions button {
+    font-size: 1rem;
+    padding: 0.6em;
+    width: 10rem;
+}
+
+/* My account page styles */
+.save_changes_btn {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.5rem;
+    width: 6rem;
+}
+
 .lessor_img_container {
-    width: 4rem;
-    height: 4rem;
-    border-radius: 2rem;
+    width: 5rem;
+    height: 5rem;
 }
-.lessor_name {
-    height: 4rem;
-    line-height: 4rem;
+.lessor_img_container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border: 1px solid rgb(169, 169, 169);
+    border-radius: 1.5rem;
+}
+.lessor_firstName,
+.lessor_lastName {
+    width: 50%;
+    display: inline-block;
 }
 
+.lessor_phone1,
+.lessor_phone2 {
+    width: 50%;
+    display: inline-block;
+}
+.new_password,
+.confirm_password {
+    width: 50%;
+    display: inline-block;
+}
+
+/* add listing page */
+.add_listing_btn {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.5rem;
+    width: 8rem;
+}
+
+.listing_form input,
+.listing_form select,
+.description_inp {
+    margin-top: 0.2rem;
+}
+.month_daily_inp {
+    width: 100%;
+    display: block;
+}
+.housing_category_inp {
+    width: 100%;
+}
+.address_inp {
+    width: 100%;
+}
+.num_of_rooms, .num_of_baths {
+    width: 50%;
+    display: inline-block;
+}
+
+.description_inp {
+    width: 100%;
+}
+.phone_inp {
+    width: 100%;
+}
+.photos_inp_container, .videos_inp_container {
+    width: 50%;
+    display: inline-block;
+}
+.when_ready_inp {
+    width: 100%;
+}
+.additional_features_area div {
+    width: 25%;
+}
 
 /* Lessor pages style Ends -------------------------------------------------- */

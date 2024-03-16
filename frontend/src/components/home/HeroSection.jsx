@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import Header from "../../layouts/Header";
+import { useState } from "react";
 
 export default function HeroSection() {
+    const [searchInput_home, setSearchInput] = useState("");
     return (
         <>
             <header className="hero_section_homepage">
@@ -92,11 +94,11 @@ export default function HeroSection() {
                     <div className="input-group input_btn_header_group">
                         <input
                             type="text"
-                            name="search_input_herosection"
+                            name="search_input_home"
+                            value={searchInput_home}
                             className="form-control"
                             placeholder="search by city or lessor name"
-                            aria-label="Recipient's username"
-                            aria-describedby="link-addon2"
+                            onChange={(e) => setSearchInput(e.target.value)}
                         />
                         <Link
                             to={"properties-list"}

@@ -1,21 +1,22 @@
 import { Link } from "react-router-dom";
+import profilePic from "../assets/luffy.jpg";
+import { useState } from "react";
 function LessorSidebar() {
+    const [lessorImg, setLessorImg] = useState("")
     return (
-        <>
-            <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li className="nav-item container p-3 mt-5">
-                    <div className="row">
-                        <div className="col-2 border border-primary lessor_img_container "></div>
-                        <div className="col lessor_name">
-                            <span className="text-primary fw-bold ">
-                                Lessor name
-                            </span>
-                        </div>
-                    </div>
-                </li>
+        <div className="p-2 lessor_side_bar">
+            <div className="row lessor_infos">
+                <div className="col-sm-3 lessor_side_img_container p-0">
+                    <img src={profilePic} alt="profilePic" />
+                </div>
+                <span className="col-sm lessor_name_sideBar text-primary align-self-center fw-bold p-0 ms-2">
+                    Mr. ZOUBAIRI
+                </span>
+            </div>
+            <ul className="navbar-nav justify-content-end sidBar_nav flex-grow-1">
                 <li className="nav-item ps-3 text-primary fw-medium ">
                     <Link to={"/lessor/home"} className="nav-link">
-                        Home 
+                        Home
                     </Link>
                 </li>
                 <li className="nav-item ps-3 text-primary fw-medium ">
@@ -110,7 +111,7 @@ function LessorSidebar() {
                     </div>
                 </div>
             </nav> */}
-        </>
+        </div>
     );
 }
 
