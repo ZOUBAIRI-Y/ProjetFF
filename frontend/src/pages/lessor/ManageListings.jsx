@@ -10,7 +10,7 @@ export default function ManageListings() {
             <LessorSidebar />
             <div className="container m-0 pt-5">
                 <h2 className="text-primary d-inline">My listings</h2>
-                <Link to={"/add-listing"}>
+                <Link to={"/lessor/add-listing"}>
                     <button className="btn btn-success add_listing_btn_manage text-white float-end">
                         Add listing
                     </button>
