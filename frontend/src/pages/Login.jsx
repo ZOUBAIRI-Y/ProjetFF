@@ -25,8 +25,9 @@ export default function Login() {
 
     return (
         <>
-            <form onSubmit={handleSubmit} className="p-4">
+            <form onSubmit={handleSubmit} className="form p-4">
                 <input
+                    className="w-50 form-control"
                     type="text"
                     placeholder="Email"
                     value={email}
@@ -35,12 +36,15 @@ export default function Login() {
                 <br />
 
                 <input
+                    className="w-50 form-control"
                     type="password"
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <button type="submit">Login</button>
+                <button className="btn btn-success mt-2" type="submit">
+                    Login
+                </button>
             </form>
         </>
     );
