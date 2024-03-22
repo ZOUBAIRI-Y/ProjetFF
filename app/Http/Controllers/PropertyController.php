@@ -89,4 +89,41 @@ class PropertyController extends Controller
 
         return response()->json(['message' => 'Property deleted']);
     }
+
+    public function upload(Request $request, $id)
+    {
+        $property = Property::find($id);
+
+        if (!$property) {
+            return response()->json(['error' => 'property not found'], 404);
+        }
+
+        $this->authorize('update', $property);
+
+        $validated = $request->validate([
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $imageCount = count($request->file('images'));
+
+        if ($imageCount > 8) {
+            return response()->json(['error' => 'You can upload a maximum of 8 images.'], 400);
+        }
+
+        $paths = [];
+
+        if ($request->hasFile('images')) {
+            $images = $request->file('images');
+            foreach ($images as $image) {
+                $path = $image->store("properties", 'public');
+                array_push($paths, "/storage/" . $path);
+            }
+        }
+
+
+        $property->images = json_encode($paths);
+        $property->save();
+
+        return response()->json(['message' => 'Images uploaded successfully'], 200);
+    }
 }

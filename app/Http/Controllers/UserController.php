@@ -106,4 +106,30 @@ class UserController extends Controller
 
         return response()->json(['message' => 'User deleted successfully']);
     }
+    public function upload(Request $request, $id)
+    {
+
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+        $this->authorize('update', $user);
+
+        $validated = $request->validate([
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $path = "";
+        if ($request->hasFile('image')) {
+            $image = $request->file("image");
+            $path = "/storage/" . $image->store("users", 'public');
+        }
+
+
+        $user->avatar = $path;
+        $user->save();
+
+        return response()->json(['message' => 'Image uploaded successfully'], 200);
+    }
 }

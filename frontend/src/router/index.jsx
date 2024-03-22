@@ -8,12 +8,11 @@ import Login from "../pages/Login";
 import Favourites from "../pages/Favourites";
 import Contact from "../pages/Contact";
 import Layout from "../layouts/Layout";
-import { useState } from "react";
 import ManageListings from "../pages/lessor/ManageListings";
 import HomeLessor from "../pages/lessor/HomeLessor";
 import MyAccount from "../pages/lessor/MyAccount";
 import AddListing from "../pages/lessor/AddListing";
-
+import AddListingStep2 from "../pages/lessor/AddListingStep2";
 
 export const router = createBrowserRouter([
     {
@@ -22,7 +21,7 @@ export const router = createBrowserRouter([
             // visitor routes
             {
                 path: "/",
-                element: <Home/>,
+                element: <Home />,
             },
             {
                 path: "/properties-list",
@@ -61,20 +60,24 @@ export const router = createBrowserRouter([
 
             {
                 path: "/lessor/home",
-                element: <HomeLessor/>
+                element: <HomeLessor />,
             },
             {
                 path: "/lessor/manage-listings",
-                element: <ManageListings />
+                element: <ManageListings />,
             },
             {
                 path: "/lessor/add-listing",
-                element: <AddListing />
+                element: <AddListing />,
+            },
+            {
+                path: "/lessor/add-listing-2/:id",
+                element: <AddListingStep2 />,
             },
             {
                 path: "/lessor/my-account",
-                element: <MyAccount />
-            }
+                element: <MyAccount />,
+            },
         ],
     },
 ]);
