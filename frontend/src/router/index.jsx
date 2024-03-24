@@ -5,6 +5,7 @@ import PropertyDetails from "../pages/PropertyDetails";
 import SignUp from "../pages/SignUp";
 import CreateAcc from "../pages/CreateAcc";
 import Login from "../pages/Login";
+import SignOut from "../pages/SignOut";
 import Favourites from "../pages/Favourites";
 import Contact from "../pages/Contact";
 import Layout from "../layouts/Layout";
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
             {
                 path: "/login",
                 element: <Login />,
+            },
+            {
+                path: "/signout",
+                element: <SignOut />,
             },
             {
                 path: "/favourites",

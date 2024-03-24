@@ -71,7 +71,7 @@ export default function Header({ currentPath }) {
                                     </li>
                                     <li className="nav-item ms-4">
                                         <Link
-                                            to={"#"}
+                                            to={"/signout"}
                                             className="nav-link text-success fw-medium"
                                         >
                                             SignOut
@@ -81,7 +81,6 @@ export default function Header({ currentPath }) {
                             </div>
                         </div>
                     </nav>
-                    
                 </>
             );
         } else {
