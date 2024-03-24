@@ -3,44 +3,76 @@ import { useParams } from "react-router-dom";
 
 const AddListingStep2 = () => {
     const { id } = useParams();
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const formData = new FormData(event.target);
 
-        try {
-            const response = await client.post(
+    const handleFileUpload = (event) => {
+        const file = event.target.files[0];
+        const formData = new FormData();
+        formData.append("images[]", file);
+        client
+            .post(
                 "http://127.0.0.1:8000/api/properties/" + id + "/images",
-                formData
-            );
-            console.log(response.data);
-        } catch (error) {
-            console.error("Error uploading images:", error.message);
-        }
+                formData,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                }
+            )
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
-
     return (
-        <form onSubmit={handleSubmit}>
-            <h1>Step 2</h1>
-            <br />
-            <input name="images[]" type="file" />
-            <br />
-            <input name="images[]" type="file" />
-            <br />
-            <input name="images[]" type="file" />
-            <br />
-            <input name="images[]" type="file" />
-            <br />
-            <input name="images[]" type="file" />
-            <br />
-            <input name="images[]" type="file" />
-            <br />
-            <input name="images[]" type="file" />
-            <br />
-            <input name="images[]" type="file" />
-            <br />
-            <input type="submit" value="upload" />
-        </form>
+        <div className="p-4">
+            <input
+                className="form-control "
+                type="file"
+                onChange={handleFileUpload}
+            />
+            <input
+                className="form-control "
+                type="file"
+                onChange={handleFileUpload}
+            />
+            <input
+                className="form-control "
+                type="file"
+                onChange={handleFileUpload}
+            />
+            <input
+                className="form-control "
+                type="file"
+                onChange={handleFileUpload}
+            />
+            <input
+                className="form-control "
+                type="file"
+                onChange={handleFileUpload}
+            />
+            <input
+                className="form-control "
+                type="file"
+                onChange={handleFileUpload}
+            />
+            <input
+                className="form-control "
+                type="file"
+                onChange={handleFileUpload}
+            />
+            <input
+                className="form-control "
+                type="file"
+                onChange={handleFileUpload}
+            />
+            <input
+                className="form-control "
+                type="file"
+                onChange={handleFileUpload}
+            />
+        </div>
     );
 };
-
 export default AddListingStep2;

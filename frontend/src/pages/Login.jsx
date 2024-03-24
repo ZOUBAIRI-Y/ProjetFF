@@ -14,6 +14,8 @@ export default function Login() {
             .post("http://127.0.0.1:8000/api/login", { email, password })
             .then((response) => {
                 if (response.status === 200) {
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("id");
                     localStorage.setItem("token", response.data.token);
                     localStorage.setItem("id", response.data.user.id);
                     navigate("/");

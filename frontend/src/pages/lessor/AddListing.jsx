@@ -26,7 +26,7 @@ export default function AddListing() {
 
     useEffect(() => {
         if (localStorage.getItem("id"))
-            setData({ ...data, userId: localStorage.getItem("id") });
+            setData({ ...data, userId: parseInt(localStorage.getItem("id")) });
         fetch("http://127.0.0.1:8000/api/cities")
             .then((d) => d.json())
             .then((res) => setCities(res.data));
@@ -39,6 +39,7 @@ export default function AddListing() {
     const handleForm = (e) => {
         console.log(data);
         e.preventDefault();
+        console.log(client.defaults.headers);
         client
             .post("http://localhost:8000/api/properties", data)
             .then((data) => {
@@ -51,6 +52,7 @@ export default function AddListing() {
         <div className="d-flex flex-row justify-content-center">
             <LessorSidebar />
             <div className="container m-0 pt-5">
+                <h1>Step 1:</h1>
                 {/* <div className="next_previous_step"></div> */}
                 <h2 className="text-primary d-inline">Add listing</h2>
 
