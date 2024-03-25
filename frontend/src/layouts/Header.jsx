@@ -69,14 +69,16 @@ export default function Header({ currentPath }) {
                                             Contact
                                         </Link>
                                     </li>
-                                    <li className="nav-item ms-4">
-                                        <Link
-                                            to={"/signout"}
-                                            className="nav-link text-success fw-medium"
-                                        >
-                                            SignOut
-                                        </Link>
-                                    </li>
+                                    {localStorage.getItem("token") && (
+                                        <li className="nav-item ms-4">
+                                            <Link
+                                                to={"/signout"}
+                                                className="nav-link text-success fw-medium"
+                                            >
+                                                SignOut
+                                            </Link>
+                                        </li>
+                                    )}
                                 </ul>
                             </div>
                         </div>
@@ -142,24 +144,28 @@ export default function Header({ currentPath }) {
                                             Contact
                                         </Link>
                                     </li>
-                                    <li className="nav-item">
-                                        <Link
-                                            to={"/signup"}
-                                            className="nav-link mt-1 text-success fw-medium"
-                                        >
-                                            Signup
-                                        </Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link
-                                            to={"/login"}
-                                            className="nav-link"
-                                        >
-                                            <button className="btn btn-success text-white rounded-pill fw-medium ps-4 pe-4">
-                                                Login
-                                            </button>
-                                        </Link>
-                                    </li>
+                                    {localStorage.getItem("token") == null && (
+                                        <>
+                                            <li className="nav-item">
+                                                <Link
+                                                    to={"/signup"}
+                                                    className="nav-link mt-1 text-success fw-medium"
+                                                >
+                                                    Signup
+                                                </Link>
+                                            </li>
+                                            <li className="nav-item">
+                                                <Link
+                                                    to={"/login"}
+                                                    className="nav-link"
+                                                >
+                                                    <button className="btn btn-success text-white rounded-pill fw-medium ps-4 pe-4">
+                                                        Login
+                                                    </button>
+                                                </Link>
+                                            </li>
+                                        </>
+                                    )}
                                 </ul>
                             </div>
                         </div>
