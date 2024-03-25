@@ -6,6 +6,7 @@ import client from "../../custom-axios";
 
 export default function AddListing() {
     const navigate = useNavigate();
+
     const [cities, setCities] = useState([]);
     const [categories, setCategories] = useState([]);
 
@@ -23,6 +24,9 @@ export default function AddListing() {
         features: "",
         userId: 0,
     });
+    useEffect(() => {
+        if (localStorage.getItem("token") === null) navigate("/login");
+    }, []);
 
     useEffect(() => {
         if (localStorage.getItem("id"))
