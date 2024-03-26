@@ -132,4 +132,30 @@ class UserController extends Controller
 
         return response()->json(['message' => 'Image uploaded successfully'], 200);
     }
+
+    public function updatePassword(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        $this->authorize('update', $user);
+
+        $validated = $request->validate([
+            'old_password' => 'required',
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+
+        if (!Hash::check($validated['old_password'], $user->password)) {
+            return response()->json(['message' => 'Invalid old password'], 401);
+        }
+
+        $user->password = Hash::make($validated['password']);
+        $user->save();
+
+        return response()->json(['message' => 'Password updated successfully']);
+    }
 }

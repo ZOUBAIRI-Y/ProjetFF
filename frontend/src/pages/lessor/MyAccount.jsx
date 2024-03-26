@@ -30,12 +30,25 @@ export default function MyAccount() {
                 "http://localhost:8000/api/users/" + localStorage.getItem("id"),
                 userData
             )
-            .then(({ data }) => {
-                console.log(data.data);
+            .then((data) => {
+                console.log(data);
             })
             .catch((err) => console.log(err.response.data));
     };
-    const updatePassword = (e) => {};
+    const updatePassword = (e) => {
+        e.preventDefault();
+        client
+            .post(
+                "http://localhost:8000/api/users/" +
+                    localStorage.getItem("id") +
+                    "/password",
+                passwordData
+            )
+            .then(({ data }) => {
+                console.log(data);
+            })
+            .catch((err) => console.log(err.response.data));
+    };
 
     return (
         <div className="d-flex flex-row justify-content-center">
@@ -214,13 +227,12 @@ export default function MyAccount() {
                         </label>
                         <input
                             type="password"
-                            name="current_password"
-                            value={""}
+                            name="old_password"
                             className="form-control current_password"
                             onChange={(e) =>
                                 setPasswordData({
                                     ...passwordData,
-                                    password: e.target.value,
+                                    old_password: e.target.value,
                                 })
                             }
                             placeholder="current password"
@@ -229,13 +241,12 @@ export default function MyAccount() {
                             <label htmlFor="newPassword">New password</label>
                             <input
                                 type="password"
-                                name="new_password"
-                                value={""}
+                                name="password"
                                 className="form-control"
                                 onChange={(e) =>
                                     setPasswordData({
                                         ...passwordData,
-                                        newPassword: e.target.value,
+                                        password: e.target.value,
                                     })
                                 }
                                 placeholder="new password"
@@ -248,7 +259,6 @@ export default function MyAccount() {
                             <input
                                 type="password"
                                 name="confirm_password"
-                                value={""}
                                 className="form-control"
                                 onChange={(e) =>
                                     setPasswordData({

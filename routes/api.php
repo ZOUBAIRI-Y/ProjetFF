@@ -44,4 +44,5 @@ Route::group(["middleware" => ["auth:sanctum"]], function () {
   Route::resource("/categories", CategoryController::class)->except(['index', "show", "edit", "create"]);
   Route::resource("/users", UserController::class)->except(['create', "edit"]);
   Route::post('/users/{id}/images', [UserController::class, "upload"]);
+  Route::post('/users/{id}/password', [UserController::class, 'updatePassword']);
 });
