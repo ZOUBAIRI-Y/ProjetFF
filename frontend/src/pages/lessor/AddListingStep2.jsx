@@ -27,6 +27,7 @@ const AddListingStep2 = () => {
     };
     return (
         <div className="p-4">
+            <h1>Step: 2</h1>
             <input
                 className="form-control "
                 type="file"

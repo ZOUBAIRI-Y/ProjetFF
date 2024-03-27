@@ -1,10 +1,27 @@
 import { Link } from "react-router-dom";
 import LessorSidebar from "../../layouts/LessorSidebar";
 import Property_manage from "../../components/lessor/Property_manage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import client from "../../custom-axios";
 
 export default function ManageListings() {
-    const [propertiesList_manage, setPropertiesList] = useState({});
+    const [propertiesList, setPropertiesList] = useState({});
+    useEffect(() => {
+        if (localStorage.getItem("token") === null) navigate("/login");
+        client
+            .get(
+                "http://localhost:8000/api/users/" + localStorage.getItem("id")
+            )
+            .then(({ data }) => {
+                const properties = Array.isArray(data.data.properties)
+                    ? data.data.properties
+                    : [data.data.properties];
+                setPropertiesList(properties);
+                // console.log(propertiesList);
+            })
+
+            .catch((err) => console.log(err.response.data));
+    }, []);
     return (
         <div className="d-flex flex-row justify-content-center">
             <LessorSidebar />
@@ -16,12 +33,21 @@ export default function ManageListings() {
                     </button>
                 </Link>
                 <ul className="list-group mt-3 p-3 border bg-altlight ">
-                    <li className="list-group-item mb-2 p-2 border rounded">
-                        <Property_manage />
-                    </li>
-                    <li className="list-group-item mb-2 p-2 border rounded">
-                        <Property_manage />
-                    </li>
+                    {propertiesList &&
+                        propertiesList.map((p) => (
+                            <li
+                                key={p.id}
+                                className="list-group-item mb-2 p-2 border rounded"
+                            >
+                                <Property_manage
+                                    address={p.address}
+                                    price={p.price}
+                                    image={
+                                        "http://127.0.0.1:8000" + p.images[0]
+                                    }
+                                />
+                            </li>
+                        ))}
                 </ul>
                 <nav className="">
                     <ul className="pagination mt-4 justify-content-center">
