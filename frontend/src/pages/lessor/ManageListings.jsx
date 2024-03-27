@@ -1,12 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LessorSidebar from "../../layouts/LessorSidebar";
 import Property_manage from "../../components/lessor/Property_manage";
 import { useEffect, useState } from "react";
 import client from "../../custom-axios";
 
 export default function ManageListings() {
+    const navigate = useNavigate();
+
     const [propertiesList, setPropertiesList] = useState({});
-    useEffect(() => {
+    const handleDelete = (propertyId) => {
+        client
+            .delete(`http://localhost:8000/api/properties/${propertyId}`)
+            .then((data) => {
+                console.log(data);
+                getProperties();
+            })
+            .catch((err) => console.log(err.response.data));
+    };
+    const getProperties = () => {
         if (localStorage.getItem("token") === null) navigate("/login");
         client
             .get(
@@ -21,7 +32,8 @@ export default function ManageListings() {
             })
 
             .catch((err) => console.log(err.response.data));
-    }, []);
+    };
+    useEffect(() => getProperties, []);
     return (
         <div className="d-flex flex-row justify-content-center">
             <LessorSidebar />
@@ -33,7 +45,7 @@ export default function ManageListings() {
                     </button>
                 </Link>
                 <ul className="list-group mt-3 p-3 border bg-altlight ">
-                    {propertiesList &&
+                    {propertiesList && propertiesList.length > 0 ? (
                         propertiesList.map((p) => (
                             <li
                                 key={p.id}
@@ -42,12 +54,17 @@ export default function ManageListings() {
                                 <Property_manage
                                     address={p.address}
                                     price={p.price}
+                                    id={p.id}
                                     image={
                                         "http://127.0.0.1:8000" + p.images[0]
                                     }
+                                    onDelete={(id) => handleDelete(id)}
                                 />
                             </li>
-                        ))}
+                        ))
+                    ) : (
+                        <p>No propeties</p>
+                    )}
                 </ul>
                 <nav className="">
                     <ul className="pagination mt-4 justify-content-center">
