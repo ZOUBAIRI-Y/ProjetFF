@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 function Property_manage(props) {
+    const navigate = useNavigate();
+
     const handleDeleteClick = () => {
         const isConfirmed = window.confirm("Are you sure?");
 
@@ -29,7 +33,12 @@ function Property_manage(props) {
                 </p>
             </div>
             <div className="col-md-3 property_actions d-flex flex-row align-items-center justify-content-center p-1 pt-0 pb-0">
-                <button className="btn btn-success me-1">Modify</button>
+                <button
+                    onClick={() => navigate("/lessor/update-listing")}
+                    className="btn btn-success me-1"
+                >
+                    Modify
+                </button>
                 <button onClick={handleDeleteClick} className="btn btn-danger">
                     Delete
                 </button>

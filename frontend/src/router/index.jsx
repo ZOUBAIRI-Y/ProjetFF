@@ -13,6 +13,7 @@ import ManageListings from "../pages/lessor/ManageListings";
 import HomeLessor from "../pages/lessor/HomeLessor";
 import MyAccount from "../pages/lessor/MyAccount";
 import AddListing from "../pages/lessor/AddListing";
+import UpdateListing from "../pages/lessor/UpdateListing";
 import AddListingStep2 from "../pages/lessor/AddListingStep2";
 
 export const router = createBrowserRouter([
@@ -74,6 +75,10 @@ export const router = createBrowserRouter([
             {
                 path: "/lessor/add-listing",
                 element: <AddListing />,
+            },
+            {
+                path: "/lessor/update-listing",
+                element: <UpdateListing />,
             },
             {
                 path: "/lessor/add-listing-2/:id",
