@@ -34,7 +34,9 @@ function Property_manage(props) {
             </div>
             <div className="col-md-3 property_actions d-flex flex-row align-items-center justify-content-center p-1 pt-0 pb-0">
                 <button
-                    onClick={() => navigate("/lessor/update-listing")}
+                    onClick={() =>
+                        navigate("/lessor/update-listing/" + props.id)
+                    }
                     className="btn btn-success me-1"
                 >
                     Modify

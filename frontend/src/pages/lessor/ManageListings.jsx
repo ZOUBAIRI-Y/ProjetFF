@@ -28,7 +28,7 @@ export default function ManageListings() {
                     ? data.data.properties
                     : [data.data.properties];
                 setPropertiesList(properties);
-                // console.log(propertiesList);
+                console.log(properties);
             })
 
             .catch((err) => console.log(err.response.data));

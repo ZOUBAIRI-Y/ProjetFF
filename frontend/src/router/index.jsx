@@ -77,7 +77,7 @@ export const router = createBrowserRouter([
                 element: <AddListing />,
             },
             {
-                path: "/lessor/update-listing",
+                path: "/lessor/update-listing/:id",
                 element: <UpdateListing />,
             },
             {
