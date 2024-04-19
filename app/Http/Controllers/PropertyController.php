@@ -9,10 +9,13 @@ use App\Models\Property;
 use App\Filters\PropertyFilter;
 use App\Http\Requests\CreatePropertyRequest;
 use App\Http\Requests\UpdatePropertyRequest;
-use GuzzleHttp\Handler\Proxy;
+use App\Http\Resources\LikeCollection;
+use App\Models\Like;
+use Illuminate\Http\Client\Response as ClientResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Response;
 
 class PropertyController extends Controller
 {
@@ -127,5 +130,53 @@ class PropertyController extends Controller
         $property->save();
 
         return response()->json(['message' => 'Images uploaded successfully'], 200);
+    }
+    public function like($id)
+    {
+        $user = auth()->user();
+        $property = Property::find($id);
+
+        if (!$property) {
+            return response()->json(['error' => 'property not found'], 404);
+        }
+        if ($user->likes()->where('property_id', $property->id)->exists()) {
+            return response()->json(['error' => 'property already liked.'], 400);
+        }
+
+        $like = new Like();
+        $like->user_id = $user->id;
+        $like->property_id = $property->id;
+        $like->save();
+
+        return response()->json(['message' => 'property liked.'], 201);
+    }
+
+    public function unlike($id)
+    {
+        $user = auth()->user();
+
+        $property = Property::find($id);
+
+        if (!$property) {
+            return response()->json(['error' => 'property not found'], 404);
+        }
+
+        $like = Like::where('user_id', $user->id)->where('property_id', $id)->first();
+
+        if (!$like) {
+            return response()->json(['error' => 'property was not liked.'], 400);
+        }
+
+        $like->delete();
+
+        return response()->json(['message' => 'property unliked.'], 200);
+    }
+    public function likes($id)
+    {
+        $property = Property::findOrFail($id);
+
+        $likes = $property->likes;
+
+        return new LikeCollection($likes);
     }
 }
