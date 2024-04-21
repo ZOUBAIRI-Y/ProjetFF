@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LessorController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\PropertyImageController;
@@ -36,12 +37,14 @@ Route::get('/cities', [CityController::class, 'index']);
 Route::get('/cities/{id}', [CityController::class, 'show']);
 Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/categories/{id}', [CategoryController::class, 'show']);
+Route::get('/comments', [CommentController::class, 'index']);
 
 Route::group(["middleware" => ["auth:sanctum"]], function () {
   Route::post('/logout', [AuthController::class, "logout"]);
   Route::resource("/properties", PropertyController::class)->except(['create', "edit", "index", "show"]);
   Route::post('/properties/{id}/images', [PropertyController::class, "upload"]);
   Route::resource("/cities", CityController::class)->except(['index', "show", "edit", "create"]);
+  Route::resource('/comments', CommentController::class)->except(["index", 'edit']);
   Route::resource("/categories", CategoryController::class)->except(['index', "show", "edit", "create"]);
   Route::resource("/users", UserController::class)->except(['create', "edit"]);
   Route::post('/users/{id}/images', [UserController::class, "upload"]);

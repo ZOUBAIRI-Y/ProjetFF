@@ -104,7 +104,7 @@ class PropertyController extends Controller
 
         $this->authorize('update', $property);
 
-        $validated = $request->validate([
+        $request->validate([
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
