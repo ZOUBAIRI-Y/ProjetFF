@@ -28,11 +28,11 @@ class PropertyController extends Controller
         $filter = new PropertyFilter();
         $queryItems = $filter->transform($request);
         if (count($queryItems) == 0) {
-            $properties = Property::paginate();
+            $properties = Property::orderByDesc('updated_at')->paginate();
             $collection = new PropertyCollection($properties);
             return $collection;
         } else {
-            $properties = Property::where($queryItems)->paginate();
+            $properties = Property::where($queryItems)->orderByDesc('updated_at')->paginate();
             $collection = new PropertyCollection($properties->appends($request->query()));
             return $collection;
         }

@@ -1,8 +1,8 @@
 // import { Link } from "react-router-dom";
 import { Link } from "react-router-dom";
-import ApartmentImg from "../assets/apartment.jpg";
+// import ApartmentImg from "../assets/apartment.jpg";
 import lessor from "../assets/lessor_rating.jpg";
-import luffy from "../assets/luffy.jpg";
+// import luffy from "../assets/luffy.jpg";
 export default function Property(props) {
     console.log(props.data);
     return (
@@ -15,13 +15,41 @@ export default function Property(props) {
             >
                 <div className="carousel-inner">
                     <div className="carousel-item active">
-                        <img
-                            src={lessor}
-                            className="d-block"
-                            alt="property image"
-                        />
+                        {props.data.images ? (
+                            <img
+                                src={
+                                    "http://127.0.0.1:8000" +
+                                    props.data.images[0]
+                                }
+                                className="d-block"
+                                alt="property image"
+                            />
+                        ) : (
+                            <img
+                                src={lessor}
+                                className="d-block"
+                                alt="property image"
+                            />
+                        )}
                     </div>
-                    <div className="carousel-item">
+                    {props.data.images &&
+                        props.data.images.length > 1 &&
+                        props.data.images.map((v, i) => {
+                            if (i === 0) return;
+                            return (
+                                <div key={i} className="carousel-item">
+                                    <img
+                                        src={
+                                            "http://127.0.0.1:8000" +
+                                            props.data.images[i]
+                                        }
+                                        className="d-block"
+                                        alt="property image"
+                                    />
+                                </div>
+                            );
+                        })}
+                    {/* <div className="carousel-item">
                         <img
                             src={ApartmentImg}
                             className="d-block"
@@ -34,7 +62,7 @@ export default function Property(props) {
                             className="d-block"
                             alt="property image"
                         />
-                    </div>
+                    </div> */}
                 </div>
                 <button
                     className="carousel-control-prev bg-info"
