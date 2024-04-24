@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import ApartmentImg from "../assets/apartment.jpg";
 import lessor from "../assets/lessor_rating.jpg";
 import luffy from "../assets/luffy.jpg";
 export default function Property(props) {
+    console.log(props.data);
     return (
         <div className="m-4 property_component p-0 container border border-success rounded">
             {/* <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/425755208.jpg?k=617409aaddaf4b9d3ae02e6d9e0990902f470bfe78ec5fd61b628059b72ca376&o=&hp=1" alt="apartment" width="200px" /> */}
@@ -64,15 +65,20 @@ export default function Property(props) {
                     Apartment
                 </h5>
                 <p className="text-altdark property_address p-0 m-0">
+                    {/* <strong>{props.data.address}</strong> */}
                     <strong>Address</strong>
                 </p>
                 <p className="text-success property_price p-0 m-0">
-                    <strong className="fs-5">400.00 DH</strong>{" "}
+                    <strong className="fs-5">{props.data.price} DH</strong>{" "}
                     <span className="text-light p-0 m-0 Rental_type">/day</span>
                 </p>
                 <p className="text-light p-0 m-0">
-                    <span className="num_of_rooms p-0 m-0">? rooms</span>
-                    <span className="num_of_baths p-0 m-0">? baths</span>
+                    <span className="num_of_rooms p-0 m-0">
+                        {props.data.rooms} rooms
+                    </span>
+                    <span className="num_of_baths p-0 m-0">
+                        {props.data.baths} baths
+                    </span>
                 </p>
                 <p className="text-light availability p-0 m-0">Available</p>
                 <a

@@ -9,6 +9,7 @@ function PopularCitiesSection() {
             .get("http://127.0.0.1:8000/api/cities")
             .then(({ data }) => {
                 setList(data.data);
+                console.log(data);
             })
 
             .catch((err) => console.log(err));

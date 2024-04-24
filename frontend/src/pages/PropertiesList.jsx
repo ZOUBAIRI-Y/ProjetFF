@@ -13,6 +13,7 @@ export default function PropertiesList() {
         client
             .get("http://127.0.0.1:8000/api/properties?city[eq]" + term)
             .then(({ data }) => {
+                console.log(data);
                 setList(data.data);
             })
 

@@ -10,7 +10,7 @@ function TopLessorsSection() {
             .get("http://127.0.0.1:8000/api/lessors")
             .then(({ data }) => {
                 setList(data.data);
-                console.log(data.data[0]);
+                console.log(data);
             })
 
             .catch((err) => console.log(err));
