@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import ApartmentImg from "../assets/apartment.jpg";
 import lessor from "../assets/lessor_rating.jpg";
 import luffy from "../assets/luffy.jpg";
-export default function Property() {
+export default function Property(props) {
     return (
-        <div className="property_component p-0 container border border-success rounded">
+        <div className="m-4 property_component p-0 container border border-success rounded">
             {/* <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/425755208.jpg?k=617409aaddaf4b9d3ae02e6d9e0990902f470bfe78ec5fd61b628059b72ca376&o=&hp=1" alt="apartment" width="200px" /> */}
             <div
                 id="propertyCarousel"
@@ -74,9 +74,7 @@ export default function Property() {
                     <span className="num_of_rooms p-0 m-0">? rooms</span>
                     <span className="num_of_baths p-0 m-0">? baths</span>
                 </p>
-                <p className="text-light availability p-0 m-0">
-                    Available
-                </p>
+                <p className="text-light availability p-0 m-0">Available</p>
                 <a
                     href="#"
                     className="text-primary text-decoration-none moreDetails_link m-0 float-end"
