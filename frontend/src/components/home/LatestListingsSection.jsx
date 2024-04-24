@@ -7,7 +7,7 @@ export default function LatestListingsSection() {
     const [list, setList] = useState([]);
     useEffect(() => {
         client
-            .get("http://127.0.0.1:8000/api/properties?city[eq]")
+            .get("http://127.0.0.1:8000/api/properties")
             .then(({ data }) => {
                 setList(data.data);
             })

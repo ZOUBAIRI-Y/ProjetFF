@@ -11,7 +11,7 @@ class LessorController extends Controller
 {
     public function index()
     {
-        $users = User::withCount('reviews')->where('role', '!=', 'admin')->orderByDesc('reviews_count')->paginate();
+        $users = User::withCount('reviews')->where('role', '!=', 'admin')->orderByDesc('reviews_count')->paginate(6);
         $collection = new LessorCollection($users);
 
         return $collection;
