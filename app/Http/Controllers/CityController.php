@@ -14,7 +14,7 @@ class CityController extends Controller
      */
     public function index()
     {
-        $res = CityResource::collection(City::all());
+        $res = CityResource::collection(City::paginate(10));
         return response()->json(["data" => $res], 200);
     }
 

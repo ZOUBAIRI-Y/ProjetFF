@@ -1,5 +1,5 @@
 import ApartmentImg from "../../assets/lessor_rating.jpg";
-import luffy from "../../assets/luffy.jpg";
+// import luffy from "../../assets/luffy.jpg";
 import { useEffect, useState } from "react";
 import client from "../../custom-axios";
 
