@@ -26,7 +26,7 @@ export const router = createBrowserRouter([
                 element: <Home />,
             },
             {
-                path: "/properties-list",
+                path: "/properties-list/:term",
                 element: <PropertiesList />,
             },
             {

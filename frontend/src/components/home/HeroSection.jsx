@@ -117,7 +117,7 @@ export default function HeroSection() {
                             onChange={(e) => setSearchInput(e.target.value)}
                         />
                         <Link
-                            to={"properties-list"}
+                            to={"/properties-list/" + searchInput_home}
                             className="btn btn-success text-white search_link_header_btn"
                             id="link-addon2"
                         >

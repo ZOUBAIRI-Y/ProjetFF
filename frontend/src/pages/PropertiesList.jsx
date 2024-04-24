@@ -1,13 +1,30 @@
+import { useEffect } from "react";
 import Property from "../components/Property";
 import FormPropertiesList from "../components/propertiesList/FormPropertiesList";
-import Header from "../layouts/Header";
+import client from "../custom-axios";
+import { useParams } from "react-router-dom";
 
 export default function PropertiesList() {
+    const { term } = useParams();
+    // const navigate = useNavigate();
+
+    useEffect(() => {
+        console.log(term);
+        // client
+        //     .get("http://localhost:8000/api/properties/search/" + term)
+        //     .then(({ data }) => {
+        //         console.log(data);
+        //     })
+
+        //     .catch((err) => console.log(err));
+    }, [term]);
     return (
         <>
             <FormPropertiesList />
             <div className="total_sortProperties_bar container bg-altlight mt-3">
-                <p className="float-start text-primary fw-medium">? properties</p>
+                <p className="float-start text-primary fw-medium">
+                    ? properties
+                </p>
 
                 <select
                     className="form-select form-select-sm ms-auto sort_select"
