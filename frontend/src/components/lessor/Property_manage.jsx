@@ -15,7 +15,10 @@ function Property_manage(props) {
         <div className="row m-0">
             <div className="col-md-4 img_container p-1 pt-0">
                 {props.data.images && (
-                    <img src={props.data.images[0]} alt="apartment" />
+                    <img
+                        src={"http://127.0.0.1:8000" + props.data.images[0]}
+                        alt="apartment"
+                    />
                 )}
             </div>
             <div className="col-md-5 property_quickInfos align-self-center p-3 ">
