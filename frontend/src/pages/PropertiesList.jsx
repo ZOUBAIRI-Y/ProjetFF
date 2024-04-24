@@ -9,14 +9,13 @@ export default function PropertiesList() {
     // const navigate = useNavigate();
 
     useEffect(() => {
-        console.log(term);
-        // client
-        //     .get("http://localhost:8000/api/properties/search/" + term)
-        //     .then(({ data }) => {
-        //         console.log(data);
-        //     })
+        client
+            .get("http://127.0.0.1:8000/api/properties?city[eq]" + term)
+            .then(({ data }) => {
+                console.log(data.data);
+            })
 
-        //     .catch((err) => console.log(err));
+            .catch((err) => console.log(err));
     }, [term]);
     return (
         <>

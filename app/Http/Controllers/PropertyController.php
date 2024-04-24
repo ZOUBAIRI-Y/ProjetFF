@@ -11,6 +11,7 @@ use App\Http\Requests\CreatePropertyRequest;
 use App\Http\Requests\UpdatePropertyRequest;
 use App\Http\Resources\LikeCollection;
 use App\Models\Like;
+use App\Models\User;
 use Illuminate\Http\Client\Response as ClientResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
