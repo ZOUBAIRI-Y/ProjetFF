@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('ready_date');
             $table->integer('rooms');
             $table->integer('baths')->default(1);
-            $table->string('images')->nullable();
+            $table->text('images')->nullable();
             $table->enum('status', ["active", "inactive"])->default("inactive");
             $table->foreignId('category_id')->constrained('categories')->onDelete("cascade");
             $table->foreignId('user_id')->constrained()->onDelete('cascade');

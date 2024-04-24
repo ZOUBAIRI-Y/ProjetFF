@@ -34,7 +34,7 @@ class CreatePropertyRequest extends FormRequest
             'baths' => 'required|integer|min:1',
             'categoryId' => 'required|exists:categories,id',
             'userId' => 'required|exists:users,id',
-            'features' => 'sometimes|in:garage,roof, internet, pool, fireplace, garden, balcony',
+            'features' => 'sometimes|in:garage,roof,internet,pool,fireplace,garden,balcony',
         ];
     }
     protected function prepareForValidation()

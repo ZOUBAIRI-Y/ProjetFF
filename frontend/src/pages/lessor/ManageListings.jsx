@@ -13,11 +13,11 @@ export default function ManageListings() {
             .delete(`http://localhost:8000/api/properties/${propertyId}`)
             .then((data) => {
                 console.log(data);
-                getProperties();
+                navigate("/lessor/manage-listings");
             })
             .catch((err) => console.log(err.response.data));
     };
-    const getProperties = () => {
+    useEffect(() => {
         if (localStorage.getItem("token") === null) navigate("/login");
         client
             .get(
@@ -32,8 +32,7 @@ export default function ManageListings() {
             })
 
             .catch((err) => console.log(err.response.data));
-    };
-    useEffect(() => getProperties, []);
+    }, []);
     return (
         <div className="d-flex flex-row justify-content-center">
             <LessorSidebar />

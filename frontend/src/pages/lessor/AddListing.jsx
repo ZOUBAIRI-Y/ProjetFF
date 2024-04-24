@@ -43,7 +43,8 @@ export default function AddListing() {
     const handleForm = (e) => {
         console.log(data);
         e.preventDefault();
-        console.log(client.defaults.headers);
+        // console.log(client.defaults.headers);
+        // console.log(data);
         client
             .post("http://localhost:8000/api/properties", data)
             .then((data) => {

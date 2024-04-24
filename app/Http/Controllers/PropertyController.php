@@ -112,11 +112,6 @@ class PropertyController extends Controller
 
         $paths = [];
         if ($request->hasFile('images')) {
-            $imageCount = count($request->file('images'));
-
-            if ($imageCount > 8) {
-                return response()->json(['error' => 'You can upload a maximum of 8 images.'], 400);
-            }
             $images = $request->file('images');
 
             foreach ($images as $image) {
