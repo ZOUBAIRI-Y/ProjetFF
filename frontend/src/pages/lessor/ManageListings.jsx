@@ -51,12 +51,7 @@ export default function ManageListings() {
                                 className="list-group-item mb-2 p-2 border rounded"
                             >
                                 <Property_manage
-                                    address={p.address}
-                                    price={p.price}
-                                    id={p.id}
-                                    image={
-                                        "http://127.0.0.1:8000" + p.images[0]
-                                    }
+                                    data={p}
                                     onDelete={(id) => handleDelete(id)}
                                 />
                             </li>

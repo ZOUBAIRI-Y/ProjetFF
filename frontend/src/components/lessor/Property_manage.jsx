@@ -7,25 +7,27 @@ function Property_manage(props) {
         const isConfirmed = window.confirm("Are you sure?");
 
         if (isConfirmed) {
-            props.onDelete(props.id);
+            props.onDelete(props.data.id);
         }
     };
 
     return (
         <div className="row m-0">
             <div className="col-md-4 img_container p-1 pt-0">
-                <img src={props.image} alt="apartment" />
+                {props.data.images && (
+                    <img src={props.data.images[0]} alt="apartment" />
+                )}
             </div>
             <div className="col-md-5 property_quickInfos align-self-center p-3 ">
                 <h6
                     className="property_address m-0 text-dark"
                     name="property_address"
                 >
-                    Address: {props.address}
+                    Address: {props.data.address}
                 </h6>
                 <p className="property_price m-0" name="property_price">
                     <strong className="text-success">
-                        Price: {props.price} dh
+                        Price: {props.data.price} dh
                     </strong>{" "}
                     <span name="rental_type" className="text-light">
                         /day
@@ -35,7 +37,7 @@ function Property_manage(props) {
             <div className="col-md-3 property_actions d-flex flex-row align-items-center justify-content-center p-1 pt-0 pb-0">
                 <button
                     onClick={() =>
-                        navigate("/lessor/update-listing/" + props.id)
+                        navigate("/lessor/update-listing/" + props.data.id)
                     }
                     className="btn btn-success me-1"
                 >
