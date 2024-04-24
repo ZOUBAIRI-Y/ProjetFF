@@ -30,7 +30,9 @@ export default function PropertiesList() {
                     className="form-select form-select-sm ms-auto sort_select"
                     aria-label="Default select example"
                 >
-                    <option selected="">sort by:</option>
+                    <option selected value="">
+                        sort by:
+                    </option>
                     <option value={"Most recent"}>Most recent</option>
                     <option value={"Cheapest"}>Cheapest</option>
                     <option value={"Expensive"}>Expensive</option>

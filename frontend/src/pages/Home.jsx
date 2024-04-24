@@ -1,6 +1,4 @@
-import Property from "../components/Property";
 import AdvantagesSection from "../components/home/AdvantagesSection";
-import HeroSection from "../components/home/HeroSection";
 import LatestListingsSection from "../components/home/LatestListingsSection";
 import PopularCitiesSection from "../components/home/PopularCitiesSection";
 import TopLessorsSection from "../components/home/TopLessorsSection";
@@ -31,7 +29,7 @@ export default function Home() {
                     <div className="col-sm-4 d-flex flex-column align-items-center justify-content-center">
                         <h2 className="text-primary text-center">Our value!</h2>
                         <p className="text-secondary text-center fs-3 ">
-                            <strong>"Inclusive.Safe.Respectful."</strong>
+                            <strong>Inclusive.Safe.Respectful.</strong>
                         </p>
                     </div>
                     <div className="col-sm-8 ">
