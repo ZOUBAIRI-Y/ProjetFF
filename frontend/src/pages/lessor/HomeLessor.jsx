@@ -21,7 +21,7 @@ export default function HomeLessor() {
     }, []);
     return (
         <div className="d-flex flex-row justify-content-center">
-            <LessorSidebar data={userfo} />
+            <LessorSidebar />
             <div className="container m-0 p-3">
                 {userfo && (
                     <div className="row">

@@ -27,13 +27,9 @@ function TopLessorsSection() {
                         list.map((l) => (
                             <li key={l.id} className="list-group-item border-0">
                                 <div className="row">
-                                    {/* <div className="lessor_image_container border border-light col-2"> */}
-                                    <img
-                                        src={l.avatar}
-                                        height={100}
-                                        width={100}
-                                        // className="rounded-circle"
-                                    />
+                                    <div className="col-sm-3 lessor_side_img_container p-0">
+                                        <img src={l.avatar} alt="profilePic" />
+                                    </div>
                                     {/* </div> */}
                                     <div className="col">
                                         <span>
