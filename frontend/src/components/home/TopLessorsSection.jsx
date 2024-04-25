@@ -31,6 +31,7 @@ function TopLessorsSection() {
                                     <img
                                         src={l.avatar}
                                         height={100}
+                                        width={100}
                                         // className="rounded-circle"
                                     />
                                     {/* </div> */}
