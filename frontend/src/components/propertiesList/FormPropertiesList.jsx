@@ -14,7 +14,7 @@ export default function FormPropertiesList() {
                         className="form-select p-2"
                         aria-label="Default select example"
                     >
-                        <option selected="">? rooms</option>
+                        <option selected="">rooms</option>
                         <option value={1}>One</option>
                         <option value={2}>Two</option>
                         <option value={3}>Three</option>
@@ -27,7 +27,7 @@ export default function FormPropertiesList() {
                         className="form-select p-2"
                         aria-label="Default select example"
                     >
-                        <option selected="">? price</option>
+                        <option selected="">price</option>
                         <option value={100}>100</option>
                         <option value={200}>200</option>
                         <option value={300}>300</option>

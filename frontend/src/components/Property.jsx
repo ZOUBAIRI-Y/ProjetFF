@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaHeart, FaRegHeart } from "react-icons/fa"; // Importing Heart icons from React Icons
 import lessor from "../assets/lessor_rating.jpg";
@@ -7,9 +7,21 @@ import client from "../custom-axios";
 export default function Property(props) {
     const [liked, setLiked] = useState(false);
 
-    console.log(props);
+    // console.log();
+    useEffect(() => {
+        if (
+            props &&
+            props.data.likes.length > 0 &&
+            props.data.likes[0].userId &&
+            props.data.likes[0].userId == localStorage.getItem("id")
+        ) {
+            setLiked(true);
+        }
+    }, [props]);
+
     const handleLikeToggle = async () => {
         try {
+            setLiked(!liked);
             if (!liked) {
                 await client.post(
                     `http://127.0.0.1:8000/api/properties/${props.data.id}/like`
@@ -21,7 +33,6 @@ export default function Property(props) {
                 );
                 console.log("Unliked");
             }
-            setLiked(!liked);
         } catch (error) {
             console.error("Error:", error);
         }

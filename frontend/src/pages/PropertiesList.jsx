@@ -46,9 +46,9 @@ export default function PropertiesList() {
                     <option selected value="">
                         sort by:
                     </option>
-                    <option value={"Most recent"}>Most recent</option>
-                    <option value={"Cheapest"}>Cheapest</option>
-                    <option value={"Expensive"}>Expensive</option>
+                    <option value="Most recent">Most recent</option>
+                    <option value="Cheapest">Cheapest</option>
+                    <option value="Expensive">Expensive</option>
                 </select>
             </div>
             <div className="properties_list container mt-4 border d-flex flex-row flex-wrap">

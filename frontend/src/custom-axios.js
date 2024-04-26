@@ -15,5 +15,5 @@ if (token) {
 export default p1;
 
 export function getUser() {
-  return JSON.parse(localStorage.getItem("user"));
+  if (localStorage.getItem("user")) return JSON.parse(localStorage.getItem("user"));
 }

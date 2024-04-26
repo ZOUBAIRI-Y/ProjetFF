@@ -23,7 +23,7 @@ export default function Favourites() {
     }, []);
 
     return (
-        <div className="d-flex">
+        <div className="d-flex  flex-wrap">
             {props.map((p) => (
                 <Property key={p.id} data={p.property} />
             ))}
