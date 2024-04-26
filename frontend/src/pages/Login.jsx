@@ -18,6 +18,10 @@ export default function Login() {
                     localStorage.removeItem("id");
                     localStorage.setItem("token", response.data.token);
                     localStorage.setItem("id", response.data.user.id);
+                    localStorage.setItem(
+                        "user",
+                        JSON.stringify(response.data.user)
+                    );
                     navigate("/");
                 }
             })

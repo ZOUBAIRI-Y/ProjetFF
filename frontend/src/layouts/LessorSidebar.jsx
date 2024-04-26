@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import profilePic from "../assets/luffy.jpg";
 import { useEffect, useState } from "react";
-import client from "../custom-axios";
+import { getUser } from "../custom-axios";
 
 function LessorSidebar() {
     const navigate = useNavigate();
@@ -9,15 +9,18 @@ function LessorSidebar() {
 
     useEffect(() => {
         if (localStorage.getItem("id") === null) navigate("/login");
-        client
-            .get(
-                "http://localhost:8000/api/users/" + localStorage.getItem("id")
-            )
-            .then(({ data }) => {
-                setUserInfo(data.data);
-                console.log(data.data);
-            })
-            .catch((err) => console.log(err.response.data));
+        // client
+        //     .get(
+        //         "http://localhost:8000/api/users/" + localStorage.getItem("id")
+        //     )
+        //     .then(({ data }) => {
+        //         setUserInfo(data.data);
+        //         console.log(data.data);
+        //     })
+        //     .catch((err) => console.log(err.response.data));
+        const u = getUser();
+        setUserInfo(u);
+        console.log(u);
     }, []);
 
     return (

@@ -26,6 +26,7 @@ export default function SignUo() {
                     localStorage.removeItem("id");
                     localStorage.setItem("token", response.data.token);
                     localStorage.setItem("id", response.data.user.id);
+                    localStorage.setItem("user", response.data.user);
                     navigate("/");
                 }
             })

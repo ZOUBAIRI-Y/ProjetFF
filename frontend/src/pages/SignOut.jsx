@@ -6,6 +6,7 @@ export default function SignOut() {
     useEffect(() => {
         localStorage.removeItem("token");
         localStorage.removeItem("id");
+        localStorage.removeItem("user");
         navigate("/");
     }, []);
 }
