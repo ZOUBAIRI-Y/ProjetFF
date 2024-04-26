@@ -21,7 +21,7 @@ export default function LatestListingsSection() {
             <h2 className="text-primary">Latest listings</h2>
 
             <Link
-                to={"/properties-list"}
+                to={"/properties-list/all"}
                 className="text-decoration-none text-primary seeMore_link float-end"
             >
                 See more

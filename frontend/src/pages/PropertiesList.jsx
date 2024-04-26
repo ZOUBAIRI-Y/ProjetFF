@@ -10,15 +10,27 @@ export default function PropertiesList() {
     // const navigate = useNavigate();
 
     useEffect(() => {
-        client
-            .get("http://127.0.0.1:8000/api/properties?city[eq]" + term)
-            .then(({ data }) => {
-                console.log(data);
-                setList(data.data);
-            })
+        if (term === "all") {
+            client
+                .get("http://127.0.0.1:8000/api/properties")
+                .then(({ data }) => {
+                    console.log(data);
+                    setList(data.data);
+                })
 
-            .catch((err) => console.log(err));
+                .catch((err) => console.log(err));
+        } else {
+            client
+                .get("http://127.0.0.1:8000/api/properties?city[eq]" + term)
+                .then(({ data }) => {
+                    console.log(data);
+                    setList(data.data);
+                })
+
+                .catch((err) => console.log(err));
+        }
     }, [term]);
+
     return (
         <>
             <FormPropertiesList />
