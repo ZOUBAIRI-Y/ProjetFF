@@ -158,4 +158,12 @@ class UserController extends Controller
 
         return response()->json(['message' => 'Password updated successfully']);
     }
+    public function likedProperties($userId)
+    {
+        $user = User::findOrFail($userId);
+
+        $likedProperties = $user->likes()->with('property')->get();
+
+        return response()->json(['data' => $likedProperties]);
+    }
 }

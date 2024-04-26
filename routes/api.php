@@ -51,4 +51,5 @@ Route::group(["middleware" => ["auth:sanctum"]], function () {
   Route::post('/users/{id}/password', [UserController::class, 'updatePassword']);
   Route::post('/properties/{id}/like', [PropertyController::class, 'like']);
   Route::post('/properties/{id}/unlike', [PropertyController::class, 'unlike']);
+  Route::get('/properties/{userId}/liked', [PropertyController::class, 'liked']);
 });
