@@ -16,7 +16,7 @@ class LikeResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'propertyId' => $this->property_id,
+            'property' => $this->property_id,
             "userId" => $this->user_id,
             "createdAt" => $this->created_at,
             "updatedAt" => $this->updated_at

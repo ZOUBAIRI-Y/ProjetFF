@@ -7,6 +7,7 @@ import client from "../custom-axios";
 export default function Property(props) {
     const [liked, setLiked] = useState(false);
 
+    console.log(props);
     const handleLikeToggle = async () => {
         try {
             if (!liked) {

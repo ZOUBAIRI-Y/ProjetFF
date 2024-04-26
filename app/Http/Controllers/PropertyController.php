@@ -184,15 +184,21 @@ class PropertyController extends Controller
         $user = User::find($userId);
 
         if (!$user) {
-            return response()->json(['error' => 'user not found'], 404);
+            return response()->json(['error' => 'User not found'], 404);
         }
 
         $likedProperties = $user->likes()->with('property')->get();
 
-        return response()->json(['data' => $likedProperties]);
-    }
-    public function hello()
-    {
-        return response("hello");
+        $likeData = $likedProperties->map(function ($like) {
+            return [
+                'id' => $like->id,
+                'property' => new PropertyResource($like->property),
+                'userId' => $like->user_id,
+                'createdAt' => $like->created_at,
+                'updatedAt' => $like->updated_at,
+            ];
+        });
+
+        return response()->json($likeData);
     }
 }
