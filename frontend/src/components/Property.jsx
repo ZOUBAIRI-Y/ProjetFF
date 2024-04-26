@@ -1,13 +1,33 @@
-// import { Link } from "react-router-dom";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-// import ApartmentImg from "../assets/apartment.jpg";
+import { FaHeart, FaRegHeart } from "react-icons/fa"; // Importing Heart icons from React Icons
 import lessor from "../assets/lessor_rating.jpg";
-// import luffy from "../assets/luffy.jpg";
+import client from "../custom-axios";
+
 export default function Property(props) {
-    console.log(props.data);
+    const [liked, setLiked] = useState(false);
+
+    const handleLikeToggle = async () => {
+        try {
+            if (!liked) {
+                await client.post(
+                    `http://127.0.0.1:8000/api/properties/${props.data.id}/like`
+                );
+                console.log("Liked");
+            } else {
+                await client.post(
+                    `http://127.0.0.1:8000/api/properties/${props.data.id}/unlike`
+                );
+                console.log("Unliked");
+            }
+            setLiked(!liked);
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    };
+
     return (
         <div className="m-4 property_component p-0 container border border-success rounded">
-            {/* <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/425755208.jpg?k=617409aaddaf4b9d3ae02e6d9e0990902f470bfe78ec5fd61b628059b72ca376&o=&hp=1" alt="apartment" width="200px" /> */}
             <div
                 id="propertyCarousel"
                 className="p-2 carousel slide"
@@ -49,20 +69,6 @@ export default function Property(props) {
                                 </div>
                             );
                         })}
-                    {/* <div className="carousel-item">
-                        <img
-                            src={ApartmentImg}
-                            className="d-block"
-                            alt="property image"
-                        />
-                    </div>
-                    <div className="carousel-item">
-                        <img
-                            src={luffy}
-                            className="d-block"
-                            alt="property image"
-                        />
-                    </div> */}
                 </div>
                 <button
                     className="carousel-control-prev bg-info"
@@ -88,13 +94,18 @@ export default function Property(props) {
                     />
                     <span className="visually-hidden">Next</span>
                 </button>
+                <button
+                    onClick={handleLikeToggle}
+                    className="like_btn btn btn-light "
+                >
+                    {liked ? <FaHeart /> : <FaRegHeart />}
+                </button>
             </div>
             <div className="property_infos p-2">
                 <h5 className="text-primary fw-bold p-0 m-0 property_title">
                     Apartment
                 </h5>
                 <p className="text-altdark property_address p-0 m-0">
-                    {/* <strong>{props.data.address}</strong> */}
                     <strong>Address</strong>
                 </p>
                 <p className="text-success property_price p-0 m-0">
