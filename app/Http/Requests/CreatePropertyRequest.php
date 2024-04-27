@@ -33,7 +33,6 @@ class CreatePropertyRequest extends FormRequest
             'rooms' => 'required|integer|min:1',
             'baths' => 'required|integer|min:1',
             'categoryId' => 'required|exists:categories,id',
-            'userId' => 'required|exists:users,id',
             'features' => 'sometimes|in:garage,roof,internet,pool,fireplace,garden,balcony',
         ];
     }

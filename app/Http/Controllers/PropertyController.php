@@ -59,7 +59,10 @@ class PropertyController extends Controller
      */
     public function store(CreatePropertyRequest $request)
     {
-        $property = Property::create($request->all());
+        $propertyData = $request->all();
+        $propertyData['user_id'] = auth()->user()->id;
+
+        $property = Property::create($propertyData);
         $propertyResource = new PropertyResource($property);
         return response()->json(["data" => $propertyResource], 201);
     }
