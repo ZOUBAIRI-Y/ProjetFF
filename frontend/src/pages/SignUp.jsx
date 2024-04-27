@@ -5,6 +5,7 @@ import client from "../custom-axios";
 export default function SignUo() {
     const [email, setEmail] = useState("");
     const [firstname, setFirstName] = useState("");
+    const [nom, setNom] = useState("");
     const [lastname, setLastName] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
@@ -14,6 +15,7 @@ export default function SignUo() {
         e.preventDefault();
         client
             .post("http://127.0.0.1:8000/api/signup", {
+                name: nom,
                 firstname,
                 lastname,
                 email,
@@ -44,6 +46,14 @@ export default function SignUo() {
                     placeholder="Email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                />
+                <br />
+                <input
+                    type="text"
+                    className="w-50 form-control"
+                    placeholder="Nom"
+                    value={nom}
+                    onChange={(e) => setNom(e.target.value)}
                 />
                 <br />
 
