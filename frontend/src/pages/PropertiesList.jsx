@@ -21,7 +21,7 @@ export default function PropertiesList() {
                 .catch((err) => console.log(err));
         } else {
             client
-                .get("http://127.0.0.1:8000/api/properties?city[eq]" + term)
+                .get("http://127.0.0.1:8000/api/properties/results/" + term)
                 .then(({ data }) => {
                     console.log(data);
                     setList(data.data);

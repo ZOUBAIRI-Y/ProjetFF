@@ -113,7 +113,7 @@ export default function HeroSection() {
                             name="search_input_home"
                             value={searchInput_home}
                             className="form-control"
-                            placeholder="Searche propertyes  by city "
+                            placeholder="Searche by city or lessor nom "
                             onChange={(e) => setSearchInput(e.target.value)}
                         />
                         <Link
