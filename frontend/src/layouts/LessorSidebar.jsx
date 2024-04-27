@@ -33,7 +33,7 @@ function LessorSidebar() {
                     />
                 </div>
                 <span className="col-sm lessor_name_sideBar text-primary align-self-center fw-bold p-0 ms-2">
-                    Mr. {userInfo.firstname}
+                    Mr. {userInfo.name}
                 </span>
             </div>
             <ul className="navbar-nav justify-content-end sidBar_nav flex-grow-1">
