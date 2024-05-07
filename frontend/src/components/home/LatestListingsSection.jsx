@@ -5,15 +5,24 @@ import client from "../../custom-axios";
 
 export default function LatestListingsSection() {
     const [list, setList] = useState([]);
-    useEffect(() => {
-        client
-            .get("http://127.0.0.1:8000/api/properties")
-            .then(({ data }) => {
-                setList(data.data);
-                console.log(data);
-            })
 
-            .catch((err) => console.log(err));
+    useEffect(() => {
+        if (localStorage.getItem("properties") === null) {
+            client
+                .get("http://127.0.0.1:8000/api/properties")
+                .then(({ data }) => {
+                    setList(data.data);
+                    localStorage.setItem(
+                        "properties",
+                        JSON.stringify(data.data)
+                    );
+                    console.log(data);
+                })
+
+                .catch((err) => console.log(err));
+        } else {
+            setList(JSON.parse(localStorage.getItem("properties")));
+        }
     }, []);
     return (
         <div className="latest_listings_section container mt-5">

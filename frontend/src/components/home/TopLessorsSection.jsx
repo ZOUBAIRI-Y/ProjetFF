@@ -6,15 +6,21 @@ import client from "../../custom-axios";
 function TopLessorsSection() {
     const [list, setList] = useState([]);
     useEffect(() => {
-        client
-            .get("http://127.0.0.1:8000/api/lessors")
-            .then(({ data }) => {
-                setList(data.data);
-                console.log(data);
-            })
+        if (localStorage.getItem("lessors") === null) {
+            client
+                .get("http://127.0.0.1:8000/api/lessors")
+                .then(({ data }) => {
+                    setList(data.data);
+                    localStorage.setItem("lessors", JSON.stringify(data.data));
+                    console.log(data);
+                })
 
-            .catch((err) => console.log(err));
+                .catch((err) => console.log(err));
+        } else {
+            setList(JSON.parse(localStorage.getItem("lessors")));
+        }
     }, []);
+
     return (
         <div className="top_lessors_section row">
             <div className="topLessors_list_sec col-sm p-3">
