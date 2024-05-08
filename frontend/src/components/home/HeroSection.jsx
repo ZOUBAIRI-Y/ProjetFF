@@ -32,7 +32,7 @@ export default function HeroSection() {
                             <ul className="navbar-nav ms-auto">
                                 <li className="nav-item">
                                     <Link
-                                        to={"#"}
+                                        to={"/categories-list"}
                                         className="nav-link mt-1 text-light fw-medium"
                                     >
                                         Category

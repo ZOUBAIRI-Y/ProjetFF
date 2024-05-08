@@ -15,6 +15,7 @@ import MyAccount from "../pages/lessor/MyAccount";
 import AddListing from "../pages/lessor/AddListing";
 import UpdateListing from "../pages/lessor/UpdateListing";
 import AddListingStep2 from "../pages/lessor/AddListingStep2";
+import CategoriesList from "../pages/CategoriesList";
 
 export const router = createBrowserRouter([
     {
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
             {
                 path: "/properties-list/:term",
                 element: <PropertiesList />,
+            },
+            {
+                path: "/categories-list",
+                element: <CategoriesList />,
             },
             {
                 path: "/property-details/:id",
