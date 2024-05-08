@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaHeart, FaRegHeart } from "react-icons/fa"; // Importing Heart icons from React Icons
-// import lessor from "../assets/lessor_rating.jpg";
-import lessor from "../assets/house.webp";
+import lessor from "../assets/lessor_rating.jpg";
+// import lessor from "../assets/house.webp";
 import client from "../custom-axios";
 
 export default function Property(props) {

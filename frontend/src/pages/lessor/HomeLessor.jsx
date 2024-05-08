@@ -8,16 +8,19 @@ export default function HomeLessor() {
     const [userfo, setUserInfo] = useState({});
     useEffect(() => {
         if (localStorage.getItem("id") === null) navigate("/login");
-        client
-            .get(
-                "http://localhost:8000/api/users/" + localStorage.getItem("id")
-            )
-            .then(({ data }) => {
-                setUserInfo(data.data);
-                console.log(data.data);
-            })
+        if (localStorage.getItem("user") === null)
+            client
+                .get(
+                    "http://localhost:8000/api/users/" +
+                        localStorage.getItem("id")
+                )
+                .then(({ data }) => {
+                    setUserInfo(data.data);
+                    console.log(data.data);
+                })
 
-            .catch((err) => console.log(err.response.data));
+                .catch((err) => console.log(err.response.data));
+        else setUserInfo(JSON.parse(localStorage.getItem("user")));
     }, []);
     return (
         <div className="d-flex flex-row justify-content-center">
