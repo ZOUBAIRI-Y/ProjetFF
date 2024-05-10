@@ -10,8 +10,39 @@ export default function PropertiesList() {
     const [selectedCity, setSelectedCity] = useState("");
     const [selectedPrice, setSelectedPrice] = useState("");
     const [selectedRooms, setSelectedRooms] = useState("");
-
     const [cities, setCities] = useState([]);
+
+    const [sortCriteria, setSortCriteria] = useState("");
+
+    const handleSortChange = (e) => {
+        const criteria = e.target.value;
+        setSortCriteria(criteria);
+        sortList(criteria);
+    };
+
+    const sortList = (criteria) => {
+        let sortedList = [...list];
+        switch (criteria) {
+            case "mostRecent":
+                sortedList.sort(
+                    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+                );
+                console.log(1);
+                break;
+            case "cheapest":
+                sortedList.sort((a, b) => a.price - b.price);
+                break;
+            case "expensive":
+                sortedList.sort((a, b) => b.price - a.price);
+                break;
+            // Add more cases for other sorting criteria if needed
+            default:
+                // Default sorting (no sorting)
+                break;
+        }
+        setList(sortedList);
+    };
+
     useEffect(() => {
         client
             .get("http://127.0.0.1:8000/api/cities")
@@ -127,15 +158,14 @@ export default function PropertiesList() {
                 </p>
 
                 <select
-                    className="form-select form-select-sm ms-auto sort_select"
-                    aria-label="Default select example"
+                    className="form-select form-select-sm ms-auto w-50 sort_select"
+                    value={sortCriteria}
+                    onChange={handleSortChange}
                 >
-                    <option selected value="">
-                        sort by:
-                    </option>
-                    <option value="Most recent">Most recent</option>
-                    <option value="Cheapest">Cheapest</option>
-                    <option value="Expensive">Expensive</option>
+                    <option value="">Sort By</option>
+                    <option value="mostRecent">Most Recent</option>
+                    <option value="cheapest">Cheapest</option>
+                    <option value="expensive">Expensive</option>
                 </select>
             </div>
             <div className="properties_list container mt-4 border d-flex flex-row flex-wrap">
