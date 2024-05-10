@@ -7,8 +7,19 @@ import client from "../custom-axios";
 
 export default function Property(props) {
     const [liked, setLiked] = useState(false);
+    // const [contact, setContact] = useState(false);
 
-    // console.log();
+    const lessor_phone = (lessorId) => {
+        client
+            .get("http://127.0.0.1:8000/api/lessors/" + lessorId)
+            .then(({ data }) => {
+                console.log(data.data);
+                alert(data.data.phone1 ? data.data.phone1 : "Non Trouver");
+            })
+            .catch((err) => console.log(err));
+    };
+    // alert(props.data.lessorId ? props.data.phone1 : "Telephone Non Trouver.");
+    // console.log(props.data);
     useEffect(() => {
         if (
             props &&
@@ -140,7 +151,10 @@ export default function Property(props) {
                 >
                     More details
                 </Link>
-                <button className="call_now_btn btn btn-success text-white">
+                <button
+                    onClick={() => lessor_phone(props.data.lessorId)}
+                    className="call_now_btn btn btn-success text-white"
+                >
                     Call now
                 </button>
             </div>
