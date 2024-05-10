@@ -45,7 +45,7 @@ export default function MyAccount() {
                 passwordData
             )
             .then(({ data }) => {
-                console.log(data);
+                alert(data.message);
             })
             .catch((err) => console.log(err.response.data));
     };
