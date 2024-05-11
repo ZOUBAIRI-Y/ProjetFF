@@ -23,6 +23,7 @@ export default function Property(props) {
     useEffect(() => {
         if (
             props &&
+            props.data.likes &&
             props.data.likes.length > 0 &&
             props.data.likes[0].userId &&
             props.data.likes[0].userId == localStorage.getItem("id")

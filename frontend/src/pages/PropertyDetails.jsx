@@ -1,15 +1,35 @@
 import { useEffect, useState } from "react";
 import client from "../custom-axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Property from "../components/Property";
 
 export default function PropertyDetails() {
     const { id } = useParams();
+    const navigate = useNavigate();
 
     const [prop, setProp] = useState({});
     const [comments, setComments] = useState([]);
     const [reviews, setReviews] = useState([]);
     const [lessorInfo, setLessorInfo] = useState({});
+    const [newCommentText, setNewCommentText] = useState("");
+
+    const handleAddComment = () => {
+        const commentData = {
+            content: newCommentText,
+            propertyId: id,
+        };
+
+        client
+            .post("http://localhost:8000/api/comments", commentData)
+            .then(({ data }) => {
+                console.log("Comment added successfully:", data);
+                setComments((prevComments) => [...prevComments, data]);
+                setNewCommentText("");
+            })
+            .catch((err) => {
+                console.error("Error adding comment:", err);
+            });
+    };
 
     useEffect(() => {
         client
@@ -36,6 +56,14 @@ export default function PropertyDetails() {
 
     return (
         <div className="property-details p-5">
+            <button
+                onClick={() =>
+                    alert(lessorInfo.phone1 ? lessorInfo.phone1 : "non trouver")
+                }
+                className="call_now_btn btn btn-success text-white mb-3"
+            >
+                Call now
+            </button>
             <h1 className="mb-4">Property Details: </h1>
             <hr />
             <div className="property-info">
@@ -73,11 +101,18 @@ export default function PropertyDetails() {
                 <p>{prop.lessorId}</p>
             </div>
             <hr />
+            <button
+                className="btn btn-primary"
+                onClick={() => navigate("/review/" + id)}
+            >
+                Add unreview
+            </button>
+            <hr />
             <div className="comments">
                 <h2>Comments:</h2>
                 {comments.map((comment, index) => (
                     <div key={index}>
-                        <p>{comment.text}</p>
+                        <b>{comment.content}</b>
                         <p>
                             {/* Posted By: {comment.user.name && comment.user.name} */}
                         </p>
@@ -94,7 +129,9 @@ export default function PropertyDetails() {
                 {reviews.map((review, index) => (
                     <div key={index}>
                         <p>{review.text}</p>
-                        <p>Rating: {review.rating}</p>
+                        <p>
+                            Rating: {review.rating} <b>Star</b>
+                        </p>
                         {/* <p>Posted By: {review.user.name}</p> */}
                         <p>
                             Date:{" "}
@@ -114,14 +151,28 @@ export default function PropertyDetails() {
                 <p>Phone 2: {lessorInfo.phone2}</p>
             </div>
             <hr />
+            <h2>Autre Lessor properties:</h2>
             <div className="lessor-info d-flex flex-wrap">
-                <h2>Autre Lessor properties:</h2>
                 {lessorInfo &&
                     lessorInfo.properties &&
                     lessorInfo.properties.map((p) => (
                         <Property data={p} key={p.id} />
                     ))}
             </div>
+            <hr />
+            <div className="add-comment">
+                <h2>Aouter un Comment:</h2>
+                <textarea
+                    value={newCommentText}
+                    className="form-control"
+                    onChange={(e) => setNewCommentText(e.target.value)}
+                    placeholder="Type your comment here..."
+                ></textarea>
+                <button className="btn btn-primary" onClick={handleAddComment}>
+                    Add Comment
+                </button>
+            </div>
+            <hr />
         </div>
     );
 }

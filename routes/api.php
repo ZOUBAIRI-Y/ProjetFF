@@ -8,6 +8,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LessorController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\PropertyImageController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserImageController;
 
@@ -40,7 +41,6 @@ Route::get('/categories/{id}', [CategoryController::class, 'show']);
 Route::get('/comments', [CommentController::class, 'index']);
 Route::get('/properties/results/{term}', [PropertyController::class, 'search']);
 
-
 Route::group(["middleware" => ["auth:sanctum"]], function () {
   Route::post('/logout', [AuthController::class, "logout"]);
   Route::resource("/properties", PropertyController::class)->except(['create', "edit", "index", "show"]);
@@ -54,4 +54,6 @@ Route::group(["middleware" => ["auth:sanctum"]], function () {
   Route::post('/properties/{id}/like', [PropertyController::class, 'like']);
   Route::post('/properties/{id}/unlike', [PropertyController::class, 'unlike']);
   Route::get('/properties/{userId}/liked', [PropertyController::class, 'liked']);
+  Route::post('/reviews', [ReviewController::class, 'store']);
+  Route::delete('/reviews/{id}', [ReviewController::class, 'destroy']);
 });

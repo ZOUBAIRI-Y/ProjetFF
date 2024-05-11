@@ -16,6 +16,7 @@ import AddListing from "../pages/lessor/AddListing";
 import UpdateListing from "../pages/lessor/UpdateListing";
 import AddListingStep2 from "../pages/lessor/AddListingStep2";
 import CategoriesList from "../pages/CategoriesList";
+import Review from "../pages/Review";
 
 export const router = createBrowserRouter([
     {
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
             {
                 path: "/properties-list/:term",
                 element: <PropertiesList />,
+            },
+            {
+                path: "/review/:id",
+                element: <Review />,
             },
             {
                 path: "/categories-list",
