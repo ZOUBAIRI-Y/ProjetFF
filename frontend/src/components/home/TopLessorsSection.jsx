@@ -2,6 +2,7 @@ import ApartmentImg from "../../assets/lessor_rating.jpg";
 // import luffy from "../../assets/luffy.jpg";
 import { useEffect, useState } from "react";
 import client from "../../custom-axios";
+import { Link } from "react-router-dom";
 
 function TopLessorsSection() {
     const [list, setList] = useState([]);
@@ -38,9 +39,16 @@ function TopLessorsSection() {
                                     </div>
                                     {/* </div> */}
                                     <div className="col">
-                                        <span>
+                                        <Link
+                                            to={
+                                                "/properties-list/" +
+                                                l.firstname +
+                                                " " +
+                                                l.firstname
+                                            }
+                                        >
                                             {l.firstname} {l.firstname}
-                                        </span>
+                                        </Link>
                                     </div>
                                 </div>
                             </li>

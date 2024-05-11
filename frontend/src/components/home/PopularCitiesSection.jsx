@@ -1,6 +1,7 @@
 import ApartmentImg from "../../assets/apartment.jpg";
 import { useEffect, useState } from "react";
 import client from "../../custom-axios";
+import { Link } from "react-router-dom";
 
 function PopularCitiesSection() {
     const [list, setList] = useState([]);
@@ -33,7 +34,9 @@ function PopularCitiesSection() {
                             <div key={c.id}>
                                 <li className="list-group-item border-0 text-light">
                                     <i className="bi bi-geo-alt-fill"></i>
-                                    <span>{c.name}</span>
+                                    <Link to={"/properties-list/" + c.name}>
+                                        {c.name}
+                                    </Link>
                                 </li>
                                 <br />
                             </div>
