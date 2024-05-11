@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CommentResource;
 use App\Models\Comment;
+use App\Models\Property;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -18,12 +19,16 @@ class CommentController extends Controller
 
     public function show($id)
     {
-        $comment = Comment::find($id);
+        Property::findOrFail($id);
 
-        if (!$comment) {
-            return response()->json(['error' => 'Comment not found.'], 404);
+
+        $comments = Comment::where('property_id', $id)->get();
+
+        if ($comments->isEmpty()) {
+            return response()->json(['error' => 'No comments found for this property.'], 404);
         }
-        return new CommentResource($comment);
+
+        return CommentResource::collection($comments);
     }
     public function store(Request $request)
     {
@@ -52,11 +57,8 @@ class CommentController extends Controller
         ]);
 
 
-        $comment = Comment::find($id);
+        $comment =  Comment::findOrFail($id);
 
-        if (!$comment) {
-            return response()->json(['error' => 'Comment not found.'], 404);
-        }
 
         $this->authorize('update', $comment);
 
@@ -69,11 +71,8 @@ class CommentController extends Controller
     public function destroy($id)
     {
 
-        $comment = Comment::find($id);
+        $comment =  Comment::findOrFail($id);
 
-        if (!$comment) {
-            return response()->json(['error' => 'Comment not found.'], 404);
-        }
 
         $this->authorize('delete', $comment);
 

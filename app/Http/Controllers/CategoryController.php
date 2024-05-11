@@ -31,11 +31,8 @@ class CategoryController extends Controller
 
     public function show(string $id)
     {
-        $category = Category::find($id);
+        $category =  Category::findOrFail($id);
 
-        if (!$category) {
-            return response()->json(['error' => 'Category not found'], 404);
-        }
 
         $res = new CategoryResource($category);
         return response()->json($res);

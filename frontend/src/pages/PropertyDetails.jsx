@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import client from "../custom-axios";
 import { useParams } from "react-router-dom";
+import Property from "../components/Property";
 
 export default function PropertyDetails() {
     const { id } = useParams();
@@ -14,7 +15,7 @@ export default function PropertyDetails() {
         client
             .get("http://127.0.0.1:8000/api/properties/" + id)
             .then(({ data }) => {
-                console.log(data.data);
+                console.log("prop", data.data);
                 setProp(data.data);
                 setComments(data.data.comments);
                 setReviews(data.data.reviews);
@@ -28,7 +29,7 @@ export default function PropertyDetails() {
             .get("http://localhost:8000/api/lessors/" + lessorId)
             .then(({ data }) => {
                 setLessorInfo(data.data);
-                console.log(data.data);
+                console.log("lessor", data.data);
             })
             .catch((err) => console.log(err.response.data));
     };
@@ -77,7 +78,9 @@ export default function PropertyDetails() {
                 {comments.map((comment, index) => (
                     <div key={index}>
                         <p>{comment.text}</p>
-                        <p>Posted By: {comment.user.name}</p>
+                        <p>
+                            {/* Posted By: {comment.user.name && comment.user.name} */}
+                        </p>
                         <p>
                             Date:{" "}
                             {new Date(comment.createdAt).toLocaleDateString()}
@@ -92,7 +95,7 @@ export default function PropertyDetails() {
                     <div key={index}>
                         <p>{review.text}</p>
                         <p>Rating: {review.rating}</p>
-                        <p>Posted By: {review.user.name}</p>
+                        {/* <p>Posted By: {review.user.name}</p> */}
                         <p>
                             Date:{" "}
                             {new Date(review.createdAt).toLocaleDateString()}
@@ -109,6 +112,15 @@ export default function PropertyDetails() {
                 <p>Address: {lessorInfo.address}</p>
                 <p>Phone 1: {lessorInfo.phone1}</p>
                 <p>Phone 2: {lessorInfo.phone2}</p>
+            </div>
+            <hr />
+            <div className="lessor-info d-flex flex-wrap">
+                <h2>Autre Lessor properties:</h2>
+                {lessorInfo &&
+                    lessorInfo.properties &&
+                    lessorInfo.properties.map((p) => (
+                        <Property data={p} key={p.id} />
+                    ))}
             </div>
         </div>
     );

@@ -44,11 +44,8 @@ class PropertyController extends Controller
     public function show($id)
     {
 
-        $property = Property::find($id);
+        $property =  Property::findOrFail($id);
 
-        if (!$property) {
-            return response()->json(['error' => 'property not found'], 404);
-        }
 
         $propertyResource = new PropertyResource($property);
         return response()->json(['data' => $propertyResource]);
@@ -100,11 +97,8 @@ class PropertyController extends Controller
 
     public function upload(Request $request, $id)
     {
-        $property = Property::find($id);
+        $property =  Property::findOrFail($id);
 
-        if (!$property) {
-            return response()->json(['error' => 'property not found'], 404);
-        }
 
         $this->authorize('update', $property);
 
@@ -133,11 +127,8 @@ class PropertyController extends Controller
     public function like($id)
     {
         $user = auth()->user();
-        $property = Property::find($id);
+        $property =  Property::findOrFail($id);
 
-        if (!$property) {
-            return response()->json(['error' => 'property not found'], 404);
-        }
         if ($user->likes()->where('property_id', $property->id)->exists()) {
             return response()->json(['error' => 'property already liked.'], 400);
         }
@@ -154,11 +145,8 @@ class PropertyController extends Controller
     {
         $user = auth()->user();
 
-        $property = Property::find($id);
+        $property =  Property::findOrFail($id);
 
-        if (!$property) {
-            return response()->json(['error' => 'property not found'], 404);
-        }
 
         $like = Like::where('user_id', $user->id)->where('property_id', $id)->first();
 
@@ -172,11 +160,8 @@ class PropertyController extends Controller
     }
     public function likes($id)
     {
-        $property = Property::find($id);
+        $property =  Property::findOrFail($id);
 
-        if (!$property) {
-            return response()->json(['error' => 'property not found'], 404);
-        }
 
         $likes = $property->likes;
 
