@@ -11,123 +11,72 @@ use App\Http\Requests\CreatePropertyRequest;
 use App\Http\Requests\UpdatePropertyRequest;
 use App\Http\Resources\LikeCollection;
 use App\Models\Like;
-use App\Models\User;
-use Illuminate\Http\Client\Response as ClientResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Response;
 
 class PropertyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
         $filter = new PropertyFilter();
         $queryItems = $filter->transform($request);
-        if (count($queryItems) == 0) {
-            $properties = Property::orderByDesc('updated_at')->paginate();
-            $collection = new PropertyCollection($properties);
-            return $collection;
-        } else {
-            $properties = Property::where($queryItems)->orderByDesc('updated_at')->paginate();
-            $collection = new PropertyCollection($properties->appends($request->query()));
-            return $collection;
-        }
+        $properties = Property::where($queryItems)->orderByDesc('updated_at')->paginate();
+        return new PropertyCollection($properties->appends($request->query()));
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show($id)
     {
-
-        $property =  Property::findOrFail($id);
-
-
-        $propertyResource = new PropertyResource($property);
-        return response()->json(['data' => $propertyResource]);
+        $property = Property::findOrFail($id);
+        return response()->json(['data' => new PropertyResource($property)]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(CreatePropertyRequest $request)
     {
         $propertyData = $request->all();
         $propertyData['user_id'] = auth()->user()->id;
-
         $property = Property::create($propertyData);
-        $propertyResource = new PropertyResource($property);
-        return response()->json(["data" => $propertyResource], 201);
+        return response()->json(["data" => new PropertyResource($property)], 201);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdatePropertyRequest $request, $id)
     {
-        $property = Property::find($id);
+        $property = Property::findOrFail($id);
         $this->authorize('update', $property);
-
-        if (!$property) {
-            return response()->json(['error' => 'property not found'], 404);
-        }
         $property->update($request->all());
+        return response()->json(['message' => 'Property updated']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
-        $property = Property::find($id);
+        $property = Property::findOrFail($id);
         $this->authorize('delete', $property);
-        if (!$property) {
-            return response()->json(['error' => 'property not found'], 404);
-        }
-
-
         $property->delete();
-
         return response()->json(['message' => 'Property deleted']);
     }
 
     public function upload(Request $request, $id)
     {
-        $property =  Property::findOrFail($id);
-
-
+        $property = Property::findOrFail($id);
         $this->authorize('update', $property);
-
         $request->validate([
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
-
-
         $paths = [];
         if ($request->hasFile('images')) {
             $images = $request->file('images');
-
             foreach ($images as $image) {
                 $path = $image->store("properties", 'public');
                 array_push($paths, "/storage/" . $path);
             }
         }
-
-
         $property->images = json_encode($paths);
         $property->save();
-
         return response()->json(['message' => 'Images uploaded successfully'], 200);
     }
+
     public function like($id)
     {
         $user = auth()->user();
-        $property =  Property::findOrFail($id);
+        $property = Property::findOrFail($id);
 
         if ($user->likes()->where('property_id', $property->id)->exists()) {
             return response()->json(['error' => 'property already liked.'], 400);
@@ -144,10 +93,7 @@ class PropertyController extends Controller
     public function unlike($id)
     {
         $user = auth()->user();
-
-        $property =  Property::findOrFail($id);
-
-
+        $property = Property::findOrFail($id);
         $like = Like::where('user_id', $user->id)->where('property_id', $id)->first();
 
         if (!$like) {
@@ -155,18 +101,16 @@ class PropertyController extends Controller
         }
 
         $like->delete();
-
         return response()->json(['message' => 'property unliked.'], 200);
     }
+
     public function likes($id)
     {
-        $property =  Property::findOrFail($id);
-
-
+        $property = Property::findOrFail($id);
         $likes = $property->likes;
-
         return new LikeCollection($likes);
     }
+
     public function liked($userId)
     {
         $user = User::find($userId);
@@ -189,6 +133,7 @@ class PropertyController extends Controller
 
         return response()->json($likeData);
     }
+
     public function search($term)
     {
         $properties = Property::whereHas('user', function ($query) use ($term) {
