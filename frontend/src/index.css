@@ -199,7 +199,21 @@
 /* properties list page style Ends --------------------------------- */
 
 /* property details page styles ------------------------------------ */
-
+.prop_gen_infos {
+    width: 100%;
+    height: 50vh;
+    background-image: url("./assets/bg-propDetails.png");
+    background-position: left;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+}
+.carousel_propDetail {
+    width: 100%;
+    height: 25vh;
+    margin-top: 2rem;
+    background-color: #adffe477;
+}
 
 
 /* property details page styles Ends -------------------------------- */
