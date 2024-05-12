@@ -35,11 +35,12 @@ export default function Home() {
                         </p>
                     </div>
                     <div className="col-sm-8 ">
-                        <img
-                            src={ourValue_img}
-                            alt="ourValue_img"
-                            className="ourValue_img float-end"
-                        />
+                        <div className="valueimg_container">
+                            <img
+                                src={ourValue_img}
+                                alt="ourValue_img"
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
