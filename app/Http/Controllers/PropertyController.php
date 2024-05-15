@@ -20,13 +20,17 @@ class PropertyController extends Controller
     {
         $filter = new PropertyFilter();
         $queryItems = $filter->transform($request);
-        $properties = Property::where($queryItems)->orderByDesc('updated_at')->paginate();
+        $properties = Property::with('likes', 'reviews', 'comments')
+            ->where($queryItems)
+            ->orderByDesc('updated_at')
+            ->paginate();
         return new PropertyCollection($properties->appends($request->query()));
     }
 
     public function show($id)
     {
-        $property = Property::findOrFail($id);
+        $property = Property::with('likes', 'reviews', 'comments')
+            ->findOrFail($id);
         return response()->json(['data' => new PropertyResource($property)]);
     }
 
@@ -108,7 +112,8 @@ class PropertyController extends Controller
     public function likes($id)
     {
         $property = Property::findOrFail($id);
-        $likes = $property->likes;
+        $likes = $property->likes()->paginate(10);
+
         return new LikeCollection($likes);
     }
 
@@ -120,7 +125,7 @@ class PropertyController extends Controller
             return response()->json(['error' => 'User not found'], 404);
         }
 
-        $likedProperties = $user->likes()->with('property')->get();
+        $likedProperties = $user->likes()->with('property')->paginate(10);
 
         $likeData = $likedProperties->map(function ($like) {
             return [
@@ -134,7 +139,6 @@ class PropertyController extends Controller
 
         return response()->json($likeData);
     }
-
     public function search($term)
     {
         $properties = Property::whereHas('user', function ($query) use ($term) {

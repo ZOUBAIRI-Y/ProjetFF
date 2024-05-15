@@ -11,7 +11,12 @@ class LessorController extends Controller
 {
     public function index()
     {
-        $users = User::withCount('reviews')->where('role', '!=', 'admin')->orderByDesc('reviews_count')->paginate(6);
+        $users = User::withCount('reviews')
+            ->with(['likes', 'reviews', 'comments', 'properties'])
+            ->where('role', '!=', 'admin')
+            ->orderByDesc('reviews_count')
+            ->paginate(6);
+
         $collection = new LessorCollection($users);
 
         return $collection;
@@ -19,13 +24,12 @@ class LessorController extends Controller
 
     public function show($id)
     {
-        $user = User::find($id);
+        $user = User::with(['likes', 'reviews', 'comments', 'properties'])
+            ->find($id);
 
         if (!$user) {
             return response()->json(['error' => 'User not found'], 404);
         }
-
-        $user->with(["properties", "likes"]);
 
         $userResource = new LessorResource($user);
         return response()->json(['data' => $userResource]);
