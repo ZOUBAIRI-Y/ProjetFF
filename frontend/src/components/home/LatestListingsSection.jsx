@@ -38,6 +38,7 @@ export default function LatestListingsSection() {
             <p>Here are the most recent listings, Find the perfect for you</p>
             <div className="listings_slider  d-flex flex-wrap">
                 {list && list.map((p) => <Property data={p} key={p.id} />)}
+                <p>pagination ici!</p>
             </div>
         </div>
     );

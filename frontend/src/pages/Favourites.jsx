@@ -27,6 +27,7 @@ export default function Favourites() {
             {props.map((p) => (
                 <Property key={p.id} data={p.property} />
             ))}
+            <p>pagination ici!</p>
         </div>
     );
 }
