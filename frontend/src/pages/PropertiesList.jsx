@@ -8,9 +8,11 @@ export default function PropertiesList() {
     const [list, setList] = useState([]);
     const [terms, setTerms] = useState(term);
     const [selectedCity, setSelectedCity] = useState("");
+    const [selectedCat, setSelectedCat] = useState("");
     const [selectedPrice, setSelectedPrice] = useState("");
     const [selectedRooms, setSelectedRooms] = useState("");
     const [cities, setCities] = useState([]);
+    const [cats, setCats] = useState([]);
 
     const [sortCriteria, setSortCriteria] = useState("");
 
@@ -55,6 +57,46 @@ export default function PropertiesList() {
     }, []);
 
     useEffect(() => {
+        client
+            .get("http://127.0.0.1:8000/api/categories")
+            .then(({ data }) => {
+                setCats(data.data);
+                console.log(data);
+            })
+
+            .catch((err) => console.log(err));
+    }, []);
+
+    useEffect(() => {
+        if (
+            typeof parseInt(term) === "number" &&
+            parseInt(term) !== 0 &&
+            !isNaN(term)
+        ) {
+            // console.log(parseInt(term));
+
+            client
+                .get("http://127.0.0.1:8000/api/categories/" + parseInt(term))
+                .then(({ data }) => {
+                    setSelectedCat(data.name);
+                    // console.log(data.id);
+                })
+
+                .catch((err) => console.log(err));
+            client
+                .get(
+                    "http://127.0.0.1:8000/api/properties?category[eq]" +
+                        selectedCat
+                )
+                .then(({ data }) => {
+                    setCities(data.data);
+                    console.log(data);
+                })
+
+                .catch((err) => console.log(err));
+        }
+    }, []);
+    useEffect(() => {
         if (term === "all" || !terms) {
             client
                 .get("http://127.0.0.1:8000/api/properties")
@@ -92,13 +134,24 @@ export default function PropertiesList() {
             <form className="container mt-4">
                 <div className="row">
                     <div className="col-sm-4 ps-0 pe-1">
-                        <input
-                            type="text"
-                            placeholder="searche ..."
-                            className="form-control p-2 "
-                            value={terms}
-                            onChange={(e) => setTerms(e.target.value)}
-                        />
+                        {typeof parseInt(term) === "number" &&
+                        parseInt(term) !== 0 &&
+                        !isNaN(term) ? (
+                            <input
+                                type="text"
+                                placeholder="searche ..."
+                                className="form-control p-2 "
+                                onChange={(e) => setTerms(e.target.value)}
+                            />
+                        ) : (
+                            <input
+                                type="text"
+                                placeholder="searche ..."
+                                className="form-control p-2 "
+                                value={terms}
+                                onChange={(e) => setTerms(e.target.value)}
+                            />
+                        )}
                     </div>
                     <div className="col-sm p-0 pe-1">
                         <select
@@ -123,6 +176,22 @@ export default function PropertiesList() {
                             <option selected="">cities</option>
                             {cities &&
                                 cities.map((c) => (
+                                    <option key={c.id} value={c.name}>
+                                        {c.name}
+                                    </option>
+                                ))}
+                        </select>
+                    </div>
+                    <div className="col-sm p-0 pe-1">
+                        <select
+                            className="form-select p-2"
+                            aria-label="Default select example"
+                            onChange={(e) => setSelectedCat(e.target.value)}
+                            value={selectedCat}
+                        >
+                            <option selected="">categories</option>
+                            {cats &&
+                                cats.map((c) => (
                                     <option key={c.id} value={c.name}>
                                         {c.name}
                                     </option>

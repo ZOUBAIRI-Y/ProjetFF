@@ -16,6 +16,7 @@ class PropertyFilter extends ApiFilter
     "rentingType" => ["eq"],
     "postDate" => ["gt", "eq", "lt", "gte", "lte"],
     "status" => ["eq"],
+    "category" => ["eq"],
   ];
 
   protected $operatorMap = [

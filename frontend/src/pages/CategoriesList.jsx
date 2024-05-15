@@ -2,6 +2,7 @@
 // import Property from "../components/Property";
 import { useEffect, useState } from "react";
 import client from "../custom-axios";
+import { Link } from "react-router-dom";
 
 export default function CategoriesList() {
     const [list, setList] = useState([]);
@@ -22,7 +23,10 @@ export default function CategoriesList() {
             {list &&
                 list.map((cat) => (
                     <h2 className="p-3" key={cat.id}>
-                        {cat.name}
+                        <Link
+                            key={cat.id}
+                            to={"/properties-list/" + cat.id}
+                        ></Link>
                     </h2>
                 ))}
         </>

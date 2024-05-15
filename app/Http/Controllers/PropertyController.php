@@ -11,6 +11,7 @@ use App\Http\Requests\CreatePropertyRequest;
 use App\Http\Requests\UpdatePropertyRequest;
 use App\Http\Resources\LikeCollection;
 use App\Models\Like;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PropertyController extends Controller
