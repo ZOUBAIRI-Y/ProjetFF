@@ -39,12 +39,12 @@ export default function Property(props) {
                 await client.post(
                     `http://127.0.0.1:8000/api/properties/${props.data.id}/like`
                 );
-                console.log("Liked");
+                alert("Liked");
             } else {
                 await client.post(
                     `http://127.0.0.1:8000/api/properties/${props.data.id}/unlike`
                 );
-                console.log("Unliked");
+                alert("Unliked");
             }
         } catch (error) {
             console.error("Error:", error);

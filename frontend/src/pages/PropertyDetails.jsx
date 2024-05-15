@@ -66,6 +66,11 @@ export default function PropertyDetails() {
             </button>
             <h1 className="mb-4">Property Details: </h1>
             <hr />
+            {prop &&
+                prop.images &&
+                prop.images.map((m) => (
+                    <img src={"http://127.0.0.1:8000" + m} key={Date.now} />
+                ))}
             <div className="property-info">
                 <h2>Description:</h2>
                 <p>{prop.description}</p>
