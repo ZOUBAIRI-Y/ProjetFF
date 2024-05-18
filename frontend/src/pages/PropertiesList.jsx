@@ -89,7 +89,7 @@ export default function PropertiesList() {
                         selectedCat
                 )
                 .then(({ data }) => {
-                    setCities(data.data);
+                    setList(data.data);
                     console.log(data);
                 })
 

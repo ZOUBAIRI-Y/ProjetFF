@@ -8,21 +8,28 @@ export default function CategoriesList() {
     const [list, setList] = useState([]);
 
     useEffect(() => {
-        client
-            .get("http://127.0.0.1:8000/api/categories")
-            .then(({ data }) => {
-                setList(data.data);
-                console.log(data);
-            })
-
-            .catch((err) => console.log(err));
+        if (localStorage.getItem("categories") === null) {
+            client
+                .get("http://127.0.0.1:8000/api/categories")
+                .then(({ data }) => {
+                    setList(data.data);
+                    localStorage.setItem(
+                        "categories",
+                        JSON.stringify(data.data)
+                    );
+                    console.log(data);
+                })
+                .catch((err) => console.log(err));
+        } else {
+            setList(JSON.parse(localStorage.getItem("categories")));
+        }
     }, []);
     return (
         <>
             <h1 className="py-4">Categories:</h1>
             {list &&
                 list.map((cat) => (
-                    <h2 className="p-3" key={cat.id}>
+                    <div className="p-3" key={cat.id}>
                         <Link key={cat.id} to={"/properties-list/" + cat.id}>
                             {cat.name}
                         </Link>
@@ -31,7 +38,11 @@ export default function CategoriesList() {
                             src={"http://127.0.0.1:8000" + cat.image}
                             key={Date.now}
                         />
-                    </h2>
+                        <br />
+                        <h3>description:</h3>
+                        <p>{cat.description}</p>
+                        <hr />
+                    </div>
                 ))}
         </>
     );
