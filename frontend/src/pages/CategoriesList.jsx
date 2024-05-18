@@ -23,10 +23,14 @@ export default function CategoriesList() {
             {list &&
                 list.map((cat) => (
                     <h2 className="p-3" key={cat.id}>
-                        <Link
-                            key={cat.id}
-                            to={"/properties-list/" + cat.id}
-                        ></Link>
+                        <Link key={cat.id} to={"/properties-list/" + cat.id}>
+                            {cat.name}
+                        </Link>
+                        <br />
+                        <img
+                            src={"http://127.0.0.1:8000" + cat.image}
+                            key={Date.now}
+                        />
                     </h2>
                 ))}
         </>
