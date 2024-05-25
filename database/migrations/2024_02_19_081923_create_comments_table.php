@@ -11,9 +11,9 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->text('content');
-            $table->boolean('is_active');
-            $table->foreignId('property_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->boolean('is_active')->default(true);
+            $table->foreignId('property_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

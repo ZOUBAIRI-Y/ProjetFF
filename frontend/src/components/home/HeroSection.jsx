@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import Header from "../../layouts/Header";
 import { useState } from "react";
 
 export default function HeroSection() {
@@ -33,7 +32,7 @@ export default function HeroSection() {
                             <ul className="navbar-nav ms-auto">
                                 <li className="nav-item">
                                     <Link
-                                        to={"#"}
+                                        to={"/categories-list"}
                                         className="nav-link mt-1 text-light fw-medium"
                                     >
                                         Category
@@ -63,21 +62,38 @@ export default function HeroSection() {
                                         Contact
                                     </Link>
                                 </li>
-                                <li className="nav-item">
-                                    <Link
-                                        to={"/signup"}
-                                        className="nav-link mt-1 text-success fw-medium"
-                                    >
-                                        Signup
-                                    </Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link to={"/login"} className="nav-link">
-                                        <button className="btn btn-success text-white rounded-pill fw-medium ps-4 pe-4">
-                                            Login
-                                        </button>
-                                    </Link>
-                                </li>
+                                {localStorage.getItem("token") == null && (
+                                    <>
+                                        <li className="nav-item">
+                                            <Link
+                                                to={"/signup"}
+                                                className="nav-link mt-1 text-success fw-medium"
+                                            >
+                                                Signup
+                                            </Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link
+                                                to={"/login"}
+                                                className="nav-link"
+                                            >
+                                                <button className="btn btn-success text-white rounded-pill fw-medium ps-4 pe-4">
+                                                    Login
+                                                </button>
+                                            </Link>
+                                        </li>
+                                    </>
+                                )}
+                                {localStorage.getItem("token") && (
+                                    <li className="nav-item ms-4">
+                                        <Link
+                                            to={"/signout"}
+                                            className="btn btn-success text-white rounded-pill fw-medium ps-4 pe-4"
+                                        >
+                                            SignOut
+                                        </Link>
+                                    </li>
+                                )}
                             </ul>
                         </div>
                     </div>
@@ -97,11 +113,11 @@ export default function HeroSection() {
                             name="search_input_home"
                             value={searchInput_home}
                             className="form-control"
-                            placeholder="search by city or lessor name"
+                            placeholder="Searche by city or lessor nom "
                             onChange={(e) => setSearchInput(e.target.value)}
                         />
                         <Link
-                            to={"properties-list"}
+                            to={"/properties-list/" + searchInput_home}
                             className="btn btn-success text-white search_link_header_btn"
                             id="link-addon2"
                         >

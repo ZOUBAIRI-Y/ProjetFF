@@ -1,38 +1,99 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import ApartmentImg from "../assets/apartment.jpg";
+import { FaHeart, FaRegHeart } from "react-icons/fa"; // Importing Heart icons from React Icons
 import lessor from "../assets/lessor_rating.jpg";
-import luffy from "../assets/luffy.jpg";
-export default function Property() {
+// import lessor from "../assets/house.webp";
+import client from "../custom-axios";
+
+export default function Property(props) {
+    const [liked, setLiked] = useState(false);
+    // const [contact, setContact] = useState(false);
+
+    const lessor_phone = (lessorId) => {
+        client
+            .get("http://127.0.0.1:8000/api/lessors/" + lessorId)
+            .then(({ data }) => {
+                console.log(data.data);
+                alert(data.data.phone1 ? data.data.phone1 : "Non Trouver");
+            })
+            .catch((err) => console.log(err));
+    };
+    // alert(props.data.lessorId ? props.data.phone1 : "Telephone Non Trouver.");
+    // console.log(props.data);
+    useEffect(() => {
+        if (
+            props &&
+            props.data.likes &&
+            props.data.likes.length > 0 &&
+            props.data.likes[0].userId &&
+            props.data.likes[0].userId == localStorage.getItem("id")
+        ) {
+            setLiked(true);
+        }
+    }, [props]);
+
+    const handleLikeToggle = async () => {
+        try {
+            setLiked(!liked);
+            if (!liked) {
+                await client.post(
+                    `http://127.0.0.1:8000/api/properties/${props.data.id}/like`
+                );
+                alert("Liked");
+            } else {
+                await client.post(
+                    `http://127.0.0.1:8000/api/properties/${props.data.id}/unlike`
+                );
+                alert("Unliked");
+            }
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    };
+
     return (
-        <div className="property_component p-0 container border border-success rounded">
-            {/* <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/425755208.jpg?k=617409aaddaf4b9d3ae02e6d9e0990902f470bfe78ec5fd61b628059b72ca376&o=&hp=1" alt="apartment" width="200px" /> */}
+        <div className="property_component p-0 border border-success rounded">
             <div
                 id="propertyCarousel"
-                className="carousel slide"
+                className="p-2 carousel slide"
                 data-bs-ride="carousel"
             >
                 <div className="carousel-inner">
                     <div className="carousel-item active">
-                        <img
-                            src={lessor}
-                            className="d-block"
-                            alt="property image"
-                        />
+                        {props.data.images ? (
+                            <img
+                                src={
+                                    "http://127.0.0.1:8000" +
+                                    props.data.images[0]
+                                }
+                                className="d-block"
+                                alt="property image"
+                            />
+                        ) : (
+                            <img
+                                src={lessor}
+                                className="d-block"
+                                alt="property image"
+                            />
+                        )}
                     </div>
-                    <div className="carousel-item">
-                        <img
-                            src={ApartmentImg}
-                            className="d-block"
-                            alt="property image"
-                        />
-                    </div>
-                    <div className="carousel-item">
-                        <img
-                            src={luffy}
-                            className="d-block"
-                            alt="property image"
-                        />
-                    </div>
+                    {props.data.images &&
+                        props.data.images.length > 1 &&
+                        props.data.images.map((v, i) => {
+                            if (i === 0) return;
+                            return (
+                                <div key={i} className="carousel-item">
+                                    <img
+                                        src={
+                                            "http://127.0.0.1:8000" +
+                                            props.data.images[i]
+                                        }
+                                        className="d-block"
+                                        alt="property image"
+                                    />
+                                </div>
+                            );
+                        })}
                 </div>
                 <button
                     className="carousel-control-prev bg-info"
@@ -58,6 +119,12 @@ export default function Property() {
                     />
                     <span className="visually-hidden">Next</span>
                 </button>
+                <button
+                    onClick={handleLikeToggle}
+                    className="like_btn btn btn-light "
+                >
+                    {liked ? <FaHeart /> : <FaRegHeart />}
+                </button>
             </div>
             <div className="property_infos p-2">
                 <h5 className="text-primary fw-bold p-0 m-0 property_title">
@@ -67,23 +134,28 @@ export default function Property() {
                     <strong>Address</strong>
                 </p>
                 <p className="text-success property_price p-0 m-0">
-                    <strong className="fs-5">400.00 DH</strong>{" "}
+                    <strong className="fs-5">{props.data.price} DH</strong>{" "}
                     <span className="text-light p-0 m-0 Rental_type">/day</span>
                 </p>
                 <p className="text-light p-0 m-0">
-                    <span className="num_of_rooms p-0 m-0">? rooms</span>
-                    <span className="num_of_baths p-0 m-0">? baths</span>
+                    <span className="num_of_rooms p-0 m-0">
+                        {props.data.rooms} rooms
+                    </span>
+                    <span className="num_of_baths p-0 m-0">
+                        {props.data.baths} baths
+                    </span>
                 </p>
-                <p className="text-light availability p-0 m-0">
-                    Available
-                </p>
-                <a
-                    href="#"
+                <p className="text-light availability p-0 m-0">Available</p>
+                <Link
+                    to={"/property-details/" + props.data.id}
                     className="text-primary text-decoration-none moreDetails_link m-0 float-end"
                 >
                     More details
-                </a>
-                <button className="call_now_btn btn btn-success text-white">
+                </Link>
+                <button
+                    onClick={() => lessor_phone(props.data.lessorId)}
+                    className="call_now_btn btn btn-success text-white"
+                >
                     Call now
                 </button>
             </div>

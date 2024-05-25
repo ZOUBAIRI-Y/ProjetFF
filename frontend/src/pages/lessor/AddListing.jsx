@@ -1,63 +1,73 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import LessorSidebar from "../../layouts/LessorSidebar";
 import { useEffect, useState } from "react";
+import client from "../../custom-axios";
 
 export default function AddListing() {
-    const [property_images, setProperty_imgs] = useState([]);
-    const [property_videos, setProperty_videos] = useState([]);
-    const [additional_features, setFeatures] = useState([]);
-    const [property_inputs, setPropertyinfos] = useState({
-        rental_type: "",
-        housing_category: "",
-        property_address: "",
-        num_of_rooms: "",
-        num_of_baths: "",
-        property_price: 0,
-        property_deposit: 0,
-        property_space: 0,
-        property_description: "",
-        lessor_phone_prop: "",
-        property_images: property_images,
-        property_videos: property_videos,
-        property_time_ready: "",
-        additional_features: additional_features,
+    const navigate = useNavigate();
+
+    const [cities, setCities] = useState([]);
+    const [categories, setCategories] = useState([]);
+
+    const [data, setData] = useState({
+        description: "",
+        price: "",
+        deposite: "",
+        space: "",
+        cityId: 0,
+        address: "",
+        rentingType: "",
+        readyDate: "",
+        rooms: 2,
+        categoryId: 0,
+        features: "",
+        userId: 0,
     });
-    const handle_propertyInp_changes = (e) => {
-        setPropertyinfos({
-            ...property_inputs,
-            [e.target.name]: e.target.value,
-        });
-    };
-    const handle_property_imgs = (e) => {
-        setProperty_imgs([...property_images, e.target.value]);
-    }
-    const handle_property_vds = (e) => {
-        setProperty_videos([...property_videos, e.target.value]);
-    }
-    const handle_additional_fts = (e) => {
-        setFeatures([...additional_features, e.target.value]);
-    }
     useEffect(() => {
-        setPropertyinfos({
-            ...property_inputs,
-            property_images: property_images,
-            property_videos: property_videos,
-            additional_features: additional_features
-        })
-    }, [property_images, property_videos, additional_features])
+        if (localStorage.getItem("token") === null) navigate("/login");
+    }, []);
+
+    useEffect(() => {
+        if (localStorage.getItem("id"))
+            setData({ ...data, userId: parseInt(localStorage.getItem("id")) });
+        fetch("http://127.0.0.1:8000/api/cities")
+            .then((d) => d.json())
+            .then((res) => setCities(res.data));
+
+        fetch("http://127.0.0.1:8000/api/categories")
+            .then((d) => d.json())
+            .then((res) => setCategories(res.data));
+    }, []);
+
+    const handleForm = (e) => {
+        console.log(data);
+        e.preventDefault();
+        // console.log(client.defaults.headers);
+        // console.log(data);
+        client
+            .post("http://localhost:8000/api/properties", data)
+            .then((data) => {
+                navigate("/lessor/add-listing-2/" + data.data.data.id);
+            })
+            .catch((err) => console.log(err.response.data));
+    };
+
     return (
         <div className="d-flex flex-row justify-content-center">
             <LessorSidebar />
             <div className="container m-0 pt-5">
+                <h1>Step 1:</h1>
                 {/* <div className="next_previous_step"></div> */}
                 <h2 className="text-primary d-inline">Add listing</h2>
-                <button className="btn btn-success add_listing_btn text-white float-end" onClick={()=> {
-                    console.log(property_inputs);
-                }}>
-                    Add
-                </button>
-                {/* <h2 className="text-primary d-inline">Add listing</h2> */}
-                <form className="listing_form mt-3">
+
+                <form className="listing_form mt-3 m-4" onSubmit={handleForm}>
+                    <button
+                        type="submit"
+                        className="btn btn-success add_listing_btn text-white float-end"
+                    >
+                        Add
+                    </button>
                     <div className="primary_property_infos border rounded pt-1 p-3 bg-altlight">
                         <p className="text-dark fw-medium m-0 mt-2">
                             <strong>Primary*</strong>
@@ -65,7 +75,10 @@ export default function AddListing() {
                         <select
                             name="rental_type"
                             onChange={(e) =>
-                                handle_propertyInp_changes(e)
+                                setData({
+                                    ...data,
+                                    rentingType: e.target.value,
+                                })
                             }
                             className="month_daily_inp form-select"
                         >
@@ -74,21 +87,50 @@ export default function AddListing() {
                             <option value="daily">Daily</option>
                         </select>
                         <select
-                            name="housing_category"
+                            name="category"
                             onChange={(e) =>
-                                handle_propertyInp_changes(e)
+                                setData({
+                                    ...data,
+                                    categoryId: parseInt(e.target.value),
+                                })
                             }
-                            className="housing_category_inp form-select"
+                            className="month_daily_inp form-select"
                         >
-                            <option value="apartment">Apartment</option>
-                            <option value="studio">Studio</option>
-                            <option value="front-beach">Front-beach</option>
+                            <option value="">Select Category</option>
+                            {categories &&
+                                categories.map((c) => (
+                                    <option key={c.id} value={c.id}>
+                                        {c.name}
+                                    </option>
+                                ))}
                         </select>
+                        <select
+                            name="city"
+                            onChange={(e) =>
+                                setData({
+                                    ...data,
+                                    cityId: parseInt(e.target.value),
+                                })
+                            }
+                            className="month_daily_inp form-select"
+                        >
+                            <option value="">Select City</option>
+                            {cities &&
+                                cities.map((c) => (
+                                    <option key={c.id} value={c.id}>
+                                        {c.name}
+                                    </option>
+                                ))}
+                        </select>
+
                         <input
                             type="text"
                             name="property_address"
                             onChange={(e) =>
-                                handle_propertyInp_changes(e)
+                                setData({
+                                    ...data,
+                                    address: e.target.value,
+                                })
                             }
                             placeholder="address"
                             className="address_inp form-control"
@@ -97,7 +139,10 @@ export default function AddListing() {
                             <select
                                 name="num_of_rooms"
                                 onChange={(e) =>
-                                    handle_propertyInp_changes(e)
+                                    setData({
+                                        ...data,
+                                        rooms: e.target.value,
+                                    })
                                 }
                                 className="form-select"
                             >
@@ -113,7 +158,10 @@ export default function AddListing() {
                             <select
                                 name="num_of_baths"
                                 onChange={(e) =>
-                                    handle_propertyInp_changes(e)
+                                    setData({
+                                        ...data,
+                                        baths: e.target.value,
+                                    })
                                 }
                                 className="form-select"
                             >
@@ -129,7 +177,10 @@ export default function AddListing() {
                                     type="number"
                                     name="property_price"
                                     onChange={(e) =>
-                                        handle_propertyInp_changes(e)
+                                        setData({
+                                            ...data,
+                                            price: e.target.value,
+                                        })
                                     }
                                     className="form-control"
                                     placeholder="Price"
@@ -140,7 +191,10 @@ export default function AddListing() {
                                     type="number"
                                     name="property_deposit"
                                     onChange={(e) =>
-                                        handle_propertyInp_changes(e)
+                                        setData({
+                                            ...data,
+                                            deposite: e.target.value,
+                                        })
                                     }
                                     className="form-control"
                                     placeholder="Deposit"
@@ -151,7 +205,10 @@ export default function AddListing() {
                                     type="number"
                                     name="property_space"
                                     onChange={(e) =>
-                                        handle_propertyInp_changes(e)
+                                        setData({
+                                            ...data,
+                                            space: e.target.value,
+                                        })
                                     }
                                     className="form-control"
                                     placeholder="Space"
@@ -161,44 +218,38 @@ export default function AddListing() {
                         <textarea
                             name="property_description"
                             onChange={(e) =>
-                                handle_propertyInp_changes(e)
+                                setData({
+                                    ...data,
+                                    description: e.target.value,
+                                })
                             }
                             className="description_inp form-control"
                         />
-                        <input
-                            type="number"
-                            name="lessor_phone_prop"
-                            onChange={(e) =>
-                                handle_propertyInp_changes(e)
-                            }
-                            className="phone_inp form-control"
-                            placeholder="Phone"
-                        />
-                        <div className="photos_inp_container pe-1">
+
+                        {/* <div className="photos_inp_container pe-1">
                             <input
                                 type="file"
                                 name="property_images"
-                                onChange={(e) =>
-                                    handle_property_imgs(e)
-                                }
+                                onChange={(e) => handle_property_imgs(e)}
                                 className="form-control"
                             />
-                        </div>
-                        <div className="videos_inp_container ps-1">
+                        </div> */}
+                        {/* <div className="videos_inp_container ps-1">
                             <input
                                 type="file"
                                 name="property_videos"
-                                onChange={(e) =>
-                                    handle_property_vds(e)
-                                }
+                                onChange={(e) => handle_property_vds(e)}
                                 className="form-control"
                             />
-                        </div>
+                        </div> */}
                         <input
                             type="date"
                             name="property_time_ready"
                             onChange={(e) =>
-                                handle_propertyInp_changes(e)
+                                setData({
+                                    ...data,
+                                    readyDate: e.target.value,
+                                })
                             }
                             className="when_ready_inp form-control"
                         />
@@ -215,7 +266,10 @@ export default function AddListing() {
                                     value="roof"
                                     name="roof_feat"
                                     onChange={(e) =>
-                                        handle_additional_fts(e)
+                                        setData({
+                                            ...data,
+                                            features: e.target.value,
+                                        })
                                     }
                                 />
                                 <label
@@ -232,7 +286,10 @@ export default function AddListing() {
                                     value="garage"
                                     name="garage_feat"
                                     onChange={(e) =>
-                                        handle_additional_fts(e)
+                                        setData({
+                                            ...data,
+                                            features: e.target.value,
+                                        })
                                     }
                                 />
                                 <label
@@ -249,7 +306,10 @@ export default function AddListing() {
                                     value="internet"
                                     name="internet_feat"
                                     onChange={(e) =>
-                                        handle_additional_fts(e)
+                                        setData({
+                                            ...data,
+                                            features: e.target.value,
+                                        })
                                     }
                                 />
                                 <label

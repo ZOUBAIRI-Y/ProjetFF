@@ -1,10 +1,38 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LessorSidebar from "../../layouts/LessorSidebar";
 import Property_manage from "../../components/lessor/Property_manage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import client from "../../custom-axios";
 
 export default function ManageListings() {
-    const [propertiesList_manage, setPropertiesList] = useState({});
+    const navigate = useNavigate();
+
+    const [propertiesList, setPropertiesList] = useState({});
+    const handleDelete = (propertyId) => {
+        client
+            .delete(`http://localhost:8000/api/properties/${propertyId}`)
+            .then((data) => {
+                console.log(data);
+                navigate("/lessor/manage-listings");
+            })
+            .catch((err) => console.log(err.response.data));
+    };
+    useEffect(() => {
+        if (localStorage.getItem("token") === null) navigate("/login");
+        client
+            .get(
+                "http://localhost:8000/api/users/" + localStorage.getItem("id")
+            )
+            .then(({ data }) => {
+                const properties = Array.isArray(data.data.properties)
+                    ? data.data.properties
+                    : [data.data.properties];
+                setPropertiesList(properties);
+                console.log(properties);
+            })
+
+            .catch((err) => console.log(err.response.data));
+    }, []);
     return (
         <div className="d-flex flex-row justify-content-center">
             <LessorSidebar />
@@ -16,12 +44,21 @@ export default function ManageListings() {
                     </button>
                 </Link>
                 <ul className="list-group mt-3 p-3 border bg-altlight ">
-                    <li className="list-group-item mb-2 p-2 border rounded">
-                        <Property_manage />
-                    </li>
-                    <li className="list-group-item mb-2 p-2 border rounded">
-                        <Property_manage />
-                    </li>
+                    {propertiesList && propertiesList.length > 0 ? (
+                        propertiesList.map((p) => (
+                            <li
+                                key={p.id}
+                                className="list-group-item mb-2 p-2 border rounded"
+                            >
+                                <Property_manage
+                                    data={p}
+                                    onDelete={(id) => handleDelete(id)}
+                                />
+                            </li>
+                        ))
+                    ) : (
+                        <p>No propeties</p>
+                    )}
                 </ul>
                 <nav className="">
                     <ul className="pagination mt-4 justify-content-center">

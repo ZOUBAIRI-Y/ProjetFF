@@ -4,21 +4,37 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use Faker\Factory as Faker;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
-     public function run()
+    public function run()
     {
 
-        foreach (range(1, 10) as $index) {
-            \App\User::create([
-                'first_name' => faker()->firstName,
-                'last_name' => faker()->lastName,
-                'password' => Hash::make(faker()->password),
-                'email' => faker()->unique()->safeEmail,
-                'avatar' => faker()->imageUrl(),
-                'phone' => faker()->phoneNumber,
-                'role' => faker()->randomElement(['admin', 'guest', 'lessor']),
+        $faker = Faker::create();
+
+        User::create([
+            'firstname' => $faker->firstName,
+            'name' => $faker->firstName,
+            'lastname' => $faker->lastName,
+            'password' => Hash::make("12341234"),
+            'email' => "email@email.com",
+            'avatar' => $faker->imageUrl(),
+            'phone1' => $faker->phoneNumber,
+            'phone2' => $faker->phoneNumber
+        ]);
+        foreach (range(1, 50) as $index) {
+            User::create([
+                'firstname' => $faker->firstName,
+                'name' => $faker->firstName,
+                'lastname' => $faker->lastName,
+                'password' => Hash::make($faker->password),
+                'email' => $faker->unique()->safeEmail,
+                'avatar' => $faker->imageUrl(),
+                'phone1' => $faker->phoneNumber,
+                'phone2' => $faker->phoneNumber
             ]);
         }
     }

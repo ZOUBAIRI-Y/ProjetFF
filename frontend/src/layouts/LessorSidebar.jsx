@@ -1,16 +1,39 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import profilePic from "../assets/luffy.jpg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getUser } from "../custom-axios";
+
 function LessorSidebar() {
-    const [lessorImg, setLessorImg] = useState("")
+    const navigate = useNavigate();
+    const [userInfo, setUserInfo] = useState({});
+
+    useEffect(() => {
+        if (localStorage.getItem("id") === null) navigate("/login");
+        // client
+        //     .get(
+        //         "http://localhost:8000/api/users/" + localStorage.getItem("id")
+        //     )
+        //     .then(({ data }) => {
+        //         setUserInfo(data.data);
+        //         console.log(data.data);
+        //     })
+        //     .catch((err) => console.log(err.response.data));
+        const u = getUser();
+        setUserInfo(u);
+        console.log(u);
+    }, []);
+
     return (
         <div className="p-2 lessor_side_bar">
             <div className="row lessor_infos">
                 <div className="col-sm-3 lessor_side_img_container p-0">
-                    <img src={profilePic} alt="profilePic" />
+                    <img
+                        src={userInfo.avatar ? userInfo.avatar : profilePic}
+                        alt="profilePic"
+                    />
                 </div>
                 <span className="col-sm lessor_name_sideBar text-primary align-self-center fw-bold p-0 ms-2">
-                    Mr. ZOUBAIRI
+                    Mr. {userInfo.name}
                 </span>
             </div>
             <ul className="navbar-nav justify-content-end sidBar_nav flex-grow-1">

@@ -1,18 +1,54 @@
-import Apartment from "../../assets/apartment.jpg";
-function Property_manage() {
+import { useNavigate } from "react-router-dom";
+
+function Property_manage(props) {
+    const navigate = useNavigate();
+
+    const handleDeleteClick = () => {
+        const isConfirmed = window.confirm("Are you sure?");
+
+        if (isConfirmed) {
+            props.onDelete(props.data.id);
+        }
+    };
+
     return (
         <div className="row m-0">
             <div className="col-md-4 img_container p-1 pt-0">
-                <img src={Apartment} alt="apartment" />
+                {props.data.images && (
+                    <img
+                        src={"http://127.0.0.1:8000" + props.data.images[0]}
+                        alt="apartment"
+                    />
+                )}
             </div>
             <div className="col-md-5 property_quickInfos align-self-center p-3 ">
-                {/* <p className="property_address text-dark" name="property_address">Address: Bloc 04 Ait melloul Inezgane</p> */}
-                <h6 className="property_address m-0 text-dark" name="property_address">Address: Bloc 04 Ait melloul Inezgane</h6>
-                <p className="property_price m-0" name="property_price"><strong className="text-success">Price: 250.00 dh</strong> <span name="rental_type" className="text-light">/day</span></p>
+                <h6
+                    className="property_address m-0 text-dark"
+                    name="property_address"
+                >
+                    Address: {props.data.address}
+                </h6>
+                <p className="property_price m-0" name="property_price">
+                    <strong className="text-success">
+                        Price: {props.data.price} dh
+                    </strong>{" "}
+                    <span name="rental_type" className="text-light">
+                        /day
+                    </span>
+                </p>
             </div>
             <div className="col-md-3 property_actions d-flex flex-row align-items-center justify-content-center p-1 pt-0 pb-0">
-                <button className="btn btn-success me-1">Modify</button>
-                <button className="btn btn-danger">Delete</button>
+                <button
+                    onClick={() =>
+                        navigate("/lessor/update-listing/" + props.data.id)
+                    }
+                    className="btn btn-success me-1"
+                >
+                    Modify
+                </button>
+                <button onClick={handleDeleteClick} className="btn btn-danger">
+                    Delete
+                </button>
             </div>
         </div>
     );
