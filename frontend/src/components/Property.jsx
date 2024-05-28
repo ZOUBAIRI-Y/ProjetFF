@@ -52,7 +52,7 @@ export default function Property(props) {
     };
 
     return (
-        <div className="m-4 property_component p-0 container border border-success rounded">
+        <div className="property_component p-0 border border-success rounded">
             <div
                 id="propertyCarousel"
                 className="p-2 carousel slide"
