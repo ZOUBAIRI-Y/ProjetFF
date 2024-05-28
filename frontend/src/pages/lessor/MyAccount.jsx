@@ -9,6 +9,7 @@ export default function MyAccount() {
     const [data, setData] = useState({});
     const [passwordData, setPasswordData] = useState({});
     const [userData, setUserData] = useState({});
+
     useEffect(() => {
         if (localStorage.getItem("id") === null) {
             navigate("/login");
@@ -20,11 +21,10 @@ export default function MyAccount() {
                 setData(data.data);
             })
             .catch((err) => console.log(err.response.data));
-    }, []);
+    }, [navigate]);
 
     const saveData = (e) => {
         e.preventDefault();
-        console.log(userData);
         client
             .patch(
                 "http://localhost:8000/api/users/" + localStorage.getItem("id"),
@@ -35,6 +35,7 @@ export default function MyAccount() {
             })
             .catch((err) => console.log(err.response.data));
     };
+
     const updatePassword = (e) => {
         e.preventDefault();
         client
@@ -48,6 +49,23 @@ export default function MyAccount() {
                 alert(data.message);
             })
             .catch((err) => console.log(err.response.data));
+    };
+
+    const deleteAccount = () => {
+        const confirmed = window.confirm(
+            "Are you sure you want to delete your account?"
+        );
+        if (confirmed) {
+            const userId = localStorage.getItem("id");
+            client
+                .delete(`http://localhost:8000/api/users/${userId}`)
+                .then((response) => {
+                    if (response.status === 200) {
+                        navigate("/signout");
+                    }
+                })
+                .catch((err) => console.log(err.response.data));
+        }
     };
 
     return (
@@ -150,7 +168,7 @@ export default function MyAccount() {
                                     })
                                 }
                                 placeholder={
-                                    data.address ? data.address : "firstname"
+                                    data.address ? data.address : "address"
                                 }
                             />
                             <div className="lessor_phone1 mt-1 pe-1">
@@ -205,12 +223,8 @@ export default function MyAccount() {
                                         email: e.target.value,
                                     })
                                 }
-                                placeholder={
-                                    data.email ? data.email : "firstname"
-                                }
+                                placeholder={data.email ? data.email : "email"}
                             />
-
-                            <div></div>
                         </div>
                     )}
                 </form>
@@ -272,10 +286,17 @@ export default function MyAccount() {
                         <input
                             value="change"
                             type="submit"
-                            className="m-4  btn btn-success save_changes_btn text-white float-end"
+                            className="m-4 btn btn-success save_changes_btn text-white float-end"
                         />
                     </div>
                 </form>
+                <h2 className="my-3"> Delete Account</h2>
+                <button
+                    className="btn btn-outline-danger my-4"
+                    onClick={deleteAccount}
+                >
+                    Delete Account
+                </button>
             </div>
         </div>
     );

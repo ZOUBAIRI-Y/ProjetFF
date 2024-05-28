@@ -36,6 +36,6 @@ class UserPolicy
 
     public function delete(User $user, User $lessor)
     {
-        return $user->isAdmin();
+        return $user->id === $lessor->id || $user->isAdmin();
     }
 }

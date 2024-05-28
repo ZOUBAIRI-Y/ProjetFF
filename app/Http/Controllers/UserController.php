@@ -31,11 +31,9 @@ class UserController extends Controller
     public function show($id)
     {
 
-        $user = User::find($id);
+        $user = User::findOrFail($id);
 
-        if (!$user) {
-            return response()->json(['error' => 'User not found'], 404);
-        }
+
         $this->authorize('view', $user);
 
         $user->with(["properties", "likes"]);
@@ -94,11 +92,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
 
-        if (!$user) {
-            return response()->json(['error' => 'User not found'], 404);
-        }
+
         $this->authorize('delete', $user);
 
 
