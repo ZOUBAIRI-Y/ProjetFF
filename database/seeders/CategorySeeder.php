@@ -15,10 +15,9 @@ class CategorySeeder extends Seeder
         $propertyImages = File::files(storage_path('app/public/properties'));
 
         $faker = Faker::create();
-        $randomImage = $propertyImages[array_rand($propertyImages)];
-
-        $relativePath = '/storage/properties/' . basename($randomImage);
         foreach (range(1, 10) as $index) {
+            $randomImage = $propertyImages[array_rand($propertyImages)];
+            $relativePath = '/storage/properties/' . basename($randomImage);
             Category::create([
                 'name' => $faker->word,
                 'description' => $faker->text,
