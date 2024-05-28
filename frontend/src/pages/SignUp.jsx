@@ -1,16 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import client from "../custom-axios";
 import loginBG from "../assets/loginBG.jpg";
 
-export default function SignUo() {
+export default function SignUp() {
     const [email, setEmail] = useState("");
     const [firstname, setFirstName] = useState("");
     const [nom, setNom] = useState("");
     const [lastname, setLastName] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
+    const [token, setToken] = useState(null);
+    const [user, setUser] = useState(null);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (token) {
+            localStorage.removeItem("token");
+            localStorage.removeItem("id");
+            localStorage.setItem("token", token);
+            localStorage.setItem("id", user.id);
+            localStorage.setItem("user", JSON.stringify(user));
+            navigate("/");
+        }
+    }, [token, user, navigate]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -25,15 +38,8 @@ export default function SignUo() {
             })
             .then((response) => {
                 if (response.status === 200) {
-                    localStorage.removeItem("token");
-                    localStorage.removeItem("id");
-                    localStorage.setItem("token", response.data.token);
-                    localStorage.setItem("id", response.data.user.id);
-                    localStorage.setItem(
-                        "user",
-                        JSON.stringify(response.data.user)
-                    );
-                    navigate("/");
+                    setToken(response.data.token);
+                    setUser(response.data.user);
                 }
             })
             .catch((error) => {
@@ -58,12 +64,16 @@ export default function SignUo() {
                             hassle-free living, tailored just for you!
                         </p>
                     </div>
-                    <form onSubmit={handleSubmit} className="form_signup_page p-5 pt-2">
+                    <form
+                        onSubmit={handleSubmit}
+                        className="form_signup_page p-5 pt-2"
+                    >
                         <h3 className="text-dark text-center signup_divider">
                             <span>Signup</span>
                         </h3>
                         <p className="text-center">
-                            You already have an account? <a href="/login">Signin</a>
+                            You already have an account?{" "}
+                            <a href="/login">Signin</a>
                         </p>
                         <input
                             type="text"
@@ -86,7 +96,9 @@ export default function SignUo() {
                                     type="text"
                                     placeholder="firstname"
                                     value={firstname}
-                                    onChange={(e) => setFirstName(e.target.value)}
+                                    onChange={(e) =>
+                                        setFirstName(e.target.value)
+                                    }
                                 />
                             </div>
                             <div className="col-md last_name_S_container m-0 ms-md-1 p-0">
@@ -95,11 +107,12 @@ export default function SignUo() {
                                     type="text"
                                     placeholder="lastname"
                                     value={lastname}
-                                    onChange={(e) => setLastName(e.target.value)}
-                                />    
+                                    onChange={(e) =>
+                                        setLastName(e.target.value)
+                                    }
+                                />
                             </div>
                         </div>
-
                         <input
                             className="form-control mb-2"
                             type="password"
@@ -116,7 +129,10 @@ export default function SignUo() {
                                 setPasswordConfirmation(e.target.value)
                             }
                         />
-                        <button className="btn btn-success w-100 mt-3" type="submit">
+                        <button
+                            className="btn btn-success w-100 mt-3"
+                            type="submit"
+                        >
                             Signup
                         </button>
                     </form>
