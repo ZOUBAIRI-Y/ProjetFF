@@ -57,6 +57,8 @@ export default function MyAccount() {
             .get("http://localhost:8000/api/users/" + id)
             .then(({ data }) => {
                 setData(data.data);
+                console.log(data.data);
+                localStorage.setItem("user", JSON.stringify(data.data));
             })
             .catch((err) => console.log(err.response.data));
     }, [navigate]);

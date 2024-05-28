@@ -28,7 +28,11 @@ function LessorSidebar() {
             <div className="row lessor_infos">
                 <div className="col-sm-3 lessor_side_img_container p-0">
                     <img
-                        src={userInfo.avatar ? userInfo.avatar : profilePic}
+                        src={
+                            userInfo.avatar
+                                ? "http://127.0.0.1:8000" + userInfo.avatar
+                                : profilePic
+                        }
                         alt="profilePic"
                     />
                 </div>
