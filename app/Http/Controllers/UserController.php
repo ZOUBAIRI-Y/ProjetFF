@@ -105,11 +105,9 @@ class UserController extends Controller
     public function upload(Request $request, $id)
     {
 
-        $user = User::find($id);
+        $user = User::findOrFail($id);
 
-        if (!$user) {
-            return response()->json(['error' => 'User not found'], 404);
-        }
+
         $this->authorize('update', $user);
 
         $validated = $request->validate([

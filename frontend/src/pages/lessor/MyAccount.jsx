@@ -1,11 +1,49 @@
 import { useEffect, useState } from "react";
 import LessorSidebar from "../../layouts/LessorSidebar";
 import luffy from "../../assets/luffy.jpg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import client from "../../custom-axios";
 
 export default function MyAccount() {
+    const [selectedFiles, setSelectedFiles] = useState([]);
     const navigate = useNavigate();
+
+    const handleFileChange = (event) => {
+        // Get the selected files from the event
+        const files = event.target.files;
+        // Create a copy of the existing selected files
+        const updatedSelectedFiles = [...selectedFiles];
+        // Iterate over each selected file and add it to the copy
+        for (let i = 0; i < files.length; i++) {
+            updatedSelectedFiles.push(files[i]);
+        }
+        // Update the selected files state with the copy
+        setSelectedFiles(updatedSelectedFiles);
+    };
+
+    const handleUpload = () => {
+        const formData = new FormData();
+        for (let i = 0; i < selectedFiles.length; i++) {
+            formData.append("image", selectedFiles[i]);
+        }
+        const id = localStorage.getItem("id");
+
+        client
+            .post(`http://127.0.0.1:8000/api/users/${id}/images`, formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            })
+            .then((response) => {
+                if (response.status == 200) {
+                    alert("uploaded!");
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
     const [data, setData] = useState({});
     const [passwordData, setPasswordData] = useState({});
     const [userData, setUserData] = useState({});
@@ -103,7 +141,17 @@ export default function MyAccount() {
                                     />
                                 </div>
                                 <div className="col-sm-3 lessor_img_container p-0">
-                                    <img src={luffy} alt="profilePic" />
+                                    {data.avatar ? (
+                                        <img
+                                            src={
+                                                "http://127.0.0.1:8000" +
+                                                data.avatar
+                                            }
+                                            alt="profilePic"
+                                        />
+                                    ) : (
+                                        <img src={luffy} alt="profilePic" />
+                                    )}
                                 </div>
                             </div>
                             <p className="text-dark mt-1 mb-1">
@@ -296,6 +344,15 @@ export default function MyAccount() {
                     onClick={deleteAccount}
                 >
                     Delete Account
+                </button>
+                <h2 className="my-3"> Changer Image</h2>
+                <input
+                    className="form-control w-50"
+                    type="file"
+                    onChange={handleFileChange}
+                />
+                <button className="btn btn-primary m-3" onClick={handleUpload}>
+                    Upload
                 </button>
             </div>
         </div>
