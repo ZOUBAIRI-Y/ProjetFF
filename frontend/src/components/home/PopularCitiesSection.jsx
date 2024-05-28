@@ -1,7 +1,7 @@
-import ApartmentImg from "../../assets/apartment.jpg";
 import { useEffect, useState } from "react";
 import client from "../../custom-axios";
 import { Link } from "react-router-dom";
+import popularC_main from "../../assets/popularC_section/popularC_main.png"
 
 function PopularCitiesSection() {
     const [list, setList] = useState([]);
@@ -17,31 +17,39 @@ function PopularCitiesSection() {
     }, []);
 
     return (
-        <div className="popular_cities_section row">
-            <div className="popularCitiesSec_img col-sm align-self-center">
-                <img src={ApartmentImg} className="img-fluid" alt="apartment" />
-            </div>
-            <div className="popularCitiesSec_list col-sm p-3">
-                <h5 className="text-secondary">Discover</h5>
-                <h2 className="text-primary">Popular cities</h2>
-                <p className="text-light">
-                    Here are the most popular places for rent{" "}
-                </p>
-                <ul className="list-group">
-                    {/* the top rated cities list */}
-                    {list &&
-                        list.map((c) => (
-                            <div key={c.id}>
-                                <li className="list-group-item border-0 text-light">
-                                    <i className="bi bi-geo-alt-fill"></i>
-                                    <Link to={"/properties-list/" + c.name}>
-                                        {c.name}
-                                    </Link>
-                                </li>
-                                <br />
-                            </div>
-                        ))}
-                </ul>
+        <div className="container">
+            <div className="popular_cities_section row m-0 p-0">
+                <div className="popularCimg_container col-12 h-100 col-md-7 col-lg-6 p-0 align-self-center">
+                    <img
+                        src={popularC_main}
+                        className="img-fluid w-100 h-auto"
+                        alt="apartment"
+                    />
+                </div>
+                <div className="popularC_container col-12 h-100 col-md-5 col-lg-6 p-3 align-self-center">
+                    <div className="searchC_icon">
+                    </div>
+                    <h5 className="text-secondary">Discover</h5>
+                    <h2 className="text-primary">Popular cities</h2>
+                    <p className="text-light">
+                        Here are the most popular places for rent{" "}
+                    </p>
+                    <ul className="list-group d-flex flex-row justify-content-center align-items-center flex-wrap">
+                        {/* the top rated cities list */}
+                        {list &&
+                            list.map((c) => (
+                                <div key={c.id} className="col-6 col-lg-4 col-sm-6">
+                                    <li className="list-group-item listItem_city border-0 text-light p-0">
+                                        <i className="bi bi-geo-alt-fill text-secondary fs-5 me-1"></i>
+                                        <Link to={"/properties-list/" + c.name} className="city_link text-decoration-none fw-medium">
+                                            {c.name}
+                                        </Link>
+                                    </li>
+                                    <br />
+                                </div>
+                            ))}
+                    </ul>
+                </div>
             </div>
         </div>
     );
