@@ -98,7 +98,7 @@ export default function HeroSection() {
                         </div>
                     </div>
                 </nav>
-                <div className="hero_section_main container d-flex flex-column align-items-center justify-content-center">
+                <div className="hero_section_main ps-4 pe-4 ">
                     <h1 className="text-primary fw-bolder fs-1 text-center">
                         Where you love to live? <br /> or rent?
                     </h1>

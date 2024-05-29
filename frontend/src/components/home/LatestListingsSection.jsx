@@ -5,7 +5,6 @@ import client from "../../custom-axios";
 
 export default function LatestListingsSection() {
     const [list, setList] = useState([]);
-
     useEffect(() => {
         if (localStorage.getItem("properties") === null) {
             client
@@ -24,6 +23,7 @@ export default function LatestListingsSection() {
             setList(JSON.parse(localStorage.getItem("properties")));
         }
     }, []);
+
     return (
         <div className="latest_listings_section container mt-5">
             <h5 className="text-secondary">Discover</h5>
@@ -36,14 +36,17 @@ export default function LatestListingsSection() {
                 See more
             </Link>
             <p>Here are the most recent listings, Find the perfect for you</p>
-            <div className="listings_slider">
-                <div className="row m-0 flex-nowrap overflow-auto">
-                    {list && list.map((p) => (
-                        <div className="col-8 col-sm-6 col-md-4 col-lg-3" key={p.id}>
-                            <Property data={p}/>
+
+            <div className="row listings_slider snaps_inline m-0 flex-nowrap overflow-auto pb-2">
+                {list &&
+                    list.map((p) => (
+                        <div
+                            className="col-8 col-sm-6 col-md-5 col-lg-3 p-0 ps-1 pe-1"
+                            key={p.id}
+                        >
+                            <Property data={p} />
                         </div>
                     ))}
-                </div>
             </div>
         </div>
     );
