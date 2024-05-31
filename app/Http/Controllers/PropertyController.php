@@ -20,8 +20,7 @@ class PropertyController extends Controller
     {
         $filter = new PropertyFilter();
         $queryItems = $filter->transform($request);
-        $properties = Property::with('likes', 'reviews', 'comments')
-            ->where($queryItems)
+        $properties = Property::where($queryItems)
             ->orderByDesc('updated_at')
             ->paginate();
         return new PropertyCollection($properties->appends($request->query()));

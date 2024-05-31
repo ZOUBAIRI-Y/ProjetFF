@@ -6,17 +6,16 @@ use App\Filters\ApiFilter;
 use Illuminate\Http\Request;
 
 class PropertyFilter extends ApiFilter
-#http://localhost:8000/api/properties?status[eq]=inactive
 {
   protected $safeParms = [
-    "rooms" => ["gt", "eq"],
+    "rooms" => ["gt", "eq", "lt", "gte", "lte"],
     "space" => ["gt", "eq"],
-    "price" => ["gt", "eq", "lt", "gte", "lte"],
-    "city" => ["eq"],
+    "price" => ["lte"],
+    "city_id" => ["eq"],
     "rentingType" => ["eq"],
     "postDate" => ["gt", "eq", "lt", "gte", "lte"],
     "status" => ["eq"],
-    "category" => ["eq"],
+    "category_id" => ["eq"],
   ];
 
   protected $operatorMap = [

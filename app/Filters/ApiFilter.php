@@ -4,7 +4,6 @@ namespace App\Filters;
 
 use Illuminate\Http\Request;
 
-
 class ApiFilter
 {
     protected $safeParms = [];
@@ -13,18 +12,25 @@ class ApiFilter
 
     protected $operatorMap = [];
 
+    protected $idColumns = ['city_id', 'category_id'];
+
     public function transform(Request $request)
     {
         $eloQuery = [];
 
-        foreach ($this->safeParms as $parm => $operators) {
-            $query = $request->query($parm);
+        foreach ($this->safeParms as $param => $operators) {
+            $query = $request->query($param);
 
             if (!isset($query)) {
                 continue;
             }
 
-            $column = $this->columnMap[$parm] ?? $parm;
+            $column = $this->columnMap[$param] ?? $param;
+
+            if (in_array($param, $this->idColumns)) {
+                $eloQuery[] = [$column, '=', $query];
+                continue;
+            }
 
             foreach ($operators as $operator) {
                 if (isset($query[$operator])) {

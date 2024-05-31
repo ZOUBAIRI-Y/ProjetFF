@@ -7,29 +7,142 @@ export default function PropertiesList() {
     const { term } = useParams();
     const [list, setList] = useState([]);
     const [terms, setTerms] = useState(term);
-    const [selectedCity, setSelectedCity] = useState("");
-    const [selectedCat, setSelectedCat] = useState("");
-    const [selectedPrice, setSelectedPrice] = useState("");
-    const [selectedRooms, setSelectedRooms] = useState("");
-    const [cities, setCities] = useState([]);
-    const [cats, setCats] = useState([]);
+    const [ST_cit, setST_cit] = useState("");
+    const [S_ctg, setS_ctg] = useState("");
+    const [SPri, setSPri] = useState("");
+    const [S_Roomses, setS_Roomses] = useState("");
+    const [C_vill, setC_vill] = useState([]);
+    const [cts, setcts] = useState([]);
+    const [srtCrt, setsrtCrt] = useState("");
 
-    const [sortCriteria, setSortCriteria] = useState("");
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const C_villResponse = await client.get(
+                    "http://127.0.0.1:8000/api/cities"
+                );
+                setC_vill(C_villResponse.data.data);
+                localStorage.setItem(
+                    "cities",
+                    JSON.stringify(C_villResponse.data.data)
+                );
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        if (!localStorage.getItem("cities")) {
+            fetchData();
+        } else {
+            setC_vill(JSON.parse(localStorage.getItem("cities")));
+        }
+    }, []);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const categoriesResponse = await client.get(
+                    "http://127.0.0.1:8000/api/categories"
+                );
+                setcts(categoriesResponse.data.data);
+                localStorage.setItem(
+                    "categories",
+                    JSON.stringify(categoriesResponse.data.data)
+                );
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        if (!localStorage.getItem("categories")) {
+            fetchData();
+        } else {
+            setcts(JSON.parse(localStorage.getItem("categories")));
+        }
+    }, []);
+
+    useEffect(() => {
+        const fetchProperties = async () => {
+            try {
+                const propertiesResponse = await client.get(
+                    "http://127.0.0.1:8000/api/properties",
+                    {
+                        params: {
+                            category_id: S_ctg,
+                        },
+                    }
+                );
+                setList(propertiesResponse.data.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        if (S_ctg) {
+            fetchProperties();
+        }
+    }, [S_ctg]);
+
+    useEffect(() => {
+        const fetchProperties = async () => {
+            try {
+                let url = "http://127.0.0.1:8000/api/properties";
+                const params = {};
+
+                if (ST_cit) params.city_id = ST_cit;
+                if (SPri) params.price = { lte: SPri };
+                if (S_Roomses) params.rooms = { lte: S_Roomses };
+
+                const propertiesResponse = await client.get(url, { params });
+                setList(propertiesResponse.data.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        fetchProperties();
+    }, [ST_cit, SPri, S_Roomses]);
+
+    useEffect(() => {
+        const fetchProperties = async () => {
+            try {
+                const termResponse = await client.get(
+                    "http://localhost:8000/api/properties",
+                    {
+                        params: {
+                            term: terms,
+                        },
+                    }
+                );
+
+                if (termResponse.data.data.length === 0) {
+                    const allPropertiesResponse = await client.get(
+                        "http://127.0.0.1:8000/api/properties"
+                    );
+                    setList(allPropertiesResponse.data.data);
+                } else {
+                    setList(termResponse.data.data);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        if (terms && terms.length !== 0) {
+            fetchProperties();
+        }
+    }, [terms]);
 
     const handleSortChange = (e) => {
         const criteria = e.target.value;
-        setSortCriteria(criteria);
-        sortList(criteria);
-    };
+        setsrtCrt(criteria);
 
-    const sortList = (criteria) => {
         let sortedList = [...list];
         switch (criteria) {
             case "mostRecent":
                 sortedList.sort(
                     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
                 );
-                console.log(1);
                 break;
             case "cheapest":
                 sortedList.sort((a, b) => a.price - b.price);
@@ -37,97 +150,11 @@ export default function PropertiesList() {
             case "expensive":
                 sortedList.sort((a, b) => b.price - a.price);
                 break;
-            // Add more cases for other sorting criteria if needed
             default:
-                // Default sorting (no sorting)
                 break;
         }
         setList(sortedList);
     };
-
-    useEffect(() => {
-        client
-            .get("http://127.0.0.1:8000/api/cities")
-            .then(({ data }) => {
-                setCities(data.data);
-                console.log(data);
-            })
-
-            .catch((err) => console.log(err));
-    }, []);
-
-    useEffect(() => {
-        client
-            .get("http://127.0.0.1:8000/api/categories")
-            .then(({ data }) => {
-                setCats(data.data);
-                console.log(data);
-            })
-
-            .catch((err) => console.log(err));
-    }, []);
-
-    useEffect(() => {
-        if (
-            typeof parseInt(term) === "number" &&
-            parseInt(term) !== 0 &&
-            !isNaN(term)
-        ) {
-            // console.log(parseInt(term));
-
-            client
-                .get("http://127.0.0.1:8000/api/categories/" + parseInt(term))
-                .then(({ data }) => {
-                    setSelectedCat(data.name);
-                    // console.log(data.id);
-                })
-
-                .catch((err) => console.log(err));
-            client
-                .get(
-                    "http://127.0.0.1:8000/api/properties?category[eq]" +
-                        selectedCat
-                )
-                .then(({ data }) => {
-                    setList(data.data);
-                    console.log(data);
-                })
-
-                .catch((err) => console.log(err));
-        }
-    }, []);
-    useEffect(() => {
-        if (term === "all" || !terms) {
-            client
-                .get("http://127.0.0.1:8000/api/properties")
-                .then(({ data }) => {
-                    console.log(data);
-                    setList(data.data);
-                })
-
-                .catch((err) => console.log(err));
-        } else {
-            client
-                .get("http://127.0.0.1:8000/api/properties/results/" + terms)
-                .then(({ data }) => {
-                    console.log(data);
-                    setList(data.data);
-                })
-
-                .catch((err) => console.log(err));
-        }
-    }, [terms]);
-
-    useEffect(() => {
-        client
-            .get(
-                `http://127.0.0.1:8000/api/properties?rooms[lte]${selectedRooms}&price[lte]${selectedPrice}&city[eq]${selectedCity}`
-            )
-            .then(({ data }) => {
-                setList(data.data);
-            })
-            .catch((err) => console.log(err));
-    }, [selectedCity, selectedPrice, selectedRooms]);
 
     return (
         <>
@@ -157,7 +184,7 @@ export default function PropertiesList() {
                         <select
                             className="form-select p-2"
                             aria-label="Default select example"
-                            onChange={(e) => setSelectedRooms(e.target.value)}
+                            onChange={(e) => setS_Roomses(e.target.value)}
                         >
                             <option selected="">rooms</option>
                             <option value={1}>One</option>
@@ -171,12 +198,12 @@ export default function PropertiesList() {
                         <select
                             className="form-select p-2"
                             aria-label="Default select example"
-                            onChange={(e) => setSelectedCity(e.target.value)}
+                            onChange={(e) => setST_cit(e.target.value)}
                         >
-                            <option selected="">cities</option>
-                            {cities &&
-                                cities.map((c) => (
-                                    <option key={c.id} value={c.name}>
+                            <option selected="">Villes</option>
+                            {C_vill &&
+                                C_vill.map((c) => (
+                                    <option key={c.id} value={c.id}>
                                         {c.name}
                                     </option>
                                 ))}
@@ -186,13 +213,13 @@ export default function PropertiesList() {
                         <select
                             className="form-select p-2"
                             aria-label="Default select example"
-                            onChange={(e) => setSelectedCat(e.target.value)}
-                            value={selectedCat}
+                            onChange={(e) => setS_ctg(e.target.value)}
+                            value={S_ctg}
                         >
                             <option selected="">categories</option>
-                            {cats &&
-                                cats.map((c) => (
-                                    <option key={c.id} value={c.name}>
+                            {cts &&
+                                cts.map((c) => (
+                                    <option key={c.id} value={c.id}>
                                         {c.name}
                                     </option>
                                 ))}
@@ -202,13 +229,14 @@ export default function PropertiesList() {
                         <select
                             className="form-select p-2"
                             aria-label="Default select example"
-                            onChange={(e) => setSelectedPrice(e.target.value)}
+                            onChange={(e) => setSPri(e.target.value)}
                         >
                             <option selected="">price</option>
-                            <option value={1000}>100</option>
-                            <option value={2000}>200</option>
-                            <option value={3000}>300</option>
-                            <option value={4000}>More...</option>
+                            <option value={100}>100 Dh</option>
+                            <option value={200}>200</option>
+                            <option value={300}>300</option>
+                            <option value={500}>500</option>
+                            <option value={1000}>More...</option>
                         </select>
                     </div>
 
@@ -228,7 +256,7 @@ export default function PropertiesList() {
 
                 <select
                     className="form-select form-select-sm ms-auto w-50 sort_select"
-                    value={sortCriteria}
+                    value={srtCrt}
                     onChange={handleSortChange}
                 >
                     <option value="">Sort By</option>

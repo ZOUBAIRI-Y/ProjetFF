@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Property;
 use App\Models\Category;
+use App\Models\City;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
@@ -40,19 +41,22 @@ class PropertySeeder extends Seeder
             ]);
         }
 
-        foreach (range(1, 30) as $index) {
+        foreach (range(1, 150) as $index) {
             $category = Category::inRandomOrder()->first();
+            $city = City::inRandomOrder()->first();
 
-            $randomImage = $propertyImages[array_rand($propertyImages)];
+            $randomImage1 = $propertyImages[array_rand($propertyImages)];
+            $randomImage2 = $propertyImages[array_rand($propertyImages)];
 
-            $relativePath = '/storage/properties/' . basename($randomImage);
+            $relativePath1 = '/storage/properties/' . basename($randomImage1);
+            $relativePath2 = '/storage/properties/' . basename($randomImage2);
 
             Property::create([
                 'description' => $faker->text,
                 'price' => $faker->randomFloat(2, 100, 1000),
-                'city_id' => $faker->numberBetween(1, 10),
+                'city_id' => $city->id,
                 'address' => $faker->address,
-                'images' => json_encode([$relativePath]),
+                'images' => json_encode([$relativePath1, $relativePath2]),
                 'status' => $faker->randomElement(["active", "inactive"]),
                 'user_id' => $faker->numberBetween(1, 10),
                 'category_id' => $category->id,
