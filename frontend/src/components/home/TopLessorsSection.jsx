@@ -35,7 +35,13 @@ function TopLessorsSection() {
                             <li key={l.id} className="list-group-item border-0">
                                 <div className="row">
                                     <div className="col-sm-3 lessor_side_img_container p-0">
-                                        <img src={l.avatar} alt="profilePic" />
+                                        <img
+                                            src={
+                                                "http://127.0.0.1:8000" +
+                                                l.avatar
+                                            }
+                                            alt="profilePic"
+                                        />
                                     </div>
                                     {/* </div> */}
                                     <div className="col">

@@ -121,7 +121,7 @@ export default function PropertiesList() {
     useEffect(() => {
         client
             .get(
-                `http://127.0.0.1:8000/api/properties?rooms[gte]${selectedRooms}&price[lte]${selectedPrice}&city[eq]${selectedCity}`
+                `http://127.0.0.1:8000/api/properties?rooms[lte]${selectedRooms}&price[lte]${selectedPrice}&city[eq]${selectedCity}`
             )
             .then(({ data }) => {
                 setList(data.data);
