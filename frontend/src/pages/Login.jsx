@@ -11,13 +11,16 @@ export default function Login() {
     const navigate = useNavigate();
 
     useEffect(() => {
+        if (localStorage.getItem("token")) navigate("/");
+    }, []);
+    useEffect(() => {
         if (token) {
             localStorage.removeItem("token");
             localStorage.removeItem("id");
             localStorage.setItem("token", token);
             localStorage.setItem("id", user.id);
             localStorage.setItem("user", JSON.stringify(user));
-            navigate("/");
+            window.location.reload();
         }
     }, [token, user, navigate]);
 

@@ -7,6 +7,8 @@ export default function SignOut() {
         localStorage.removeItem("token");
         localStorage.removeItem("id");
         localStorage.removeItem("user");
+
         navigate("/");
+        window.location.reload();
     }, []);
 }

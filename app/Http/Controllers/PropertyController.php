@@ -138,15 +138,4 @@ class PropertyController extends Controller
 
         return response()->json($likeData);
     }
-    public function search($term)
-    {
-        $properties = Property::whereHas('user', function ($query) use ($term) {
-            $query->where('name', 'LIKE', "%$term%");
-        })->orWhereHas('city', function ($query) use ($term) {
-            $query->where('name', 'LIKE', "%$term%");
-        })->orderByDesc('updated_at')->paginate();
-
-        $collection = new PropertyCollection($properties);
-        return $collection;
-    }
 }

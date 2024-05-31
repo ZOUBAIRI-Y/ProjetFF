@@ -13,6 +13,9 @@ export default function SignUp() {
     const [token, setToken] = useState(null);
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
+    useEffect(() => {
+        if (localStorage.getItem("token")) navigate("/");
+    }, []);
 
     useEffect(() => {
         if (token) {
@@ -21,6 +24,7 @@ export default function SignUp() {
             localStorage.setItem("token", token);
             localStorage.setItem("id", user.id);
             localStorage.setItem("user", JSON.stringify(user));
+            window.location.reload();
             navigate("/");
         }
     }, [token, user, navigate]);
