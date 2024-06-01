@@ -70,11 +70,42 @@ body {
     background: url("./assets/Hero section.png");
     background-size: cover;
     background-position: center;
+    position: relative;
 }
+@media (max-width: 768px) {
+    .hero_section_homepage {
+        width: 100%;
+        height: 100vh;
+        background-image: url("./assets/heroSection/1080x1080.jpg");
+        background-size: cover;
+        background-position: center;
+    }
+}
+@media (max-width: 576px) {
+    .hero_section_homepage {
+        width: 100%;
+        height: 100vh;
+        background-image: url("./assets/heroSection/1080x1920-.jpg");
+        background-size: cover;
+        background-position: center;
+    }
+}
+
 .hero_section_main {
-    height: 80vh;
-    width: 50%;
+    position: absolute;
+    width: 80%;
+    top: 38%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
+@media (min-width: 768px) {
+    .hero_section_main {
+        width: 50%;
+    }
+}
+
 .input_btn_header_group {
     width: 100%;
 }
@@ -88,55 +119,93 @@ body {
 .search_link_header_btn {
     width: 5em;
 }
-/* latest listings section */
+/* latest listings section styles ---------------------------- */
 .seeMore_link:hover {
     text-decoration: underline;
 }
 
+.listings_slider::-webkit-scrollbar {
+    height: 8px;
+}
+.listings_slider::-webkit-scrollbar-track {
+    background: var(--info);
+    border-radius: 10px;
+    margin-top: 10px;
+}
+.listings_slider::-webkit-scrollbar-thumb {
+    background: var(--secondary);
+    border-radius: 10px;
+}
+.listings_slider::-webkit-scrollbar-thumb:hover {
+    background: var(--success);
+}
+.snaps_inline {
+    scroll-snap-type: inline mandatory;
+}
+.snaps_inline > * {
+    scroll-snap-align: start;
+}
+
+/* latest listings section styles ends ---------------------------- */
+
 /* Advantages list section */
-.advantages_list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
 
-.bi-shield-fill-check {
-    color: var(--secondary);
-}
-
-.advantages_list li {
-    width: 30%;
+.listItem_text_advantages {
     text-align: justify;
-    border: 0;
-    background: none;
-}
-.advantages_list li h6 {
-    color: var(--primary);
-}
-.advantages_list li p {
     color: var(--light);
 }
 
 /* Popular cities section */
-.popular_cities_section {
-    /* margin-top: 7rem; */
+.popularcities_container {
+    background-image: url("./assets/popularC_section/popularC_bg.png");
+    background-position: left bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
-.popularCitiesSec_img {
-    /* width: 50%;
-    float: left;
-    margin-right: 2rem; */
+.popularC_container {
+    position: relative;
 }
-.popularCitiesSec_list {
-    /* padding: 1rem;
-    float: right; */
-}
-
-/* Top lessors section */
-.topLessors_list li {
+.listItem_city {
     background: none;
 }
-.topLessors_list li {
+.city_link:hover {
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: 0.15s;
+}
+.searchC_icon {
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    top: 0;
+    right: 50px;
+    rotate: -20deg;
+    background-image: url("./assets/popularC_section/searchC_icon.png");
+    background-position: center;
+    background-size: cover;
+}
+@media (max-width: 992px) {
+    .searchC_icon {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}
+@media (max-width: 768px) {
+    .listItem_city {
+        text-indent: 20%;
+    }
+}
+
+/* Top lessors section style --------------------------------- */
+.topratedlessors_container {
+    background-image: url("./assets/topL_section/topL_bg.png");
+    background-position: right bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.topL_list li {
+    background: none;
     width: 50%;
 }
 .lessor_image_container {
@@ -144,47 +213,105 @@ body {
     height: 3.5rem;
     border-radius: 50%;
 }
+.lessorname_link:hover {
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: 0.15s;
+}
+.topL_container {
+    position: relative;
+}
+.searchL_icon {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    rotate: -20deg;
+    background-image: url("./assets/topL_section/searchL_icon.png");
+    background-position: center;
+    background-size: cover;
+}
+@media (max-width: 992px) {
+    .searchL_icon {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}
 
-.ourValue_img {
-    width: 70%;
+/* Top lessors section style ends --------------------------------- */
+
+.ourvalu_img_container {
+    width: 100%;
+    height: 100%;
+}
+.ourvalu_img_container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
 }
 
 /* home page style Ends------------------------ */
 
 /* styles for the property component */
-.property_component {
-    width: 300px;
-    height: 400px;
-}
-.carousel {
+
+.property_component .carousel_section {
+    background-color: #aaaaaa;
+    height: 170px;
     width: 100%;
-    height: 50%;
-    position: relative;
     border-radius: 0.3rem 0.3rem 0 0;
 }
-.carousel-inner {
+.property_component .carousel-inner {
     width: 100%;
     height: 100%;
-    border-radius: 0.3rem 0.3rem 0 0;
 }
-.carousel-item {
+.like_btn {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 6px;
+    padding-right: 6px;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 9;
+}
+.like_btn:hover {
+    background-color: var(--info);
+}
+.property_component .carousel-item {
     width: 100%;
     height: 100%;
-    border-radius: 0.3rem 0.3rem 0 0;
 }
-.carousel-item img {
+.property_component .carousel-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
     border-radius: 0.3rem 0.3rem 0 0;
 }
-
-.property_infos {
-    width: 100%;
+.property_component .custom_carousel_control {
+    width: 25px;
+    height: 60px;
+    border-radius: 0 50% 50% 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
-.num_of_rooms,
-.num_of_baths {
+.property_component .carousel-control-prev.custom_carousel_control {
+    left: 0;
+    border-radius: 0 50% 50% 0;
+}
+
+.property_component .carousel-control-next.custom_carousel_control {
+    right: 0;
+    border-radius: 50% 0 0 50%;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
 }
 .call_now_btn {
     width: 100%;
@@ -192,16 +319,126 @@ body {
 /* property component style Ends ------------------------------ */
 
 /* properties list page style */
+@media (max-width: 576px) {
+    .properties_list_section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .property_container {
+        max-width: 314px;
+    }
+}
 .total_sortProperties_bar {
     padding: 0.3rem;
 }
 .sort_select {
     width: 8rem;
 }
-
+.custom_form_control,
+.custom_form_select {
+    height: calc(2.5rem + 2px);
+    padding: 0.375rem 0.75rem;
+}
 /* properties list page style Ends --------------------------------- */
 
 /* property details page styles ------------------------------------ */
+.property_d_genInfo_carousel_container {
+    height: 500px;
+    position: relative;
+}
+.property_d_carousel_container {
+    height: 360px;
+}
+.property_d_carousel_container .carousel-inner {
+    width: 100%;
+    height: 100%;
+}
+.property_d_carousel_container .carousel-item {
+    background-color: #001810;
+    height: 100%;
+}
+.property_d_carousel_container .carousel-item img {
+    height: 100%;
+}
+.property_d_carousel_container .custom_carousel_control {
+    width: 25px;
+    height: 60px;
+    border-radius: 0 50% 50% 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.property_d_carousel_container .carousel-control-prev.custom_carousel_control {
+    left: 0;
+    border-radius: 0 50% 50% 0;
+}
+
+.property_d_carousel_container .carousel-control-next.custom_carousel_control {
+    right: 0;
+    border-radius: 50% 0 0 50%;
+}
+@media (min-width: 768px) {
+    .property_d_callCard {
+        width: 270px;
+        position: absolute;
+        top: 270px;
+        right: 90px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+    }
+    .property_d_callCard.sticky {
+        position: fixed;
+        top: 0;
+        right: 90px;
+    }
+}
+@media (max-width: 768px) {
+    .property_d_callCard {
+        display: none;
+    }
+}
+
+.property_d_like_btn {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 9px;
+    padding-right: 9px;
+    border: 1px solid rgb(190, 190, 190);
+}
+.property_d_share_btn {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 9px;
+    padding-right: 9px;
+    border: 1px solid rgb(190, 190, 190);
+}
+.property_d_like_btn:hover {
+    background-color: var(--info);
+    color: var(--primary);
+}
+.property_d_share_btn:hover {
+    background-color: var(--info);
+    color: var(--primary);
+}
+
+.images_list_item_container {
+
+}
+.prop_gen_infos {
+    width: 100%;
+    height: 50vh;
+    background-image: url("./assets/bg-propDetails.png");
+    background-position: left;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+}
+.carousel_propDetail {
+    width: 100%;
+    height: 25vh;
+    margin-top: 2rem;
+    background-color: #adffe477;
+}
 
 /* property details page styles Ends -------------------------------- */
 
@@ -346,18 +583,25 @@ body {
 }
 .login_signup_page_content {
     height: 100%;
+    overflow-y: auto;
 }
-.signupBG_container, .loginBG_container {
+.signupBG_container,
+.loginBG_container {
     height: 100%;
+    
 }
-.signup_form_container, .login_form_container {
+.signup_form_container,
+.login_form_container {
     height: 100%;
+    
 }
 @media (max-width: 767px) {
-    .signupBG_container, .loginBG_container {
+    .signupBG_container,
+    .loginBG_container {
         height: 50%;
     }
-    .signup_form_container, .login_form_container {
+    .signup_form_container,
+    .login_form_container {
         height: 100%;
     }
     /* .last_name_S_container, .first_name_S_container {
@@ -369,23 +613,27 @@ body {
     height: 100%;
     object-fit: cover;
 }
-.login_quote, .signup_quote {
+.login_quote,
+.signup_quote {
     font-size: 1.9rem;
     font-weight: bold;
     text-align: justify;
     color: var(--primary);
 }
-.login_divider, .signup_divider {
+.login_divider,
+.signup_divider {
     width: 100%;
     border-bottom: 1px solid rgba(var(--primary-rgb), 0.8);
     line-height: 0.1em;
     margin: 10px 0 20px;
 }
-.login_divider span, .signup_divider span {
-    background:#fff; 
-    padding:0 10px;
+.login_divider span,
+.signup_divider span {
+    background: #fff;
+    padding: 0 10px;
 }
-.form_login_page, .form_signup_page {
+.form_login_page,
+.form_signup_page {
     width: 100%;
 }
 

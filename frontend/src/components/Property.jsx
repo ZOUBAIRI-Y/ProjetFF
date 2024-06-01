@@ -52,10 +52,10 @@ export default function Property(props) {
     };
 
     return (
-        <div className="property_component p-0 border border-success rounded">
+        <div className="card border-success property_component">
             <div
                 id="propertyCarousel"
-                className="p-2 carousel slide"
+                className="carousel slide carousel_section"
                 data-bs-ride="carousel"
             >
                 <div className="carousel-inner">
@@ -66,7 +66,6 @@ export default function Property(props) {
                                     "http://127.0.0.1:8000" +
                                     props.data.images[0]
                                 }
-                                className="d-block"
                                 alt="property image"
                             />
                         ) : (
@@ -88,7 +87,6 @@ export default function Property(props) {
                                             "http://127.0.0.1:8000" +
                                             props.data.images[i]
                                         }
-                                        className="d-block"
                                         alt="property image"
                                     />
                                 </div>
@@ -96,7 +94,7 @@ export default function Property(props) {
                         })}
                 </div>
                 <button
-                    className="carousel-control-prev bg-info"
+                    className="carousel-control-prev bg-success custom_carousel_control"
                     type="button"
                     data-bs-target="#propertyCarousel"
                     data-bs-slide="prev"
@@ -108,7 +106,7 @@ export default function Property(props) {
                     <span className="visually-hidden">Previous</span>
                 </button>
                 <button
-                    className="carousel-control-next bg-info"
+                    className="carousel-control-next bg-success custom_carousel_control"
                     type="button"
                     data-bs-target="#propertyCarousel"
                     data-bs-slide="next"
@@ -121,13 +119,13 @@ export default function Property(props) {
                 </button>
                 <button
                     onClick={handleLikeToggle}
-                    className="like_btn btn btn-light "
+                    className="like_btn btn btn-altlight rounded-circle"
                 >
                     {liked ? <FaHeart /> : <FaRegHeart />}
                 </button>
             </div>
-            <div className="property_infos p-2">
-                <h5 className="text-primary fw-bold p-0 m-0 property_title">
+            <div className="card-body p-2 infos_section">
+                <h5 className="card-title text-primary fw-bold p-0 m-0">
                     Apartment
                 </h5>
                 <p className="text-altdark property_address p-0 m-0">

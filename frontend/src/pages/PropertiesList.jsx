@@ -135,7 +135,21 @@ export default function PropertiesList() {
 
     const handleSortChange = (e) => {
         const criteria = e.target.value;
-        setsrtCrt(criteria);
+        setSortCriteria(criteria);
+        sortList(criteria);
+    };
+    const filterIcon = (
+        <svg
+            viewBox="0 0 16 16"
+            class="_c43b94c5"
+            fill="currentColor"
+            width="1em"
+            height="1em"
+            aria-hidden="true"
+        >
+            <path d="M11 8a3 3 0 0 1 2.829 2H16v2l-2.171.001a3 3 0 0 1-5.658 0L0 12v-2h8.171A3 3 0 0 1 11 8Zm0 2a1 1 0 1 0 .993 1.117l.006-.1.001-.034a1 1 0 0 0-.883-.976L11 10ZM5 2a3 3 0 0 1 2.829 2H16v2l-8.171.001a3 3 0 0 1-5.658 0L0 6V4h2.171A3 3 0 0 1 5 2Zm0 2-.117.007A1 1 0 0 0 4 4.983l.001.034L4 5a1 1 0 1 0 1-1Z"></path>
+        </svg>
+    );
 
         let sortedList = [...list];
         switch (criteria) {
@@ -158,24 +172,24 @@ export default function PropertiesList() {
 
     return (
         <>
-            <form className="container mt-4">
-                <div className="row">
-                    <div className="col-sm-8 ps-0 pe-1 mb-3">
+            <form className="container mt-4 p-4 p-sm-0">
+                <div className="row m-0 ">
+                    <div className="col-12 p-0 pb-1 col-md-3 p-md-0 pe-md-1">
                         {typeof parseInt(term) === "number" &&
                         parseInt(term) !== 0 &&
                         !isNaN(term) ? (
                             <input
                                 type="text"
                                 placeholder="searche ..."
-                                className="form-control p-2 "
+                                className="form-control custom_form_control"
                                 onChange={(e) => setTerms(e.target.value)}
                             />
                         ) : (
                             <input
                                 type="text"
                                 placeholder="searche ..."
-                                className="form-control p-2 "
-                                value={terms}
+                                className="form-control custom_form_control"
+                                value={terms === "all" ? "" : terms}
                                 onChange={(e) => setTerms(e.target.value)}
                             />
                         )}
@@ -192,7 +206,7 @@ export default function PropertiesList() {
                             <option value="expensive">Expensive</option>
                         </select>
                     </div>
-                    <div className="col-sm p-0 pe-1">
+                    <div className="col-7 p-0 pb-1 pe-1 col-md-2 p-md-0 pe-md-1">
                         <select
                             className="form-select p-2"
                             aria-label="Default select example"
@@ -221,9 +235,9 @@ export default function PropertiesList() {
                                 ))}
                         </select>
                     </div>
-                    <div className="col-sm p-0 pe-1">
+                    <div className="col-5 p-0 pb-1 col-md-2 p-md-0 pe-md-1">
                         <select
-                            className="form-select p-2"
+                            className="form-select custom_form_select p-2"
                             aria-label="Default select example"
                             onChange={(e) => setS_ctg(e.target.value)}
                             value={S_ctg}
@@ -237,9 +251,25 @@ export default function PropertiesList() {
                                 ))}
                         </select>
                     </div>
-                    <div className="col-sm p-0 pe-1">
+                    <div className="col-5 p-0 pe-1 col-md-2 p-md-0 pe-md-1">
                         <select
-                            className="form-select p-2"
+                            className="form-select custom_form_select p-2"
+                            aria-label="Default select example"
+                            onChange={(e) => setSelectedRooms(e.target.value)}
+                        >
+                            <option selected="">rooms</option>
+                            <option value={1}>One</option>
+                            <option value={2}>Two</option>
+                            <option value={3}>Three</option>
+                            <option value={4}>Four</option>
+                            <option value={"more"}>More...</option>
+                        </select>
+                    </div>
+                    
+                    
+                    <div className="col-5 p-0 pe-1 col-md-2 p-md-0 pe-md-1">
+                        <select
+                            className="form-select custom_form_select p-2"
                             aria-label="Default select example"
                             onChange={(e) => setSPri(e.target.value)}
                         >
@@ -251,18 +281,46 @@ export default function PropertiesList() {
                             <option value={1000}>More...</option>
                         </select>
                     </div>
+
+                    <button
+                        type="button"
+                        className="btn btn-outline-success col-2 m-0 col-md-1 m-md-0 pe-md-1 ps-1 pe-1"
+                    >
+                        {filterIcon}
+                    </button>
                 </div>
             </form>{" "}
-            {/* <div className="total_sortProperties_bar container bg-altlight mt-3">
+            <div className="total_sortProperties_bar container bg-altlight mt-2 p-4 p-sm-0">
                 <p className="float-start text-primary fw-medium m-2">
                     {" "}
                     properties
                 </p>
-            </div> */}
-            <div className="properties_list container mt-4 border d-flex p-3 flex-row flex-wrap">
+
+                <select
+                    className="form-select form-select-sm ms-auto w-50 sort_select"
+                    value={sortCriteria}
+                    onChange={handleSortChange}
+                >
+                    <option value="">Sort By</option>
+                    <option value="mostRecent">Most Recent</option>
+                    <option value="cheapest">Cheapest</option>
+                    <option value="expensive">Expensive</option>
+                </select>
+            </div>
+            <div className="properties_list_section container mt-4 ps-5 pe-5 ps-sm-0 pe-sm-0">
                 {/* here where the list of properties will be rendered */}
-                <div className="property_container d-flex flex-wrap">
-                    {list && list.map((p) => <Property data={p} key={p.id} />)}
+                <div className="property_container row m-0 p-0">
+                    {list &&
+                        list.map((p) => {
+                            return (
+                                <div
+                                    className="col-12 col-sm-6 col-md-4 col-lg-3 p-0 ps-1 pe-1 pt-1 pb-1"
+                                    key={p.id}
+                                >
+                                    <Property data={p} />
+                                </div>
+                            );
+                        })}
                 </div>
             </div>
         </>
