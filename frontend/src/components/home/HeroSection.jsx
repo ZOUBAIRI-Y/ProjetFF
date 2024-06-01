@@ -1,8 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function HeroSection() {
     const [searchInput_home, setSearchInput] = useState("");
+    const navigate = useNavigate();
+    const handleSearchClick = () => {
+        if (searchInput_home.trim()) {
+            navigate("/properties-list/" + searchInput_home);
+        }
+    };
     return (
         <>
             <header className="hero_section_homepage">
@@ -98,7 +104,7 @@ export default function HeroSection() {
                         </div>
                     </div>
                 </nav>
-                <div className="hero_section_main ps-4 pe-4 ">
+                <div className="hero_section_main ps-2 pe-2 ps-sm-5 pe-sm-5 ps-lg-3 pe-lg-3">
                     <h1 className="text-primary fw-bolder fs-1 text-center">
                         Where you love to live? <br /> or rent?
                     </h1>
@@ -116,13 +122,13 @@ export default function HeroSection() {
                             placeholder="Searche by city or lessor nom "
                             onChange={(e) => setSearchInput(e.target.value)}
                         />
-                        <Link
-                            to={"/properties-list/" + searchInput_home}
+                        <button
+                            onClick={handleSearchClick}
                             className="btn btn-success text-white search_link_header_btn"
                             id="link-addon2"
                         >
                             Search
-                        </Link>
+                        </button>
                     </div>
                 </div>
             </header>

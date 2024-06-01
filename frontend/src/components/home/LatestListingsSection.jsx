@@ -41,7 +41,7 @@ export default function LatestListingsSection() {
                 {list &&
                     list.map((p) => (
                         <div
-                            className="col-8 col-sm-6 col-md-5 col-lg-3 p-0 ps-1 pe-1"
+                            className="col-9 col-sm-6 col-md-5 col-lg-3 p-0 ps-1 pe-1"
                             key={p.id}
                         >
                             <Property data={p} />
