@@ -160,7 +160,7 @@ export default function PropertiesList() {
         <>
             <form className="container mt-4">
                 <div className="row">
-                    <div className="col-sm-4 ps-0 pe-1">
+                    <div className="col-sm-8 ps-0 pe-1 mb-3">
                         {typeof parseInt(term) === "number" &&
                         parseInt(term) !== 0 &&
                         !isNaN(term) ? (
@@ -179,6 +179,18 @@ export default function PropertiesList() {
                                 onChange={(e) => setTerms(e.target.value)}
                             />
                         )}
+                    </div>
+                    <div className="col-sm-4 mb-3">
+                        <select
+                            className="form-select sort_select w-100 p-2"
+                            value={srtCrt}
+                            onChange={handleSortChange}
+                        >
+                            <option value="">Sort By</option>
+                            <option value="mostRecent">Most Recent</option>
+                            <option value="cheapest">Cheapest</option>
+                            <option value="expensive">Expensive</option>
+                        </select>
                     </div>
                     <div className="col-sm p-0 pe-1">
                         <select
@@ -239,33 +251,15 @@ export default function PropertiesList() {
                             <option value={1000}>More...</option>
                         </select>
                     </div>
-
-                    <button
-                        type="button"
-                        className="btn btn-outline-success col-sm-2"
-                    >
-                        Advanced
-                    </button>
                 </div>
             </form>{" "}
-            <div className="total_sortProperties_bar container bg-altlight mt-3">
+            {/* <div className="total_sortProperties_bar container bg-altlight mt-3">
                 <p className="float-start text-primary fw-medium m-2">
                     {" "}
                     properties
                 </p>
-
-                <select
-                    className="form-select form-select-sm ms-auto w-50 sort_select"
-                    value={srtCrt}
-                    onChange={handleSortChange}
-                >
-                    <option value="">Sort By</option>
-                    <option value="mostRecent">Most Recent</option>
-                    <option value="cheapest">Cheapest</option>
-                    <option value="expensive">Expensive</option>
-                </select>
-            </div>
-            <div className="properties_list container mt-4 border d-flex flex-row flex-wrap">
+            </div> */}
+            <div className="properties_list container mt-4 border d-flex p-3 flex-row flex-wrap">
                 {/* here where the list of properties will be rendered */}
                 <div className="property_container d-flex flex-wrap">
                     {list && list.map((p) => <Property data={p} key={p.id} />)}
