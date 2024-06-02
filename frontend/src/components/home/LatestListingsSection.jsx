@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Property from "../Property";
 import { useEffect, useState } from "react";
 import client from "../../custom-axios";
@@ -23,6 +23,11 @@ export default function LatestListingsSection() {
             setList(JSON.parse(localStorage.getItem("properties")));
         }
     }, []);
+    const navigate = useNavigate();
+
+    const handleLinkClick = (id) => {
+        navigate(`/property-details/${id}`);
+    };
 
     return (
         <div className="latest_listings_section container mt-5">
@@ -37,14 +42,15 @@ export default function LatestListingsSection() {
             </Link>
             <p>Here are the most recent listings, Find the perfect for you</p>
 
-            <div className="row listings_slider snaps_inline m-0 flex-nowrap overflow-auto pb-2">
+            <div className="row listings_slider snaps_inline m-0 flex-nowrap overflow-auto p-3 pb-2">
                 {list &&
                     list.map((p) => (
                         <div
-                            className="col-9 col-sm-6 col-md-5 col-lg-3 p-0 ps-1 pe-1"
+                            className="col-10 col-sm-6 col-md-5 col-lg-4 col-xl-3 p-0 ps-1 pe-1 property_list_item"
                             key={p.id}
+                            onClick={() => handleLinkClick(p.id)}
                         >
-                            <Property data={p} />
+                                <Property data={p} />
                         </div>
                     ))}
             </div>

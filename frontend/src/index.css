@@ -8,6 +8,7 @@
     --primary: #054457;
     --primary-rgb: 5, 68, 87;
     --secondary: #4ba586;
+    --secondary-rgb: 75, 165, 134;
     --success: #69b99d;
     --info: #c7e5db;
     --warning: #b99d69;
@@ -26,9 +27,7 @@
     top: 0;
     width: 100%;
 } */
-body {
-    height: 100%;
-}
+
 /* Layout header style Ends ------------------------ */
 /* Layout main content style */
 .mainPage_content {
@@ -144,6 +143,13 @@ body {
 }
 .snaps_inline > * {
     scroll-snap-align: start;
+}
+.property_list_item {
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+.property_list_item:hover {
+    transform: scale(1.02);
 }
 
 /* latest listings section styles ends ---------------------------- */
@@ -343,61 +349,83 @@ body {
 /* properties list page style Ends --------------------------------- */
 
 /* property details page styles ------------------------------------ */
-.property_d_genInfo_carousel_container {
-    height: 500px;
-    position: relative;
-}
-.property_d_carousel_container {
-    height: 360px;
-}
-.property_d_carousel_container .carousel-inner {
-    width: 100%;
-    height: 100%;
-}
-.property_d_carousel_container .carousel-item {
-    background-color: #001810;
-    height: 100%;
-}
-.property_d_carousel_container .carousel-item img {
-    height: 100%;
-}
-.property_d_carousel_container .custom_carousel_control {
-    width: 25px;
-    height: 60px;
-    border-radius: 0 50% 50% 0;
+.row .slide_btn {
     position: absolute;
     top: 50%;
+    height: 50px;
+    width: 50px;
+    color: #fff;
+    background: #000;
+    font-size: 1.3rem;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+    outline: none;
     transform: translateY(-50%);
 }
-.property_d_carousel_container .carousel-control-prev.custom_carousel_control {
-    left: 0;
-    border-radius: 0 50% 50% 0;
+.slide_btn:hover {
+    background: var(--primary);
 }
-
-.property_d_carousel_container .carousel-control-next.custom_carousel_control {
-    right: 0;
-    border-radius: 50% 0 0 50%;
+.slide_btn#prev-slide {
+    left: 25px;
 }
-@media (min-width: 768px) {
-    .property_d_callCard {
-        width: 270px;
-        position: absolute;
-        top: 270px;
-        right: 90px;
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
-    }
-    .property_d_callCard.sticky {
-        position: fixed;
-        top: 0;
-        right: 90px;
-    }
+.slide_btn#next-slide {
+    right: 25px;
 }
-@media (max-width: 768px) {
-    .property_d_callCard {
-        display: none;
-    }
+.property_d_carousel_container div {
+    overflow-x: auto;
 }
-
+.property_d_carousel_container div::-webkit-scrollbar {
+    display: none;
+}
+.property_d_carousel_item {
+    border: 1px solid rgba(var(--secondary-rgb), 0.4);
+    border-radius: 5px;
+}
+.property_d_carousel_item img {
+    border-radius: 5px;
+    object-fit: cover;
+}
+.overview_navbar {
+    z-index: -1;
+    position: sticky;
+    top: 0;
+    border-bottom: 1px solid rgba(var(--primary-rgb), 0.15);
+}
+.property_d_overview_container {
+    width: 100%;
+}
+.price_deposit_space div div:hover {
+    background-color: #eeeeee;
+}
+.property_d_lessorInfo {
+}
+.property_d_lessorImg_container {
+    height: 100%;
+}
+.property_d_lessorImg_container img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+}
+.text_area_container {
+    position: relative;
+}
+.text_area_container textarea {
+    width: 100%;
+    height: 80px;
+    padding-right: 100px;
+}
+.add_comment_btn {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 8px 20px;
+    z-index: 1;
+}
 .property_d_like_btn {
     padding-top: 4px;
     padding-bottom: 4px;
@@ -420,9 +448,115 @@ body {
     background-color: var(--info);
     color: var(--primary);
 }
+._phone_likebtn {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 9px;
+    padding-right: 9px;
+    border: none;
+    background: var(--success);
+}
+._phone_sharebtn {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 9px;
+    padding-right: 9px;
+    border: none;
+    background: var(--success);
+}
+
+@media (min-width: 768px) {
+    .property_d_callCard {
+        width: 270px;
+        position: absolute;
+        top: 270px;
+        right: 90px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+        z-index: 9;
+    }
+    .property_d_callCard.sticky {
+        position: fixed;
+        top: 0;
+        right: 90px;
+    }
+    .property_d_overview_container {
+        padding-right: 300px;
+    }
+    .like_share_phone_container {
+        display: none !important;
+    }
+    .property_d_phone_callCard {
+        display: none !important;
+    }
+}
+@media (min-width: 992px) {
+    .property_d_overview_container {
+        padding-right: 340px;
+        padding-left: 100px;
+    }
+}
+@media (min-width: 768px) {
+    .property_d_overview_container {
+        padding-right: 340px;
+        padding-left: 30px;
+    }
+}
+@media (min-width: 1200px) {
+    .property_d_carousel_container {
+        position: relative;
+        height: 360px;
+    }
+}
+@media (max-width: 1200px) {
+    .property_d_carousel_container {
+        position: relative;
+        height: 310px;
+    }
+}
+@media (max-width: 992px) {
+    .property_d_carousel_container {
+        position: relative;
+        height: 310px;
+    }
+}
+@media (max-width: 768px) {
+    .property_d_callCard {
+        display: none;
+    }
+    .property_d_carousel_container {
+        position: relative;
+        height: 310px;
+    }
+}
+@media (max-width: 576px) {
+    .property_d_carousel_container {
+        position: relative;
+        height: 280px;
+    }
+    .slide_btn {
+        display: none !important;
+    }
+    .image_list::-webkit-scrollbar {
+        display: block !important;
+    }
+    .image_list::-webkit-scrollbar {
+        height: 4px;
+    }
+    .image_list::-webkit-scrollbar-track {
+        background: var(--info);
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+    .image_list::-webkit-scrollbar-thumb {
+        background: var(--secondary);
+        border-radius: 10px;
+    }
+    .image_list::-webkit-scrollbar-thumb:hover {
+        background: var(--success);
+    }
+}
 
 .images_list_item_container {
-
 }
 .prop_gen_infos {
     width: 100%;
@@ -588,12 +722,10 @@ body {
 .signupBG_container,
 .loginBG_container {
     height: 100%;
-    
 }
 .signup_form_container,
 .login_form_container {
     height: 100%;
-    
 }
 @media (max-width: 767px) {
     .signupBG_container,
@@ -638,3 +770,133 @@ body {
 }
 
 /* login and signup pages styles ends ----------------------------- */
+
+/* categories page style --------------------------------- */
+.titleShape_container {
+    display: flex;
+    margin: 0;
+    position: relative;
+    height: 50px ;
+}
+.title_container {
+    border-radius: 0px 8px 8px 0;
+}
+.title_container span {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 1.1rem;
+    padding-right: 1.1rem;
+}
+.shape_icon {
+    color: var(--success);
+    fill: currentColor;
+    height: 100%;
+}
+.categories_list_group_item {
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+.categories_list_group_item:hover {
+    transform: scale(1.05);
+}
+.categories_list_group_item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.name_description_container p {
+    text-align: justify;
+}
+@media (max-width: 576px) {
+    .categories_list_group {
+        padding: 3rem;
+    }
+    .categories_list_group_item img {
+        height: 280px;
+    }
+}
+
+/* categories page style ends --------------------------------- */
+
+/* contact page styles --------------------------------------- */
+.contact_title {
+    font-size: 4rem;
+}
+.contactpage_social_media a {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background-color: var(--success);
+    border-radius: 50%;
+    margin: 0.5rem;
+}
+/* .contactpage_social_media div i {
+    position: absolute;
+    top: 50%;
+    margin: auto;
+    transform: translateY(-50%);
+} */
+@media (max-width: 576px) {
+    .contact_page_content {
+        height: calc(100vh - 60px);
+        width: 100%;
+        background-image: url('./assets/contactPage/herosectionXSM-BG-.jpg');
+        background-size: cover;
+        background-position: center top;
+        background-repeat: no-repeat;
+    }
+    .image_container {
+        width: 100%;
+        height: 100%;
+       background-image: url('./assets/contactPage/herosectionXSM-main-.png');
+       background-size: contain;
+       background-repeat: no-repeat;
+    }
+    
+}
+@media (min-width: 576px) {
+    .contact_page_content {
+        height: calc(80vh);
+        width: 100%;
+        background-image: url('./assets/contactPage/herosectionSM.jpg');
+        background-size: cover;
+        background-position: center bottom;
+        background-repeat: no-repeat;
+    }
+}
+@media (min-width: 768px) {
+    .contact_page_content {
+        height: calc(100vh - 62px);
+        width: 100%;
+        background-image: url('./assets/contactPage/herosectionMD.jpg');
+        background-size: cover;
+        background-position: center bottom;
+        background-repeat: no-repeat;
+    }
+}
+@media (min-width: 992px) {
+    .contact_page_content {
+        height: calc(100vh - 62px);
+        width: 100%;
+        background-image: url('./assets/contactPage/herosectionMD.jpg');
+        background-size: cover;
+        background-position: center bottom;
+        background-repeat: no-repeat;
+    }
+}
+@media (min-width: 1400px) {
+    .contact_page_content {
+        height: calc(100vh - 62px);
+        width: 100%;
+        background-image: url('./assets/contactPage/herosectionXL.jpg');
+        background-size: cover;
+        background-position: center bottom;
+        background-repeat: no-repeat;
+    }
+}
+ 
+
+/* contact page styles --------------------------------------- */

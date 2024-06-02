@@ -7,6 +7,7 @@ import client from "../custom-axios";
 
 export default function Property(props) {
     const [liked, setLiked] = useState(false);
+    const propertyuniqueId = `propertyCarousel_${props.data.id}`;
     // const [contact, setContact] = useState(false);
 
     const lessor_phone = (lessorId) => {
@@ -50,11 +51,15 @@ export default function Property(props) {
             console.error("Error:", error);
         }
     };
+    const handleButtonsClick = (e) => {
+        e.stopPropagation();;ed
+        console.log('Button clicked!');
+    };
 
     return (
         <div className="card border-success property_component">
             <div
-                id="propertyCarousel"
+                id={propertyuniqueId}
                 className="carousel slide carousel_section"
                 data-bs-ride="carousel"
             >
@@ -96,8 +101,9 @@ export default function Property(props) {
                 <button
                     className="carousel-control-prev bg-success custom_carousel_control"
                     type="button"
-                    data-bs-target="#propertyCarousel"
+                    data-bs-target={`#${propertyuniqueId}`}
                     data-bs-slide="prev"
+                    onClick={(e)=>handleButtonsClick(e)}
                 >
                     <span
                         className="carousel-control-prev-icon"
@@ -108,8 +114,9 @@ export default function Property(props) {
                 <button
                     className="carousel-control-next bg-success custom_carousel_control"
                     type="button"
-                    data-bs-target="#propertyCarousel"
+                    data-bs-target={`#${propertyuniqueId}`}
                     data-bs-slide="next"
+                    onClick={(e)=>handleButtonsClick(e)}
                 >
                     <span
                         className="carousel-control-next-icon"
@@ -118,7 +125,10 @@ export default function Property(props) {
                     <span className="visually-hidden">Next</span>
                 </button>
                 <button
-                    onClick={handleLikeToggle}
+                    onClick={(e)=> {
+                        handleLikeToggle();
+                        handleButtonsClick(e)
+                    }}
                     className="like_btn btn btn-altlight rounded-circle"
                 >
                     {liked ? <FaHeart /> : <FaRegHeart />}
@@ -151,7 +161,10 @@ export default function Property(props) {
                     More details
                 </Link>
                 <button
-                    onClick={() => lessor_phone(props.data.lessorId)}
+                    onClick={(e) => {
+                        lessor_phone(props.data.lessorId);
+                        handleButtonsClick(e);
+                    }}
                     className="call_now_btn btn btn-success text-white"
                 >
                     Call now

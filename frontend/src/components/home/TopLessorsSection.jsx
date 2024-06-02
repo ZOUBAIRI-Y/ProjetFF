@@ -59,7 +59,7 @@ function TopLessorsSection() {
                                                     " " +
                                                     l.firstname
                                                 }
-                                                className="text-decoration-none lessorname_link fw-medium "
+                                                className="text-decoration-none lessorname_link fw-medium"
                                             >
                                                 {l.firstname} {l.firstname}
                                             </Link>

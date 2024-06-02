@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import client from "../custom-axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Property from "../components/Property";
 import { FaHeart, FaRegHeart } from "react-icons/fa"; // Importing Heart icons from React Icons
 
@@ -75,16 +75,16 @@ export default function PropertyDetails() {
         const handleScroll = () => {
             const stickyDiv = document.getElementById("callCard");
             const container = document.querySelector(
-                ".property_details_carousel_container"
+                ".property_d_genInfo_carousel_container"
             );
-            if (window.scrollY >= 354) {
+
+            if (window.scrollY >= 272) {
                 stickyDiv.classList.add("sticky");
             } else {
                 stickyDiv.classList.remove("sticky");
             }
         };
         window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
     }, []);
     const shareIcon = (
         <svg
@@ -98,59 +98,70 @@ export default function PropertyDetails() {
             <path d="M12.492.902a.954.954 0 0 1 1.047.227l8.029 8.404a.956.956 0 0 1 0 1.321l-8.029 8.405a.956.956 0 0 1-1.647-.66v-4.618c-3.867-.023-7.358-.031-9.992 3.658a.957.957 0 0 1-1.71-.767l.131-.491a17.338 17.338 0 0 1 2.337-4.873c1.751-2.516 4.662-5.089 9.234-5.406V1.789c0-.391.237-.742.6-.887Zm-8.84 12.595c2.649-1.483 5.609-1.455 8.228-1.43.328.003.651.006.967.006h.956v4.141l5.752-6.02-5.752-6.021v3.808h-.956c-4.319 0-6.989 2.276-8.62 4.619-.209.3-.4.601-.575.897Z"></path>
         </svg>
     );
+    // useEffect(() => {
+    //     const imageList = document.querySelector(".image_list");
+    //     const slideButtons = document.querySelectorAll(".row .slide_btn");
+    //     const maxScrollLeft = imageList.scrollWidth - imageList.clientWidth;
+    //     slideButtons.forEach((button) => {
+    //         button.addEventListener("click", () => {
+    //             const direction = button.id === "prev-slide" ? -1 : 1;
+    //             const scrollAmount = imageList.clientWidth * direction;
+    //             imageList.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    //         });
+    //     });
+    //     const handleSlideBtns = () => {
+    //         const isMobile = window.innerWidth <= 576;
+    //         if (isMobile) {
+    //             slideButtons.forEach((button) => {
+    //                 button.style.display = "none";
+    //             });
+    //         } else {
+    //             slideButtons[0].style.display =
+    //                 imageList.scrollLeft <= 0 ? "none" : "block";
+    //             slideButtons[1].style.display =
+    //                 imageList.scrollLeft >= maxScrollLeft ? "none" : "block";
+    //         }
+    //     };
+    //     imageList.addEventListener("scroll", () => {
+    //         handleSlideBtns();
+    //     });
+    // }, []);
+    useEffect(() => {
+        const imageList = document.querySelector(".image_list");
+        const slideButtons = document.querySelectorAll(".row .slide_btn");
+        const maxScrollLeft = imageList.scrollWidth - imageList.clientWidth;
+        slideButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const direction = button.id === "prev-slide" ? -1 : 1;
+                const scrollAmount = imageList.clientWidth * direction;
+                imageList.scrollBy({ left: scrollAmount, behavior: "smooth" });
+            });
+        });
+    }, []);
+
     return (
         <>
             <div className="container-fluid property_d_genInfo_carousel_container bg-info mt-4 p-0">
-                <div className="property_d_carousel_container p-0 m-0">
-                    <div
-                        id="propertyCarousel"
-                        className="carousel slide property_d_carousel h-100 p-3"
-                        data-bs-ride="carousel"
-                    >
-                        <div className="carousel-inner row m-0">
-                            {prop.images &&
-                                prop.images.length >= 1 &&
-                                prop.images.map((v, i) => {
-                                    return (
-                                        <div
-                                            key={i}
-                                            className="carousel-item col-sm-6 images_list_item_container active p-0 "
-                                        >
-                                            <img
-                                                src={
-                                                    "http://127.0.0.1:8000" +
-                                                    prop.images[i]
-                                                }
-                                                alt="property image"
-                                                className="w-100"
-                                            />
-                                        </div>
-                                    );
-                                })}
-                        </div>
-                        <button
-                            className="carousel-control-prev bg-primary custom_carousel_control"
-                            type="button"
-                            data-bs-target="#propertyCarousel"
-                            data-bs-slide="prev"
-                        >
-                            <span
-                                className="carousel-control-prev-icon"
-                                aria-hidden="true"
-                            />
-                            <span className="visually-hidden">Previous</span>
+                <div className="property_d_carousel_container p-0 m-0 p-2">
+                    <div className="row m-0 image_list snaps_inline flex-nowrap p-2 ps-2 h-100">
+                        <button className="slide_btn" id="prev-slide">
+                            <i className="bi bi-caret-left-fill"></i>
                         </button>
-                        <button
-                            className="carousel-control-next bg-primary custom_carousel_control"
-                            type="button"
-                            data-bs-target="#propertyCarousel"
-                            data-bs-slide="next"
-                        >
-                            <span
-                                className="carousel-control-next-icon"
-                                aria-hidden="true"
-                            />
-                            <span className="visually-hidden">Next</span>
+                        {prop &&
+                            prop.images &&
+                            prop.images.map((m, i) => (
+                                <div
+                                    className="property_d_carousel_item col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 p-0 me-2 h-100"
+                                    key={i}
+                                >
+                                    <img
+                                        src={"http://127.0.0.1:8000" + m}
+                                        className="w-100 h-100"
+                                    />
+                                </div>
+                            ))}
+                        <button className="slide_btn" id="next-slide">
+                            <i className="bi bi-caret-right-fill"></i>
                         </button>
                     </div>
                 </div>
@@ -160,9 +171,7 @@ export default function PropertyDetails() {
                 >
                     <div className="like_share_container d-flex flex-row justify-content-center mt-2">
                         <button className="property_d_share_btn btn btn-altlight rounded-circle me-1">
-                            <div>
-                                {shareIcon}
-                            </div>
+                            <div>{shareIcon}</div>
                         </button>
                         <button
                             onClick={handleLikeToggle}
@@ -194,132 +203,239 @@ export default function PropertyDetails() {
                         Call now
                     </button>
                 </div>
-                <div className="property_carousel_infos p-4 pt-1">
-                    <span className="fs-4 fw-medium p-0 m-0">{prop.category ? prop.category.name : ""}</span><br />
-                    <span className="fw-medium p-0 m-0">{prop.address}</span><br />
-                    <span>{prop.price}dh | </span>
-                    <span>{prop.rooms}rooms |</span>
-                    <span>{prop.baths}baths</span><br />
-                    <span>Published by {lessorInfo.name}</span>
+                <div className="property_carousel_infos container pt-3 pb-4 ">
+                    <p className="fs-5 fw-bold text-primary p-0 m-0 d-inline">
+                        {prop.category ? prop.category.name : ""}
+                    </p>
+                    <div className="like_share_phone_container d-inline ms-4 float-end">
+                        <button className="_phone_sharebtn btn btn-altlight rounded-circle me-1">
+                            <div>{shareIcon}</div>
+                        </button>
+                        <button
+                            onClick={handleLikeToggle}
+                            className="_phone_likebtn btn btn-altlight rounded-circle"
+                        >
+                            {liked ? <FaHeart /> : <FaRegHeart />}
+                        </button>
+                    </div>
+                    <p className="fw-medium p-0 m-0">{prop.address}</p>
+                    <p className="m-0">
+                        <span className="fw-bold">{prop.price}dh | </span>
+                        <span>{prop.rooms}rooms |</span>
+                        <span>{prop.baths}baths</span>
+                    </p>
+                    <p className="m-0">Published by {lessorInfo.name}</p>
+            <div className="property_d_phone_callCard d-flex flex-row mt-2">
+                <button className="btn btn-outline-success w-50 me-1">
+                    Request tour
+                </button>
+                <button
+                    onClick={() =>
+                        alert(
+                            lessorInfo.phone1
+                                ? lessorInfo.phone1
+                                : "non trouver"
+                        )
+                    }
+                    className="btn btn-success text-white w-50 ms-1"
+                >
+                    Call now
+                </button>
+            </div>
                 </div>
             </div>
-
-            <nav className="">
-
-            </nav>
-            <hr />
-            {prop &&
-                prop.images &&
-                prop.images.map((m) => (
-                    <img src={"http://127.0.0.1:8000" + m} key={Date.now} />
-                ))}
-            <div className="property-info">
-                <h2>Description:</h2>
-                <p>{prop.description}</p>
-                <h2>Price:</h2>
-                <p>${prop.price}</p>
-                <h2>Deposit:</h2>
-                <p>${prop.deposite}</p>
-                <h2>Space:</h2>
-                <p>{prop.space} sq ft</p>
-                <h2>Address:</h2>
-                <p>{prop.address}</p>
-                <h2>Baths:</h2>
-                <p>{prop.baths}</p>
-                <h2>Category:</h2>
-                <p>{prop.category ? prop.category.name : ""}</p>
-                <h2>City:</h2>
-                <p>{prop.city ? prop.city.name : ""}</p>
-                <h2>Created At:</h2>
-                <p>
-                    {prop.createdAt
-                        ? new Date(prop.createdAt).toLocaleDateString()
-                        : ""}
-                </p>
-                <h2>Ready Date:</h2>
+            <div
+                className="property_d_overview_container container"
+                id="property_overview"
+            >
+                <nav className="navbar navbar-expand-lg overview_navbar ">
+                    <ul className="navbar-nav me-auto">
+                        <li className="nav-item">
+                            <Link
+                                to={"#property_overview"}
+                                className="nav-link active fw-medium text-primary "
+                            >
+                                Overview
+                            </Link>
+                        </li>
+                    </ul>
+                </nav>
+                <div className="property_d_overview  pt-3">
+                    <h2 className="fs-5">Description:</h2>
+                    <p>{prop.description}</p>
+                    <h2 className="fs-5">City:</h2>
+                    <p>{prop.city ? prop.city.name : ""}</p>
+                    <h2 className="fs-5">Address:</h2>
+                    <p>{prop.address}</p>
+                    <div className="row m-0 price_deposit_space mb-3">
+                        <div className="col col-lg-4 p-0 pe-1">
+                            <div className="border rounded p-2 h-100">
+                                <h2 className="fs-5 fw-bold">Price:</h2>
+                                <p className="m-0">
+                                    {prop.price}dh
+                                    <span className="text-light">
+                                        /{prop.rentingType}
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        <div className="col col-lg-4 p-0 ps-sm-1 pe-1 ">
+                            <div className="border rounded p-2 h-100">
+                                <h2 className="fs-5 fw-bold">Deposit:</h2>
+                                <p className="m-0">${prop.deposite}</p>
+                            </div>
+                        </div>
+                        <div className="col col-lg-4 p-0 ps-sm-1 ">
+                            <div className="border rounded p-2 h-100">
+                                <h2 className="fs-5 fw-bold">Space:</h2>
+                                <p className="m-0">{prop.space} sq ft</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h2 className="fs-5">Ready at:</h2>
                 <p>
                     {prop.readyDate
                         ? new Date(prop.readyDate).toLocaleDateString()
                         : ""}
                 </p>
-                <h2>Renting Type:</h2>
-                <p>{prop.rentingType}</p>
-                <h2>Lessor ID:</h2>
-                <p>{prop.lessorId}</p>
-            </div>
-            <hr />
-            <button
-                className="btn btn-primary"
-                onClick={() => navigate("/review/" + id)}
-            >
-                Add unreview
-            </button>
-            <hr />
-            <div className="comments">
-                <h2>Comments:</h2>
-                {comments.map((comment, index) => (
-                    <div key={index}>
-                        <b>{comment.content}</b>
-                        <p>
-                            {/* Posted By: {comment.user.name && comment.user.name} */}
-                        </p>
-                        <p>
-                            Date:{" "}
-                            {new Date(comment.createdAt).toLocaleDateString()}
+                <div className="row m-0 p-0">
+                    <div className="col-12 col-sm-4 col-md-12 col-lg-4 p-0 align-self-center">
+                        <h2 className="fs-5">Published by:</h2>
+                        <p className="fs-5 fw-bold text-primary">
+                            {lessorInfo.name}
                         </p>
                     </div>
-                ))}
-            </div>
-            <hr />
-            <div className="reviews">
-                <h2>Reviews:</h2>
-                {reviews.map((review, index) => (
-                    <div key={index}>
-                        <p>{review.text}</p>
-                        <p>
-                            Rating: {review.rating} <b>Star</b>
-                        </p>
-                        {/* <p>Posted By: {review.user.name}</p> */}
-                        <p>
-                            Date:{" "}
-                            {new Date(review.createdAt).toLocaleDateString()}
-                        </p>
+                    <div className="col-12 col-sm-8 col-md-12 col-lg-8 p-0">
+                        <div className="lessor_info card">
+                            <div className="card-header p-3 ps-1">
+                                <h2 className="fs-4 m-0 text-center">
+                                    {lessorInfo.name}
+                                </h2>
+                            </div>
+                            <div className="card-body p-2">
+                                <div className="row m-0 property_d_lessorInfo">
+                                    <div className="col-7 col-lg-8 d-flex flex-column justify-content-center p-0">
+                                        <p className="m-0">
+                                            <span className="fw-medium">
+                                                First Name:{" "}
+                                            </span>
+                                            {lessorInfo.firstname}
+                                        </p>
+                                        <p className="m-0">
+                                            <span className="fw-medium">
+                                                Last Name:
+                                            </span>{" "}
+                                            {lessorInfo.lastname}
+                                        </p>
+                                        <p className="m-0">
+                                            <span className="fw-medium">
+                                                Email:{" "}
+                                            </span>{" "}
+                                            {lessorInfo.email}
+                                        </p>
+                                        {lessorInfo.address && (
+                                            <p>
+                                                <span className="fw-medium">
+                                                    Address:{" "}
+                                                </span>{" "}
+                                                {lessorInfo.address}
+                                            </p>
+                                        )}
+                                        <p className="m-0">
+                                            <span className="fw-medium">
+                                                phone1:{" "}
+                                            </span>{" "}
+                                            {lessorInfo.phone1}
+                                        </p>
+                                        <p className="m-0">
+                                            <span className="fw-medium">
+                                                phone2:{" "}
+                                            </span>{" "}
+                                            {lessorInfo.phone2}
+                                        </p>
+                                    </div>
+                                    <div className="col-5 col-lg-4 property_d_lessorImg_container p-0">
+                                        <img
+                                            src={
+                                                "http://127.0.0.1:8000" +
+                                                lessorInfo.avatar
+                                            }
+                                            alt="profile picture"
+                                            className=""
+                                        />
+                                        <button
+                                            className="btn btn-success w-100 mt-2 text-white"
+                                            onClick={() =>
+                                                navigate("/review/" + id)
+                                            }
+                                        >
+                                            Rate lessor
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                ))}
+                </div>
+
+                <div className="mt-3">
+                    <h2 className="fs-4 m-0">
+                        <span className="text-primary fw-bold">
+                            {lessorInfo.name}'s other properties
+                        </span>
+                    </h2>
+                    <div className="row listings_slider snaps_inline m-0 mt-3 flex-nowrap overflow-auto pb-2">
+                        {lessorInfo &&
+                            lessorInfo.properties &&
+                            lessorInfo.properties.map((p) => (
+                                <div
+                                    className="col-9 col-sm-6 col-md-9 col-lg-6 col-xl-4 p-0 pe-2"
+                                    key={p.id}
+                                >
+                                    <Property data={p} />
+                                </div>
+                            ))}
+                    </div>
+                </div>
+                <div className="add-comment mt-3">
+                    <h2 className="fs-4 m-0">Leave a comment</h2>
+                    <div className="text_area_container">
+                        <textarea
+                            value={newCommentText}
+                            className="form-control"
+                            onChange={(e) => setNewCommentText(e.target.value)}
+                            placeholder="Type your comment here..."
+                        ></textarea>
+                        <button
+                            className="btn btn-primary add_comment_btn"
+                            onClick={handleAddComment}
+                        >
+                            Send
+                        </button>
+                    </div>
+                </div>
+                <div className="comments mt-3">
+                    {/* {comments.map((comment) => (
+                        <div key={Math.random()}>
+                            <b>{comment.content}</b>
+                            <p>
+                                Date:{" "}
+                                {new Date(
+                                    comment.createdAt
+                                ).toLocaleDateString()}
+                            </p>
+                        </div>
+                    ))} */}
+                    {/* <ul className="list-group">
+                        {lessorInfo.comments.map(c => {
+                            return (
+                                <li key={Math.random()}>{c.content}</li>
+                            )
+                        })}
+                    </ul> */}
+                </div>
             </div>
-            <hr />
-            <div className="lessor-info">
-                <h2>Lessor Information:</h2>
-                <p>First Name: {lessorInfo.firstname}</p>
-                <p>Last Name: {lessorInfo.lastname}</p>
-                <p>Email: {lessorInfo.email}</p>
-                <p>Address: {lessorInfo.address}</p>
-                <p>Phone 1: {lessorInfo.phone1}</p>
-                <p>Phone 2: {lessorInfo.phone2}</p>
-            </div>
-            <hr />
-            <h2>Autre Lessor properties:</h2>
-            <div className="lessor-info d-flex flex-wrap">
-                {lessorInfo &&
-                    lessorInfo.properties &&
-                    lessorInfo.properties.map((p) => (
-                        <Property data={p} key={p.id} />
-                    ))}
-            </div>
-            <hr />
-            <div className="add-comment">
-                <h2>Aouter un Comment:</h2>
-                <textarea
-                    value={newCommentText}
-                    className="form-control"
-                    onChange={(e) => setNewCommentText(e.target.value)}
-                    placeholder="Type your comment here..."
-                ></textarea>
-                <button className="btn btn-primary" onClick={handleAddComment}>
-                    Add Comment
-                </button>
-            </div>
-            <hr />
         </>
     );
 }

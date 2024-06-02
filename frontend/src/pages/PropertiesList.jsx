@@ -135,21 +135,7 @@ export default function PropertiesList() {
 
     const handleSortChange = (e) => {
         const criteria = e.target.value;
-        setSortCriteria(criteria);
-        sortList(criteria);
-    };
-    const filterIcon = (
-        <svg
-            viewBox="0 0 16 16"
-            class="_c43b94c5"
-            fill="currentColor"
-            width="1em"
-            height="1em"
-            aria-hidden="true"
-        >
-            <path d="M11 8a3 3 0 0 1 2.829 2H16v2l-2.171.001a3 3 0 0 1-5.658 0L0 12v-2h8.171A3 3 0 0 1 11 8Zm0 2a1 1 0 1 0 .993 1.117l.006-.1.001-.034a1 1 0 0 0-.883-.976L11 10ZM5 2a3 3 0 0 1 2.829 2H16v2l-8.171.001a3 3 0 0 1-5.658 0L0 6V4h2.171A3 3 0 0 1 5 2Zm0 2-.117.007A1 1 0 0 0 4 4.983l.001.034L4 5a1 1 0 1 0 1-1Z"></path>
-        </svg>
-    );
+        setsrtCrt(criteria);
 
         let sortedList = [...list];
         switch (criteria) {
@@ -169,7 +155,18 @@ export default function PropertiesList() {
         }
         setList(sortedList);
     };
-
+    const filterIcon = (
+        <svg
+            viewBox="0 0 16 16"
+            class="_c43b94c5"
+            fill="currentColor"
+            width="1em"
+            height="1em"
+            aria-hidden="true"
+        >
+            <path d="M11 8a3 3 0 0 1 2.829 2H16v2l-2.171.001a3 3 0 0 1-5.658 0L0 12v-2h8.171A3 3 0 0 1 11 8Zm0 2a1 1 0 1 0 .993 1.117l.006-.1.001-.034a1 1 0 0 0-.883-.976L11 10ZM5 2a3 3 0 0 1 2.829 2H16v2l-8.171.001a3 3 0 0 1-5.658 0L0 6V4h2.171A3 3 0 0 1 5 2Zm0 2-.117.007A1 1 0 0 0 4 4.983l.001.034L4 5a1 1 0 1 0 1-1Z"></path>
+        </svg>
+    );
     return (
         <>
             <form className="container mt-4 p-4 p-sm-0">
@@ -194,39 +191,13 @@ export default function PropertiesList() {
                             />
                         )}
                     </div>
-                    <div className="col-sm-4 mb-3">
-                        <select
-                            className="form-select sort_select w-100 p-2"
-                            value={srtCrt}
-                            onChange={handleSortChange}
-                        >
-                            <option value="">Sort By</option>
-                            <option value="mostRecent">Most Recent</option>
-                            <option value="cheapest">Cheapest</option>
-                            <option value="expensive">Expensive</option>
-                        </select>
-                    </div>
                     <div className="col-7 p-0 pb-1 pe-1 col-md-2 p-md-0 pe-md-1">
                         <select
-                            className="form-select p-2"
-                            aria-label="Default select example"
-                            onChange={(e) => setS_Roomses(e.target.value)}
-                        >
-                            <option selected="">rooms</option>
-                            <option value={1}>One</option>
-                            <option value={2}>Two</option>
-                            <option value={3}>Three</option>
-                            <option value={4}>Four</option>
-                            <option value={"more"}>More...</option>
-                        </select>
-                    </div>
-                    <div className="col-sm p-0 pe-1">
-                        <select
-                            className="form-select p-2"
+                            className="form-select custom_form_select p-2"
                             aria-label="Default select example"
                             onChange={(e) => setST_cit(e.target.value)}
                         >
-                            <option selected="">Villes</option>
+                            <option selected="">cities</option>
                             {C_vill &&
                                 C_vill.map((c) => (
                                     <option key={c.id} value={c.id}>
@@ -255,7 +226,7 @@ export default function PropertiesList() {
                         <select
                             className="form-select custom_form_select p-2"
                             aria-label="Default select example"
-                            onChange={(e) => setSelectedRooms(e.target.value)}
+                            onChange={(e) => setS_Roomses(e.target.value)}
                         >
                             <option selected="">rooms</option>
                             <option value={1}>One</option>
@@ -266,7 +237,7 @@ export default function PropertiesList() {
                         </select>
                     </div>
                     
-                    
+
                     <div className="col-5 p-0 pe-1 col-md-2 p-md-0 pe-md-1">
                         <select
                             className="form-select custom_form_select p-2"
@@ -296,9 +267,10 @@ export default function PropertiesList() {
                     properties
                 </p>
 
+                
                 <select
                     className="form-select form-select-sm ms-auto w-50 sort_select"
-                    value={sortCriteria}
+                    value={srtCrt}
                     onChange={handleSortChange}
                 >
                     <option value="">Sort By</option>
@@ -306,10 +278,11 @@ export default function PropertiesList() {
                     <option value="cheapest">Cheapest</option>
                     <option value="expensive">Expensive</option>
                 </select>
+                    
             </div>
             <div className="properties_list_section container mt-4 ps-5 pe-5 ps-sm-0 pe-sm-0">
                 {/* here where the list of properties will be rendered */}
-                <div className="property_container row m-0 p-0">
+                <div className="pproperty_container row m-0 p-0">
                     {list &&
                         list.map((p) => {
                             return (
