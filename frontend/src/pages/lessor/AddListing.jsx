@@ -55,7 +55,6 @@ export default function AddListing() {
 
     return (
         <div className="d-flex flex-row justify-content-center">
-            <LessorSidebar />
             <div className="container m-0 pt-5">
                 <h1>Step 1:</h1>
                 {/* <div className="next_previous_step"></div> */}
