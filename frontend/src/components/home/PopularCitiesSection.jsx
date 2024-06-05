@@ -1,19 +1,31 @@
 import { useEffect, useState } from "react";
 import client from "../../custom-axios";
 import { Link } from "react-router-dom";
-import popularC_main from "../../assets/popularC_section/popularC_main.png"
+import popularC_main from "../../assets/popularC_section/popularC_main.png";
 
 function PopularCitiesSection() {
     const [list, setList] = useState([]);
     useEffect(() => {
-        client
-            .get("http://127.0.0.1:8000/api/cities")
-            .then(({ data }) => {
-                setList(data.data);
-                console.log(data);
-            })
+        const fetchData = async () => {
+            try {
+                const C_villResponse = await client.get(
+                    "http://127.0.0.1:8000/api/cities"
+                );
+                setList(C_villResponse.data.data);
+                localStorage.setItem(
+                    "cities",
+                    JSON.stringify(C_villResponse.data.data)
+                );
+            } catch (error) {
+                console.log(error);
+            }
+        };
 
-            .catch((err) => console.log(err));
+        if (!localStorage.getItem("cities")) {
+            fetchData();
+        } else {
+            setList(JSON.parse(localStorage.getItem("cities")));
+        }
     }, []);
 
     return (
@@ -27,8 +39,7 @@ function PopularCitiesSection() {
                     />
                 </div>
                 <div className="popularC_container col-12 h-100 col-md-5 col-lg-6 p-3 align-self-center">
-                    <div className="searchC_icon">
-                    </div>
+                    <div className="searchC_icon"></div>
                     <h5 className="text-secondary">Discover</h5>
                     <h2 className="text-primary">Popular cities</h2>
                     <p className="text-light">
@@ -38,10 +49,16 @@ function PopularCitiesSection() {
                         {/* the top rated cities list */}
                         {list &&
                             list.map((c) => (
-                                <div key={c.id} className="col-6 col-lg-4 col-sm-6">
+                                <div
+                                    key={c.id}
+                                    className="col-6 col-lg-4 col-sm-6"
+                                >
                                     <li className="list-group-item listItem_city border-0 text-light p-0">
                                         <i className="bi bi-geo-alt-fill text-secondary fs-5 me-1"></i>
-                                        <Link to={"/properties-list/" + c.name} className="city_link text-decoration-none fw-medium">
+                                        <Link
+                                            to={"/properties-list/" + c.name}
+                                            className="city_link text-decoration-none fw-medium"
+                                        >
                                             {c.name}
                                         </Link>
                                     </li>

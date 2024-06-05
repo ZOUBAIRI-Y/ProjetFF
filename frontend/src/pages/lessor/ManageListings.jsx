@@ -13,7 +13,7 @@ export default function ManageListings() {
             .delete(`http://localhost:8000/api/properties/${propertyId}`)
             .then((data) => {
                 console.log(data);
-                navigate("/lessor/manage-listings");
+                window.location.reload();
             })
             .catch((err) => console.log(err.response.data));
     };

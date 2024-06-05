@@ -225,23 +225,23 @@ export default function PropertyDetails() {
                         <span>{prop.baths}baths</span>
                     </p>
                     <p className="m-0">Published by {lessorInfo.name}</p>
-            <div className="property_d_phone_callCard d-flex flex-row mt-2">
-                <button className="btn btn-outline-success w-50 me-1">
-                    Request tour
-                </button>
-                <button
-                    onClick={() =>
-                        alert(
-                            lessorInfo.phone1
-                                ? lessorInfo.phone1
-                                : "non trouver"
-                        )
-                    }
-                    className="btn btn-success text-white w-50 ms-1"
-                >
-                    Call now
-                </button>
-            </div>
+                    <div className="property_d_phone_callCard d-flex flex-row mt-2">
+                        <button className="btn btn-outline-success w-50 me-1">
+                            Request tour
+                        </button>
+                        <button
+                            onClick={() =>
+                                alert(
+                                    lessorInfo.phone1
+                                        ? lessorInfo.phone1
+                                        : "non trouver"
+                                )
+                            }
+                            className="btn btn-success text-white w-50 ms-1"
+                        >
+                            Call now
+                        </button>
+                    </div>
                 </div>
             </div>
             <div
