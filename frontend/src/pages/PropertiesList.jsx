@@ -236,7 +236,6 @@ export default function PropertiesList() {
                             <option value={"more"}>More...</option>
                         </select>
                     </div>
-                    
 
                     <div className="col-5 p-0 pe-1 col-md-2 p-md-0 pe-md-1">
                         <select
@@ -267,7 +266,6 @@ export default function PropertiesList() {
                     properties
                 </p>
 
-                
                 <select
                     className="form-select form-select-sm ms-auto w-50 sort_select"
                     value={srtCrt}
@@ -278,7 +276,6 @@ export default function PropertiesList() {
                     <option value="cheapest">Cheapest</option>
                     <option value="expensive">Expensive</option>
                 </select>
-                    
             </div>
             <div className="properties_list_section container mt-4 ps-5 pe-5 ps-sm-0 pe-sm-0">
                 {/* here where the list of properties will be rendered */}
