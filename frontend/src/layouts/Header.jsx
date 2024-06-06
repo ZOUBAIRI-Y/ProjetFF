@@ -21,8 +21,8 @@ export default function Header({ currentPath }) {
         if (isLessor) {
             return (
                 <>
-                    <nav className="navbar navbar-expand-md navbar-primary bg-primary p-1">
-                        <div className="container-fluid">
+                    <nav className="navbar navbar-expand-md website_navbar navbar-primary bg-primary p-1">
+                        <div className="container-fluid website_navbar">
                             <Link
                                 to={"/"}
                                 className="navbar-brand text-secondary fw-bolder fs-3"
@@ -45,35 +45,35 @@ export default function Header({ currentPath }) {
                                 id="navbarNav"
                             >
                                 <ul className="navbar-nav ms-auto">
-                                    <li className="nav-item">
+                                    <li className="nav-item d-flex align-items-center h-100 m-0">
                                         <Link
                                             to={"#"}
-                                            className="nav-link text-altlight fw-medium"
+                                            className="nav-link header_navlink text-altlight"
                                         >
                                             Cart
                                         </Link>
                                     </li>
-                                    <li className="nav-item">
+                                    <li className="nav-item d-flex align-items-center h-100 m-0">
                                         <Link
                                             to={"/Favourites"}
-                                            className="nav-link text-altlight fw-medium"
+                                            className="nav-link header_navlink text-altlight"
                                         >
                                             Favourites
                                         </Link>
                                     </li>
-                                    <li className="nav-item">
+                                    <li className="nav-item d-flex align-items-center h-100 m-0">
                                         <Link
                                             to={"/contact"}
-                                            className="nav-link text-altlight fw-medium"
+                                            className="nav-link header_navlink text-altlight"
                                         >
                                             Contact
                                         </Link>
                                     </li>
                                     {localStorage.getItem("token") && (
-                                        <li className="nav-item ms-4">
+                                        <li className="nav-item d-flex align-items-center h-100 m-0 ms-md-4">
                                             <Link
                                                 to={"/signout"}
-                                                className="nav-link text-success fw-medium"
+                                                className="btn btn-altlight text-primary rounded-pill fw-medium ps-4 pe-4 align-self-center"
                                             >
                                                 SignOut
                                             </Link>
@@ -88,8 +88,8 @@ export default function Header({ currentPath }) {
         } else {
             return (
                 <>
-                    <nav className="navbar navbar-expand-md navbar-info bg-info p-1">
-                        <div className="container-fluid">
+                    <nav className="navbar website_navbar navbar-expand-md navbar-info bg-info p-1">
+                        <div className="container-fluid website_navbar">
                             <Link
                                 to={"/"}
                                 className="navbar-brand text-secondary fw-bolder fs-3"
@@ -112,52 +112,52 @@ export default function Header({ currentPath }) {
                                 id="navbarNav"
                             >
                                 <ul className="navbar-nav ms-auto">
-                                    <li className="nav-item">
+                                    <li className="nav-item d-flex align-items-center h-100 m-0">
                                         <Link
                                             to={"/categories-list"}
-                                            className="nav-link mt-1 text-light fw-medium"
+                                            className="nav-link header_navlink text-light fw-medium"
                                         >
                                             Category
                                         </Link>
                                     </li>
-                                    <li className="nav-item">
+                                    <li className="nav-item d-flex align-items-center h-100 m-0">
                                         <Link
                                             to={"/Favourites"}
-                                            className="nav-link mt-1 text-light fw-medium"
+                                            className="nav-link header_navlink text-light fw-medium"
                                         >
                                             Favourites
                                         </Link>
                                     </li>
-                                    <li className="nav-item">
+                                    <li className="nav-item d-flex align-items-center h-100 m-0">
                                         <Link
                                             to={"/lessor/add-listing"}
-                                            className="nav-link mt-1 text-light fw-medium"
+                                            className="nav-link header_navlink text-light fw-medium"
                                         >
                                             List Property
                                         </Link>
                                     </li>
-                                    <li className="nav-item">
+                                    <li className="nav-item d-flex align-items-center h-100 m-0">
                                         <Link
                                             to={"/contact"}
-                                            className="nav-link mt-1 text-light fw-medium"
+                                            className="nav-link header_navlink text-light fw-medium"
                                         >
                                             Contact
                                         </Link>
                                     </li>
                                     {localStorage.getItem("token") == null && (
                                         <>
-                                            <li className="nav-item">
+                                            <li className="nav-item d-flex align-items-center h-100 m-0">
                                                 <Link
                                                     to={"/signup"}
-                                                    className="nav-link mt-1 text-success fw-medium"
+                                                    className="nav-link header_navlink text-success fw-medium"
                                                 >
                                                     Signup
                                                 </Link>
                                             </li>
-                                            <li className="nav-item">
+                                            <li className="nav-item d-flex align-items-center h-100 m-0">
                                                 <Link
                                                     to={"/login"}
-                                                    className="nav-link"
+                                                    className="nav-link header_navlink"
                                                 >
                                                     <button className="btn btn-success text-white rounded-pill fw-medium ps-4 pe-4">
                                                         Login
@@ -165,6 +165,16 @@ export default function Header({ currentPath }) {
                                                 </Link>
                                             </li>
                                         </>
+                                    )}
+                                    {localStorage.getItem("token") && (
+                                        <li className="nav-item d-flex align-items-center h-100 m-0">
+                                            <Link
+                                                to={"/signout"}
+                                                className="btn btn-success text-white rounded-pill fw-medium ps-4 pe-4 align-self-center"
+                                            >
+                                                SignOut
+                                            </Link>
+                                        </li>
                                     )}
                                 </ul>
                             </div>

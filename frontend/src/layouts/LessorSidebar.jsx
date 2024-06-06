@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import profilePic from "../assets/luffy.jpg";
 import { useEffect, useState } from "react";
 import { getUser } from "../custom-axios";
@@ -23,55 +23,81 @@ function LessorSidebar() {
     const toggleSidebar = () => {
         setCollapsed(!collapsed);
     };
+    const handleNavClick = (path) => {
+        setCollapsed(true);
+        navigate(path);
+    };
     return (
-        <div className={`lessor_side_bar ${collapsed ? "collapsed" : ""}`}>
-            <button className="toggle-button align-self-center" onClick={toggleSidebar}>
-                {collapsed ? <FaArrowRight /> : <FaArrowLeft />}
-            </button>
-            <div className="lessor_infos">
-                <div className="lessor_side_img_container">
-                    <img
-                        src={
-                            userInfo.avatar
-                                ? "http://127.0.0.1:8000" + userInfo.avatar
-                                : profilePic
-                        }
-                        alt="profilePic"
-                    />
+        <>
+            <div className={`lessor_side_bar ${collapsed ? "collapsed" : ""}`}>
+                <button
+                    className="toggle-button"
+                    onClick={toggleSidebar}
+                >
+                    {collapsed ? <FaArrowRight /> : <FaArrowLeft />}
+                </button>
+                <div className="lessor_infos">
+                    <div className="lessor_side_img_container">
+                        <img
+                            src={
+                                userInfo.avatar
+                                    ? "http://127.0.0.1:8000" + userInfo.avatar
+                                    : profilePic
+                            }
+                            alt="profilePic"
+                        />
+                    </div>
+                    {!collapsed && (
+                        <span className="lessor_name_sideBar">
+                            {userInfo.name}
+                        </span>
+                    )}
                 </div>
-                {!collapsed && (
-                    <span className="lessor_name_sideBar">
-                        Mr. {userInfo.name}
-                    </span>
-                )}
+                <ul className="sidBar_nav">
+                    <li className="nav-item text-primary fw-medium ">
+                        <Link to={"/lessor/home"} className="nav-link sidebar_navLink text-secondary">
+                            <FaHome />
+                            {!collapsed && <span className="text-primary">Home</span>}
+                        </Link>
+                    </li>
+                    <li className="nav-item text-primary fw-medium ">
+                        <Link
+                            to={"/lessor/manage-listings"}
+                            className="nav-link sidebar_navLink text-secondary"
+                        >
+                            <FaList />
+                            {!collapsed && <span className="text-primary">My listings</span>}
+                        </Link>
+                    </li>
+                    <li className="nav-item text-primary fw-medium ">
+                        <Link to={"/lessor/add-listing"} className="nav-link sidebar_navLink text-secondary">
+                            <FaPlus />
+                            {!collapsed && <span className="text-primary">Add listing</span>}
+                        </Link>
+                    </li>
+                    <li className="nav-item text-primary fw-medium">
+                        <Link to={"/lessor/my-account"} className="nav-link sidebar_navLink text-secondary">
+                            <FaUser />
+                            {!collapsed && <span className="text-primary">My account</span>}
+                        </Link>
+                    </li>
+                </ul>
             </div>
-            <ul className="sidBar_nav">
-                <li className="nav-item text-primary fw-medium ">
-                    <Link to={"/lessor/home"} className="nav-link">
-                        <FaHome />
-                        {!collapsed && <span>Home</span>}
-                    </Link>
-                </li>
-                <li className="nav-item text-primary fw-medium ">
-                    <Link to={"/lessor/manage-listings"} className="nav-link">
-                        <FaList />
-                        {!collapsed && <span>My listings</span>}
-                    </Link>
-                </li>
-                <li className="nav-item text-primary fw-medium ">
-                    <Link to={"/lessor/add-listing"} className="nav-link">
-                        <FaPlus />
-                        {!collapsed && <span>Add listing</span>}
-                    </Link>
-                </li>
-                <li className="nav-item text-primary fw-medium">
-                    <Link to={"/lessor/my-account"} className="nav-link">
-                        <FaUser />
-                        {!collapsed && <span>My account</span>}
-                    </Link>
-                </li>
-            </ul>
-        </div>
+            <div className="bottom_navbar">
+                <NavLink to="/lessor/home" className="nav-icon d-flex justify-content-center align-items-center " activeClassName="active">
+                    <FaHome />
+                </NavLink>
+                <NavLink to="/lessor/manage-listings" className="nav-icon d-flex justify-content-center align-items-center " activeClassName="active">
+                    <FaList />
+                </NavLink>
+                <NavLink to="/lessor/add-listing" className="nav-icon d-flex justify-content-center align-items-center" activeClassName="active">
+                    <FaPlus />
+                </NavLink>
+                <NavLink to="/lessor/my-account" className="nav-icon d-flex justify-content-center align-items-center " activeClassName="active">
+                    <FaUser />
+                </NavLink>
+            </div>
+        </>
     );
 }
 
