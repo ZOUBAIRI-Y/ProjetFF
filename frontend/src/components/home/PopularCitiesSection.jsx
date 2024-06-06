@@ -31,14 +31,14 @@ function PopularCitiesSection() {
     return (
         <div className="container">
             <div className="popular_cities_section row m-0 p-0">
-                <div className="popularCimg_container col-12 h-100 col-md-7 col-lg-6 p-0 align-self-center">
+                <div className="popularCimg_container col-12 h-100 col-md-6 col-lg-6 p-0 align-self-center">
                     <img
                         src={popularC_main}
                         className="img-fluid w-100 h-auto"
                         alt="apartment"
                     />
                 </div>
-                <div className="popularC_container col-12 h-100 col-md-5 col-lg-6 p-3 align-self-center">
+                <div className="popularC_container col-12 h-100 col-md-6 col-lg-6 p-3 align-self-center">
                     <div className="searchC_icon"></div>
                     <h5 className="text-secondary">Discover</h5>
                     <h2 className="text-primary">Popular cities</h2>
