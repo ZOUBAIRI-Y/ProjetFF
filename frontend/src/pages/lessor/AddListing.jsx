@@ -29,15 +29,48 @@ export default function AddListing() {
     }, []);
 
     useEffect(() => {
-        if (localStorage.getItem("id"))
-            setData({ ...data, userId: parseInt(localStorage.getItem("id")) });
-        fetch("http://127.0.0.1:8000/api/cities")
-            .then((d) => d.json())
-            .then((res) => setCities(res.data));
+        client
+            .get(
+                "http://localhost:8000/api/users/" + localStorage.getItem("id")
+            )
+            .then(({ data }) => {
+                console.log(data.data);
+                if (!data.data.avatar || !data.data.phone1) {
+                    if (
+                        confirm(
+                            "Finir votre profil avant de créer une propriété."
+                        )
+                    ) {
+                        navigate("/lessor/my-account");
+                    }
+                }
+            })
 
-        fetch("http://127.0.0.1:8000/api/categories")
-            .then((d) => d.json())
-            .then((res) => setCategories(res.data));
+            .catch((err) => console.log(err.response.data));
+
+        setData({ ...data, userId: parseInt(localStorage.getItem("id")) });
+
+        if (!localStorage.getItem("cities")) {
+            fetch("http://127.0.0.1:8000/api/cities")
+                .then((d) => d.json())
+                .then((res) => setCities(res.data));
+        } else {
+            setCities(JSON.parse(localStorage.getItem("cities")));
+        }
+
+        if (!localStorage.getItem("categories")) {
+            fetch("http://127.0.0.1:8000/api/categories")
+                .then((d) => d.json())
+                .then((res) => {
+                    localStorage.setItem(
+                        "categories",
+                        JSON.stringify(res.data)
+                    );
+                    setCategories(res.data);
+                });
+        } else {
+            setCities(JSON.parse(localStorage.getItem("categories")));
+        }
     }, []);
 
     const handleForm = (e) => {

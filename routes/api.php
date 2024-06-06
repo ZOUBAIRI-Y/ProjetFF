@@ -4,13 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CityController;
-use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LessorController;
 use App\Http\Controllers\PropertyController;
-use App\Http\Controllers\PropertyImageController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\UserImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,9 +42,9 @@ Route::group(["middleware" => ["auth:sanctum"]], function () {
   Route::resource("/categories", CategoryController::class)->except(['index', "show", "edit", "create"]);
   Route::resource("/users", UserController::class)->except(['create', "edit"]);
   Route::post('/users/{id}/images', [UserController::class, "upload"]);
-  Route::post('/users/{id}/password', [UserController::class, 'updatePassword']);
-  Route::post('/properties/{id}/like', [PropertyController::class, 'like']);
-  Route::post('/properties/{id}/unlike', [PropertyController::class, 'unlike']);
-  Route::get('/properties/{userId}/liked', [PropertyController::class, 'liked']);
+  Route::post('/users/{id}/password', [UserController::class, 'modif_motpass']);
+  Route::post('/properties/{id}/like', [PropertyController::class, 'like_prop']);
+  Route::post('/properties/{id}/unlike', [PropertyController::class, 'propert_unlk']);
+  Route::get('/properties/{id}/liked', [PropertyController::class, 'liks_prop_toutes']);
   Route::post('/reviews', [ReviewController::class, 'store']);
 });

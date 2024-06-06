@@ -2,11 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Category;
 use Illuminate\Support\Facades\File;
-use Faker\Factory as Faker;
 
 class CategorySeeder extends Seeder
 {
@@ -14,13 +12,26 @@ class CategorySeeder extends Seeder
     {
         $propertyImages = File::files(storage_path('app/public/properties'));
 
-        $faker = Faker::create();
-        foreach (range(1, 5) as $index) {
+        $categories = [
+            'Apartment',
+            'Villa',
+            'Studio',
+            'Townhouse',
+            'Penthouse',
+            'Duplex',
+            'Loft',
+            'Condominium',
+            'Bungalow',
+            'Farmhouse',
+        ];
+
+        foreach ($categories as $category) {
             $randomImage = $propertyImages[array_rand($propertyImages)];
             $relativePath = '/storage/properties/' . basename($randomImage);
+
             Category::create([
-                'name' => $faker->word,
-                'description' => $faker->text,
+                'name' => $category,
+                'description' => 'description de ' . $category,
                 'image' => $relativePath,
             ]);
         }

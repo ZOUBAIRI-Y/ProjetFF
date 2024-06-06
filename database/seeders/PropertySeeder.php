@@ -42,8 +42,6 @@ class PropertySeeder extends Seeder
         }
 
         foreach (range(1, 150) as $index) {
-            $category = Category::inRandomOrder()->first();
-            $city = City::inRandomOrder()->first();
 
             $images = [];
             for ($i = 0; $i < 6; $i++) {
@@ -52,13 +50,15 @@ class PropertySeeder extends Seeder
                 $images[] = $relativePath;
             }
 
+            $category = Category::inRandomOrder()->first();
+
             Property::create([
                 'description' => $faker->text,
                 'price' => $faker->randomFloat(2, 100, 1000),
-                'city_id' => $city->id,
+                'city_id' => $faker->numberBetween(1, 8),
                 'address' => $faker->address,
                 'images' => json_encode($images),
-                'user_id' => $faker->numberBetween(1, 10),
+                'user_id' => $faker->numberBetween(1, 5),
                 'category_id' => $category->id,
                 'deposite' => $faker->numberBetween(1000, 10000),
                 'ready_date' => $faker->dateTimeThisDecade(),

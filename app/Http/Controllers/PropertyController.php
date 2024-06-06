@@ -74,10 +74,10 @@ class PropertyController extends Controller
         }
         $property->images = json_encode($paths);
         $property->save();
-        return response()->json(['message' => 'Images modifier'], 200);
+        return response()->json(['message' => 'les Images modifier'], 200);
     }
 
-    public function like($id)
+    public function like_prop($id)
     {
         $user = auth()->user();
         $property = Property::findOrFail($id);
@@ -94,7 +94,7 @@ class PropertyController extends Controller
         return response()->json(['message' => 'property a like.'], 201);
     }
 
-    public function unlike($id)
+    public function propert_unlk($id)
     {
         $user = auth()->user();
         $property = Property::findOrFail($id);
@@ -116,13 +116,9 @@ class PropertyController extends Controller
         return new LikeCollection($likes);
     }
 
-    public function liked($userId)
+    public function liks_prop_toutes($id)
     {
-        $user = User::find($userId);
-
-        if (!$user) {
-            return response()->json(['error' => 'Utilisateur non trouvee'], 404);
-        }
+        $user = User::findOrFail($id);
 
         $likedProperties = $user->likes()->with('property')->paginate(10);
 
