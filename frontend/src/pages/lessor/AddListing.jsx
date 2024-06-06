@@ -50,13 +50,27 @@ export default function AddListing() {
 
         setData({ ...data, userId: parseInt(localStorage.getItem("id")) });
 
-        fetch("http://127.0.0.1:8000/api/cities")
-            .then((d) => d.json())
-            .then((res) => setCities(res.data));
+        if (!localStorage.getItem("cities")) {
+            fetch("http://127.0.0.1:8000/api/cities")
+                .then((d) => d.json())
+                .then((res) => setCities(res.data));
+        } else {
+            setCities(JSON.parse(localStorage.getItem("cities")));
+        }
 
-        fetch("http://127.0.0.1:8000/api/categories")
-            .then((d) => d.json())
-            .then((res) => setCategories(res.data));
+        if (!localStorage.getItem("categories")) {
+            fetch("http://127.0.0.1:8000/api/categories")
+                .then((d) => d.json())
+                .then((res) => {
+                    localStorage.setItem(
+                        "categories",
+                        JSON.stringify(res.data)
+                    );
+                    setCategories(res.data);
+                });
+        } else {
+            setCities(JSON.parse(localStorage.getItem("categories")));
+        }
     }, []);
 
     const handleForm = (e) => {
