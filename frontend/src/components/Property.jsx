@@ -6,6 +6,7 @@ import lessor from "../assets/lessor_rating.jpg";
 import client from "../custom-axios";
 
 export default function Property(props) {
+    console.log(props.data);
     const [liked, setLiked] = useState(false);
     const propertyuniqueId = `propertyCarousel_${props.data.id}`;
     // const [contact, setContact] = useState(false);
@@ -52,7 +53,7 @@ export default function Property(props) {
         }
     };
     const handleButtonsClick = (e) => {
-        e.stopPropagation();;ed
+        e.stopPropagation();
         console.log('Button clicked!');
     };
 
@@ -136,10 +137,10 @@ export default function Property(props) {
             </div>
             <div className="card-body p-2 infos_section">
                 <h5 className="card-title text-primary fw-bold p-0 m-0">
-                    Apartment
+                    {props.data.category.name}
                 </h5>
                 <p className="text-altdark property_address p-0 m-0">
-                    <strong>Address</strong>
+                    <strong>{props.data.address}</strong>
                 </p>
                 <p className="text-success property_price p-0 m-0">
                     <strong className="fs-5">{props.data.price} DH</strong>{" "}

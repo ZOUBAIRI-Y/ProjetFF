@@ -51,7 +51,7 @@ function PopularCitiesSection() {
                             list.map((c) => (
                                 <div
                                     key={c.id}
-                                    className="col-6 col-lg-4 col-sm-6"
+                                    className="col-6 col-lg-4"
                                 >
                                     <li className="list-group-item listItem_city border-0 text-light p-0">
                                         <i className="bi bi-geo-alt-fill text-secondary fs-5 me-1"></i>
