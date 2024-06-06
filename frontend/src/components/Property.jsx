@@ -40,20 +40,19 @@ export default function Property(props) {
                 await client.post(
                     `http://127.0.0.1:8000/api/properties/${props.data.id}/like`
                 );
-                alert("Liked");
             } else {
                 await client.post(
                     `http://127.0.0.1:8000/api/properties/${props.data.id}/unlike`
                 );
-                alert("Unliked");
             }
         } catch (error) {
             console.error("Error:", error);
         }
     };
     const handleButtonsClick = (e) => {
-        e.stopPropagation();;ed
-        console.log('Button clicked!');
+        e.stopPropagation();
+        ed;
+        console.log("Button clicked!");
     };
 
     return (
@@ -103,7 +102,7 @@ export default function Property(props) {
                     type="button"
                     data-bs-target={`#${propertyuniqueId}`}
                     data-bs-slide="prev"
-                    onClick={(e)=>handleButtonsClick(e)}
+                    onClick={(e) => handleButtonsClick(e)}
                 >
                     <span
                         className="carousel-control-prev-icon"
@@ -116,7 +115,7 @@ export default function Property(props) {
                     type="button"
                     data-bs-target={`#${propertyuniqueId}`}
                     data-bs-slide="next"
-                    onClick={(e)=>handleButtonsClick(e)}
+                    onClick={(e) => handleButtonsClick(e)}
                 >
                     <span
                         className="carousel-control-next-icon"
@@ -125,9 +124,9 @@ export default function Property(props) {
                     <span className="visually-hidden">Next</span>
                 </button>
                 <button
-                    onClick={(e)=> {
+                    onClick={(e) => {
                         handleLikeToggle();
-                        handleButtonsClick(e)
+                        handleButtonsClick(e);
                     }}
                     className="like_btn btn btn-altlight rounded-circle"
                 >

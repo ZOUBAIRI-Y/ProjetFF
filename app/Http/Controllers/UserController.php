@@ -74,7 +74,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, $id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
 
         if (!$user) {
             return response()->json(['error' => 'Utilisateur non trouvee'], 404);
@@ -127,9 +127,9 @@ class UserController extends Controller
         return response()->json(['message' => 'Image stoker'], 200);
     }
 
-    public function updatePassword(Request $request, $id)
+    public function modif_motpass(Request $request, $id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
 
         if (!$user) {
             return response()->json(['error' => 'Utilisateur non trouvee'], 404);
@@ -151,13 +151,5 @@ class UserController extends Controller
         $user->save();
 
         return response()->json(['message' => 'mot de pass modofier']);
-    }
-    public function likedProperties($userId)
-    {
-        $user = User::findOrFail($userId);
-
-        $likedProperties = $user->likes()->with('property')->get();
-
-        return response()->json(['data' => $likedProperties]);
     }
 }

@@ -25,11 +25,7 @@ class LessorController extends Controller
     public function show($id)
     {
         $user = User::with(['likes', 'reviews', 'comments', 'properties'])
-            ->find($id);
-
-        if (!$user) {
-            return response()->json(['error' => 'Utilisateur non trouvee'], 404);
-        }
+            ->findOrFail($id);
 
         $userResource = new LessorResource($user);
         return response()->json(['data' => $userResource]);

@@ -42,12 +42,9 @@ class CityController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $city = City::find($id);
+        $city = City::findOrFail($id);
         $this->authorize('update');
 
-        if (!$city) {
-            return response()->json(['error' => 'city non trouvee'], 404);
-        }
 
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
@@ -61,11 +58,8 @@ class CityController extends Controller
      */
     public function destroy(string $id)
     {
-        $city = City::find($id);
+        $city = City::findOrFail($id);
         $this->authorize('delete');
-        if (!$city) {
-            return response()->json(['error' => 'city non trouvee'], 404);
-        }
 
 
         $city->delete();
