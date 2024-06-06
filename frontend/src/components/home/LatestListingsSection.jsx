@@ -6,22 +6,13 @@ import client from "../../custom-axios";
 export default function LatestListingsSection() {
     const [list, setList] = useState([]);
     useEffect(() => {
-        if (localStorage.getItem("properties") === null) {
-            client
-                .get("http://127.0.0.1:8000/api/properties")
-                .then(({ data }) => {
-                    setList(data.data);
-                    localStorage.setItem(
-                        "properties",
-                        JSON.stringify(data.data)
-                    );
-                    console.log(data);
-                })
+        client
+            .get("http://127.0.0.1:8000/api/properties")
+            .then(({ data }) => {
+                setList(data.data);
+            })
 
-                .catch((err) => console.log(err));
-        } else {
-            setList(JSON.parse(localStorage.getItem("properties")));
-        }
+            .catch((err) => console.log(err));
     }, []);
     const navigate = useNavigate();
 
@@ -50,7 +41,7 @@ export default function LatestListingsSection() {
                             key={p.id}
                             onClick={() => handleLinkClick(p.id)}
                         >
-                                <Property data={p} />
+                            <Property data={p} />
                         </div>
                     ))}
             </div>
