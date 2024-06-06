@@ -51,10 +51,10 @@ export default function ManageListings() {
                                 key={p.id}
                                 className="list-group-item mb-2 p-2 border rounded"
                             >
-                                {/* <Property_manage
+                                <Property_manage
                                     data={p}
                                     onDelete={(id) => handleDelete(id)}
-                                /> */}
+                                />
                             </li>
                         ))
                     ) : (
@@ -99,4 +99,3 @@ export default function ManageListings() {
         </div>
     );
 }
-

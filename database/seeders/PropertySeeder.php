@@ -45,31 +45,26 @@ class PropertySeeder extends Seeder
             $category = Category::inRandomOrder()->first();
             $city = City::inRandomOrder()->first();
 
-            $randomImage1 = $propertyImages[array_rand($propertyImages)];
-            $randomImage2 = $propertyImages[array_rand($propertyImages)];
-            $randomImage5 = $propertyImages[array_rand($propertyImages)];
-            $randomImage6 = $propertyImages[array_rand($propertyImages)];
-            $randomImag = $propertyImages[array_rand($propertyImages)];
-
-            $relativePath1 = '/storage/properties/' . basename($randomImage1);
-            $relativePath2 = '/storage/properties/' . basename($randomImage2);
-            $relativePath5 = '/storage/properties/' . basename($randomImage5);
-            $relativePath6 = '/storage/properties/' . basename($randomImage6);
-            $relativePat = '/storage/properties/' . basename($randomImag);
+            $images = [];
+            for ($i = 0; $i < 6; $i++) {
+                $randomImage = $propertyImages[array_rand($propertyImages)];
+                $relativePath = '/storage/properties/' . basename($randomImage);
+                $images[] = $relativePath;
+            }
 
             Property::create([
                 'description' => $faker->text,
                 'price' => $faker->randomFloat(2, 100, 1000),
                 'city_id' => $city->id,
                 'address' => $faker->address,
-                'images' => json_encode([$relativePath1, $relativePat, $relativePath2, $relativePath5, $relativePath6]),
+                'images' => json_encode($images),
                 'user_id' => $faker->numberBetween(1, 10),
                 'category_id' => $category->id,
-                "deposite" => $faker->numberBetween(1000, 10000),
-                "ready_date" => $faker->dateTimeThisDecade(),
-                "rooms" => $faker->numberBetween(1, 10),
-                "space" => $faker->numberBetween(10, 1000),
-                "renting_type" => $faker->randomElement(["monthly", "daily", "yearly"])
+                'deposite' => $faker->numberBetween(1000, 10000),
+                'ready_date' => $faker->dateTimeThisDecade(),
+                'rooms' => $faker->numberBetween(1, 10),
+                'space' => $faker->numberBetween(10, 1000),
+                'renting_type' => $faker->randomElement(['monthly', 'daily', 'yearly']),
             ]);
         }
     }
