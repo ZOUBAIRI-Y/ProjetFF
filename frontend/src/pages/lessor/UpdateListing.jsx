@@ -73,7 +73,6 @@ export default function UpdateListing() {
         <>
             {Object.keys(data).length !== 0 && (
                 <div className="d-flex flex-row justify-content-center">
-                    <LessorSidebar />
                     <div className="container m-0 pt-5">
                         <h2 className="text-primary d-inline">
                             Update listing

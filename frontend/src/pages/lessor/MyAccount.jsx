@@ -110,7 +110,6 @@ export default function MyAccount() {
 
     return (
         <div className="d-flex flex-row justify-content-center">
-            <LessorSidebar />
             <div className="container m-0 pt-5">
                 <h2 className="text-primary d-inline">My Account</h2>
                 <form className="account_info mt-3" onSubmit={saveData}>
