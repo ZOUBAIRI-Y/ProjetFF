@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('rooms');
             $table->integer('baths')->default(1);
             $table->text('images')->nullable();
-            $table->enum('status', ["active", "inactive"])->default("inactive");
+            $table->enum('status', ["active", "inactive"])->default("active");
             $table->foreignId('category_id')->constrained('categories')->onDelete("cascade");
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
 

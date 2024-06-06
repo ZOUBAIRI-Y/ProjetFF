@@ -4,7 +4,7 @@ function Property_manage(props) {
     const navigate = useNavigate();
 
     const handleDeleteClick = () => {
-        const isConfirmed = window.confirm("Are you sure?");
+        const isConfirmed = window.confirm("vous etes sure?");
 
         if (isConfirmed) {
             props.onDelete(props.data.id);

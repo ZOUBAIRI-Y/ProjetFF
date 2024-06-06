@@ -46,7 +46,7 @@ class PropertyController extends Controller
         $property = Property::findOrFail($id);
         $this->authorize('update', $property);
         $property->update($request->all());
-        return response()->json(['message' => 'Property updated']);
+        return response()->json(['message' => 'Property modofier']);
     }
 
     public function destroy($id)
@@ -54,7 +54,7 @@ class PropertyController extends Controller
         $property = Property::findOrFail($id);
         $this->authorize('delete', $property);
         $property->delete();
-        return response()->json(['message' => 'Property deleted']);
+        return response()->json(['message' => 'Property supprimer']);
     }
 
     public function upload(Request $request, $id)
@@ -74,7 +74,7 @@ class PropertyController extends Controller
         }
         $property->images = json_encode($paths);
         $property->save();
-        return response()->json(['message' => 'Images uploaded successfully'], 200);
+        return response()->json(['message' => 'Images modifier'], 200);
     }
 
     public function like($id)
@@ -83,7 +83,7 @@ class PropertyController extends Controller
         $property = Property::findOrFail($id);
 
         if ($user->likes()->where('property_id', $property->id)->exists()) {
-            return response()->json(['error' => 'property already liked.'], 400);
+            return response()->json(['error' => 'property deja a un like.'], 400);
         }
 
         $like = new Like();
@@ -91,7 +91,7 @@ class PropertyController extends Controller
         $like->property_id = $property->id;
         $like->save();
 
-        return response()->json(['message' => 'property liked.'], 201);
+        return response()->json(['message' => 'property a like.'], 201);
     }
 
     public function unlike($id)
@@ -101,11 +101,11 @@ class PropertyController extends Controller
         $like = Like::where('user_id', $user->id)->where('property_id', $id)->first();
 
         if (!$like) {
-            return response()->json(['error' => 'property was not liked.'], 400);
+            return response()->json(['error' => 'property non like.'], 400);
         }
 
         $like->delete();
-        return response()->json(['message' => 'property unliked.'], 200);
+        return response()->json(['message' => 'property like supprimer.'], 200);
     }
 
     public function likes($id)
@@ -121,7 +121,7 @@ class PropertyController extends Controller
         $user = User::find($userId);
 
         if (!$user) {
-            return response()->json(['error' => 'User not found'], 404);
+            return response()->json(['error' => 'Utilisateur non trouvee'], 404);
         }
 
         $likedProperties = $user->likes()->with('property')->paginate(10);

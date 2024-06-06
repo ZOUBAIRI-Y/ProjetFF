@@ -25,7 +25,7 @@ class CommentController extends Controller
         $comments = Comment::where('property_id', $id)->get();
 
         if ($comments->isEmpty()) {
-            return response()->json(['error' => 'No comments found for this property.'], 404);
+            return response()->json(['error' => 'les comments non trouvees pour cette property.'], 404);
         }
 
         return CommentResource::collection($comments);
@@ -79,6 +79,6 @@ class CommentController extends Controller
 
         $comment->delete();
 
-        return response()->json(['message' => 'Comment deleted.']);
+        return response()->json(['message' => 'Comment supprimer.']);
     }
 }

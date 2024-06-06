@@ -77,7 +77,7 @@ class UserController extends Controller
         $user = User::find($id);
 
         if (!$user) {
-            return response()->json(['error' => 'User not found'], 404);
+            return response()->json(['error' => 'Utilisateur non trouvee'], 404);
         }
 
 
@@ -100,7 +100,7 @@ class UserController extends Controller
 
         $user->delete();
 
-        return response()->json(['message' => 'User deleted successfully']);
+        return response()->json(['message' => 'User supprimer']);
     }
     public function upload(Request $request, $id)
     {
@@ -124,7 +124,7 @@ class UserController extends Controller
         $user->avatar = $path;
         $user->save();
 
-        return response()->json(['message' => 'Image uploaded successfully'], 200);
+        return response()->json(['message' => 'Image stoker'], 200);
     }
 
     public function updatePassword(Request $request, $id)
@@ -132,7 +132,7 @@ class UserController extends Controller
         $user = User::find($id);
 
         if (!$user) {
-            return response()->json(['error' => 'User not found'], 404);
+            return response()->json(['error' => 'Utilisateur non trouvee'], 404);
         }
 
         $this->authorize('update', $user);
@@ -144,13 +144,13 @@ class UserController extends Controller
 
 
         if (!Hash::check($validated['old_password'], $user->password)) {
-            return response()->json(['message' => 'Invalid old password'], 401);
+            return response()->json(['message' => 'Invalid old_password'], 401);
         }
 
         $user->password = Hash::make($validated['password']);
         $user->save();
 
-        return response()->json(['message' => 'Password updated successfully']);
+        return response()->json(['message' => 'mot de pass modofier']);
     }
     public function likedProperties($userId)
     {

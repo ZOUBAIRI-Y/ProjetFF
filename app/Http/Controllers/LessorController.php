@@ -28,7 +28,7 @@ class LessorController extends Controller
             ->find($id);
 
         if (!$user) {
-            return response()->json(['error' => 'User not found'], 404);
+            return response()->json(['error' => 'Utilisateur non trouvee'], 404);
         }
 
         $userResource = new LessorResource($user);

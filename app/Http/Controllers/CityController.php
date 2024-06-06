@@ -36,22 +36,6 @@ class CityController extends Controller
         return response()->json($res, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        $city = City::find($id);
-
-
-        if (!$city) {
-            return response()->json(['error' => 'City not found'], 404);
-        }
-        $res = new CityResource($city);
-        return response()->json($res);
-    }
-
-
 
     /**
      * Update the specified resource in storage.
@@ -62,7 +46,7 @@ class CityController extends Controller
         $this->authorize('update');
 
         if (!$city) {
-            return response()->json(['error' => 'city not found'], 404);
+            return response()->json(['error' => 'city non trouvee'], 404);
         }
 
         $validatedData = $request->validate([
@@ -80,12 +64,12 @@ class CityController extends Controller
         $city = City::find($id);
         $this->authorize('delete');
         if (!$city) {
-            return response()->json(['error' => 'city not found'], 404);
+            return response()->json(['error' => 'city non trouvee'], 404);
         }
 
 
         $city->delete();
 
-        return response()->json(['message' => 'city deleted']);
+        return response()->json(['message' => 'city supprimer']);
     }
 }

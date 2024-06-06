@@ -23,17 +23,6 @@ class ReviewController extends Controller
         $review->user_id = auth()->user()->id;
         $review->save();
 
-        return response()->json(['message' => 'Review created'], 201);
-    }
-
-
-    public function destroy($id)
-    {
-        $review = Review::findOrFail($id);
-        $this->authorize('delete', $review);
-
-        $review->delete();
-
-        return response()->json(['message' => 'Review deleted successfully']);
+        return response()->json(['message' => 'Review creer'], 201);
     }
 }

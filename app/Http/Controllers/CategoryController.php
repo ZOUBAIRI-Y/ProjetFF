@@ -29,22 +29,13 @@ class CategoryController extends Controller
         return response()->json($res, 201);
     }
 
-    public function show(string $id)
-    {
-        $category =  Category::findOrFail($id);
-
-
-        $res = new CategoryResource($category);
-        return response()->json($res);
-    }
-
     public function update(Request $request, string $id)
     {
         $category = Category::find($id);
         $this->authorize('update');
 
         if (!$category) {
-            return response()->json(['error' => 'Category not found'], 404);
+            return response()->json(['error' => 'Category non trouvee'], 404);
         }
 
         $validatedData = $request->validate([
@@ -53,7 +44,7 @@ class CategoryController extends Controller
 
         $category->update($validatedData);
 
-        return response()->json(['message' => 'Category updated']);
+        return response()->json(['message' => 'Category modofier']);
     }
 
     public function destroy(string $id)
@@ -62,11 +53,11 @@ class CategoryController extends Controller
         $this->authorize('delete');
 
         if (!$category) {
-            return response()->json(['error' => 'Category not found'], 404);
+            return response()->json(['error' => 'Category non trouvee'], 404);
         }
 
         $category->delete();
 
-        return response()->json(['message' => 'Category deleted']);
+        return response()->json(['message' => 'Category supprimer']);
     }
 }

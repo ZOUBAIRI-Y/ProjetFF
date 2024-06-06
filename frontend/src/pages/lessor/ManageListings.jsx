@@ -8,12 +8,14 @@ export default function ManageListings() {
     const navigate = useNavigate();
 
     const [propertiesList, setPropertiesList] = useState({});
+    console.log(propertiesList);
     const handleDelete = (propertyId) => {
         client
             .delete(`http://localhost:8000/api/properties/${propertyId}`)
             .then((data) => {
-                console.log(data);
-                window.location.reload();
+                setPropertiesList([
+                    ...propertiesList.filter((p) => p.id !== propertyId),
+                ]);
             })
             .catch((err) => console.log(err.response.data));
     };

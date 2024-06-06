@@ -25,7 +25,7 @@ class AuthController extends Controller
             $userResource = new UserResource($user);
             return response()->json(["user" => $userResource, "token" => $token]);
         }
-        return response()->json(["message" => "invalid username or password"], 401);
+        return response()->json(["message" => "username ou password est Invalid."], 401);
     }
     public function signup()
     {
@@ -58,6 +58,6 @@ class AuthController extends Controller
 
         auth()->user()->tokens()->delete();
 
-        return response()->json(['message' => 'Logged out successfully']);
+        return response()->json(['message' => 'Deconnexion']);
     }
 }

@@ -49,19 +49,20 @@ class PropertySeeder extends Seeder
             $randomImage2 = $propertyImages[array_rand($propertyImages)];
             $randomImage5 = $propertyImages[array_rand($propertyImages)];
             $randomImage6 = $propertyImages[array_rand($propertyImages)];
+            $randomImag = $propertyImages[array_rand($propertyImages)];
 
             $relativePath1 = '/storage/properties/' . basename($randomImage1);
             $relativePath2 = '/storage/properties/' . basename($randomImage2);
             $relativePath5 = '/storage/properties/' . basename($randomImage5);
             $relativePath6 = '/storage/properties/' . basename($randomImage6);
+            $relativePat = '/storage/properties/' . basename($randomImag);
 
             Property::create([
                 'description' => $faker->text,
                 'price' => $faker->randomFloat(2, 100, 1000),
                 'city_id' => $city->id,
                 'address' => $faker->address,
-                'images' => json_encode([$relativePath1, $relativePath2, $relativePath5, $relativePath6]),
-                'status' => $faker->randomElement(["active", "inactive"]),
+                'images' => json_encode([$relativePath1, $relativePat, $relativePath2, $relativePath5, $relativePath6]),
                 'user_id' => $faker->numberBetween(1, 10),
                 'category_id' => $category->id,
                 "deposite" => $faker->numberBetween(1000, 10000),
