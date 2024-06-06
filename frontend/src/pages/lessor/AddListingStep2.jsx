@@ -72,9 +72,8 @@ const AddListingStep2 = () => {
     return (
         <div className="p-4 container">
             <div className="first_seconStep_container m-0 mt-2 mb-3 d-flex flex-row justify-content-center align-items-center">
-                <div className="step_aligned_line_2"></div>
                 <div className="second_step_circle text-white fw-bold fs-5 d-flex justify-content-center align-items-center">
-                    2
+                    <div className="step_aligned_line_2"></div>2
                 </div>
             </div>
             <input
@@ -86,23 +85,33 @@ const AddListingStep2 = () => {
                 ref={fileInputRef}
             />
             {selectedFiles.map((file) => (
-                <div
-                    key={file.name}
-                    className="container imagesProgress_list_container d-flex flex-row justify-content-center align-items-center"
-                >
-                    <p>
-                        {file.name}: {uploadProgress[file.name] || 0}%
-                    </p>
-                    <progress
-                        value={uploadProgress[file.name] || 0}
-                        max="100"
-                    ></progress>
-                    <button
-                        onClick={() => handleRemoveFile(file)}
-                        className="btn fs-3 d-flex justify-content-center align-items-center"
-                    >
-                        <RiDeleteBin2Fill />
-                    </button>
+                <div key={file.name} className="imagesProgress_list_container mt-2">
+                    <div className="row m-0">
+                        <div className="col-7">
+                            <p className="w-100 m-0">
+                                {file.name}: {uploadProgress[file.name] || 0}%
+                            </p>
+                        </div>
+                        <div className="col-5">
+                            <div className="row m-0">
+                                <div className="col-9 d-flex justify-content-center align-items-center p-0">
+                                    <progress
+                                        value={uploadProgress[file.name] || 0}
+                                        max="100"
+                                        className="w-100"
+                                    ></progress>
+                                </div>
+                                <div className="col-3 d-flex justify-content-center align-items-center p-0">
+                                    <button
+                                        onClick={() => handleRemoveFile(file)}
+                                        className="btn w-100 fs-5 p-0 d-flex justify-content-center align-items-center"
+                                    >
+                                        <RiDeleteBin2Fill />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             ))}
             <div className="addBtn_addListingP_Container w-100 d-flex justify-content-end">

@@ -701,7 +701,24 @@ body {
         display: flex;
     }
 }
-
+/* home page lessor */
+.dashboar_list_item {
+    position: relative;
+    cursor: pointer;
+}
+.dashboar_list_item:hover {
+    background-color: #f8f9fa;
+}
+.dashboard_icon_container {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.warning_icon_container {
+    color: rgb(255, 212, 19);
+}
 /* manage listings page styles */
 .add_listing_btn_manage {
     font-size: 1rem;
@@ -763,22 +780,28 @@ body {
 .first_seconStep_container {
     width: 100%;
     height: 40px;
+    
 }
 .first_step_circle, .second_step_circle {
     width: 30px;
     height: 30px;
     background-color: var(--secondary);
     border-radius: 50%;
+    position: relative;
 }
 .step_aligned_line_1 {
     width: 30px;
     height: 10px;
+    position: absolute;
+    right: -29px;
     background-color: var(--secondary);
     border-radius: 0 4px 4px 0;
 }
 .step_aligned_line_2 {
     width: 30px;
     height: 10px;
+    position: absolute;
+    left: -29px;
     background-color: var(--secondary);
     border-radius: 4px 0 0 4px;
 }
@@ -828,9 +851,7 @@ body {
     width: 25%;
 }
 /* add listing step2 page ------------------ */
-.imagesProgress_list_container {
-    max-width: 100%;
-}
+
 
 /* Lessor pages style Ends -------------------------------------------------- */
 

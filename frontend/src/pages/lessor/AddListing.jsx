@@ -59,17 +59,13 @@ export default function AddListing() {
                 {/* <h1>Step 1:</h1> */}
                 <div className="first_seconStep_container m-0 mt-2 mb-3 d-flex flex-row justify-content-center align-items-center">
                     <div className="first_step_circle text-white fw-bold fs-5 d-flex justify-content-center align-items-center">
-                        1
-                    </div>
-                    <div className="step_aligned_line_1">
-
+                        1<div className="step_aligned_line_1"></div>
                     </div>
                 </div>
                 {/* <div className="next_previous_step"></div> */}
                 <h2 className="text-primary fs-5 fw-bold">Add listing</h2>
 
                 <form className="listing_form mt-3 m-4" onSubmit={handleForm}>
-                    
                     <div className="primary_property_infos border rounded pt-1 p-3 bg-altlight">
                         <p className="text-dark fw-medium m-0 mt-2">
                             <strong>Primary*</strong>
@@ -244,7 +240,12 @@ export default function AddListing() {
                                 className="form-control"
                             />
                         </div> */}
-                        <label htmlFor="property ready at" className="form-label m-0 mt-3">Ready at</label>
+                        <label
+                            htmlFor="property ready at"
+                            className="form-label m-0 mt-3"
+                        >
+                            Ready at
+                        </label>
                         <input
                             type="date"
                             name="property_time_ready"
