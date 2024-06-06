@@ -70,7 +70,7 @@ export default function HeroSection() {
                                 </li>
                                 {localStorage.getItem("token") == null && (
                                     <>
-                                        <li className="nav-item d-flex align-items-center h-100 m-0">
+                                        <li className="nav-item d-flex align-items-center h-100 m-0 ms-md-4">
                                             <Link
                                                 to={"/signup"}
                                                 className="nav-link header_navlink mt-1 text-success fw-medium"

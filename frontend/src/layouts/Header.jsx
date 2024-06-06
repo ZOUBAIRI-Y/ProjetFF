@@ -146,7 +146,7 @@ export default function Header({ currentPath }) {
                                     </li>
                                     {localStorage.getItem("token") == null && (
                                         <>
-                                            <li className="nav-item d-flex align-items-center h-100 m-0">
+                                            <li className="nav-item d-flex align-items-center h-100 m-0 m-0 ms-md-4">
                                                 <Link
                                                     to={"/signup"}
                                                     className="nav-link header_navlink text-success fw-medium"
@@ -167,7 +167,7 @@ export default function Header({ currentPath }) {
                                         </>
                                     )}
                                     {localStorage.getItem("token") && (
-                                        <li className="nav-item d-flex align-items-center h-100 m-0">
+                                        <li className="nav-item d-flex align-items-center h-100 m-0 ms-md-4">
                                             <Link
                                                 to={"/signout"}
                                                 className="btn btn-success text-white rounded-pill fw-medium ps-4 pe-4 align-self-center"
