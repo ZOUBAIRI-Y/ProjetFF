@@ -22,7 +22,7 @@ class PropertyController extends Controller
         $queryItems = $filter->transform($request);
         $properties = Property::where($queryItems)
             ->orderByDesc('updated_at')
-            ->paginate();
+            ->paginate(25);
         return new PropertyCollection($properties->appends($request->query()));
     }
 

@@ -52,7 +52,6 @@ export default function Property(props) {
     };
     const handleButtonsClick = (e) => {
         e.stopPropagation();
-        ed;
         console.log("Button clicked!");
     };
 
