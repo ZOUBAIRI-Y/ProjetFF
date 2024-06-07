@@ -69,7 +69,7 @@ export default function AddListing() {
                     setCategories(res.data);
                 });
         } else {
-            setCities(JSON.parse(localStorage.getItem("categories")));
+            setCategories(JSON.parse(localStorage.getItem("categories")));
         }
     }, []);
 
