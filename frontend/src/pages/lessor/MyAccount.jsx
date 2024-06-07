@@ -112,19 +112,17 @@ export default function MyAccount() {
         <div className="d-flex flex-row justify-content-center">
             <div className="container m-0 pt-5">
                 <h2 className="text-primary d-inline">My Account</h2>
-                <form className="account_info mt-3" onSubmit={saveData}>
+                <form className="account_info mt-3 mb-1" onSubmit={saveData}>
                     {data && (
-                        <div className="personal_infos border rounded pt-1 p-3 bg-altlight">
-                            <input
-                                value="save"
-                                type="submit"
-                                className="btn m-4 btn-success save_changes_btn text-white float-end"
-                            />
+                        <div className="personal_infos border rounded mt-2 p-3 pt-1 pb-1 bg-altlight">
+                            <p className="text-dark mt-1 mb-1">
+                                <strong>Personal informations</strong>
+                            </p>
                             <div className="row m-0 mt-2">
-                                <div className="col-sm lessor_name_myAcc ps-0">
-                                    <p className="text-dark m-0 ">
-                                        <strong>Lessor name</strong>
-                                    </p>
+                                <div className="col lessor_name_myAcc ps-0">
+                                    <label htmlFor="lessor name">
+                                        Lessor name
+                                    </label>
                                     <input
                                         type="text"
                                         name="lessor_name"
@@ -141,7 +139,7 @@ export default function MyAccount() {
                                         }
                                     />
                                 </div>
-                                <div className="col-sm-3 lessor_img_container p-0">
+                                <div className="col-3 lessor_img_container p-0">
                                     {data.avatar ? (
                                         <img
                                             src={
@@ -155,9 +153,6 @@ export default function MyAccount() {
                                     )}
                                 </div>
                             </div>
-                            <p className="text-dark mt-1 mb-1">
-                                <strong>Personal informations</strong>
-                            </p>
                             <div className="lessor_firstName pe-1">
                                 <label htmlFor="lessorfirstName">
                                     first name
@@ -274,15 +269,22 @@ export default function MyAccount() {
                                 }
                                 placeholder={data.email ? data.email : "email"}
                             />
+                            <div className="w-100 d-inline-block">
+                                <input
+                                    value="save"
+                                    type="submit"
+                                    className="btn btn-success save_changes_btn text-white mt-2 d-block float-end"
+                                />
+                            </div>
                         </div>
                     )}
                 </form>
                 <form
-                    className="account_info mt-3 mb-4"
+                    className="account_info mt-3 mb-1"
                     onSubmit={updatePassword}
                 >
-                    <div className="change_password border rounded bg-altlight mt-2 pt-1 p-3">
-                        <p className="text-dark mt-1">
+                    <div className="change_password border rounded bg-altlight mt-2 p-3 pt-1 pb-1">
+                        <p className="text-dark m-0 mt-1 mb-1">
                             <strong>Change password</strong>
                         </p>
                         <label htmlFor="currentPassword" className="mt-1">
@@ -332,30 +334,48 @@ export default function MyAccount() {
                                 placeholder="confirm password"
                             />
                         </div>
-                        <input
-                            value="change"
-                            type="submit"
-                            className="m-4 btn btn-success save_changes_btn text-white float-end"
-                        />
+                        <div className="w-100 d-inline-block">
+                            <input
+                                value="change"
+                                type="submit"
+                                className="btn btn-success save_changes_btn text-white mt-2 d-block float-end"
+                            />
+                        </div>
                     </div>
                 </form>
-                <h2 className="my-3"> Delete Account</h2>
-                <button
-                    className="btn btn-outline-danger my-4"
-                    onClick={deleteAccount}
-                >
-                    Delete Account
-                </button>
-                <h2 className="my-3"> Changer Image</h2>
-                <input
-                    className="form-control w-50"
-                    type="file"
-                    onChange={handleFileChange}
-                />
-                <button className="btn btn-primary m-3" onClick={handleUpload}>
-                    Upload
-                </button>
+                <div className="border rounded bg-altlight mt-3 mb-1 p-3 pt-1 pb-1">
+                    <p className="text-dark m-0 mt-1 mb-1">
+                        <strong>Changer Image</strong>
+                    </p>
+                    <input
+                        className="form-control w-100"
+                        type="file"
+                        onChange={handleFileChange}
+                    />
+                    <div className="w-100 d-inline-block">
+                        <button
+                            className="btn btn-success save_changes_btn text-white mt-2 d-block float-end"
+                            onClick={handleUpload}
+                        >
+                            change
+                        </button>
+                    </div>
+                </div>
+                <div className="border border-danger rounded bg-altlight mt-3 mb-1 p-3 pt-1 pb-1">
+                    <p className="text-danger m-0 mt-1 mb-1">
+                        <strong>Delete Account</strong>
+                    </p>
+                    <div className="d-flex justify-content-center">
+                        <button
+                            className="btn btn-outline-danger mb-2"
+                            onClick={deleteAccount}
+                        >
+                            Delete Account
+                        </button>
+                    </div>
+                </div>
             </div>
+            {console.log(data)}
         </div>
     );
 }

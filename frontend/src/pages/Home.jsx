@@ -33,7 +33,7 @@ export default function Home() {
                         </p>
                     </div>
                     <div className="col-sm-6 ">
-                        <div className="ourvalu_img_container p-2 p-lg-4 p-xl-5">
+                        <div className="ourvalu_img_container p-4 p-lg-4 p-xl-5">
                             <img
                                 src={ourvalueIMG}
                                 alt="ourValue_img"

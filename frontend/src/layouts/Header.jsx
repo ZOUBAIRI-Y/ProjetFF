@@ -30,7 +30,7 @@ export default function Header({ currentPath }) {
                                 Location
                             </Link>
                             <button
-                                className="navbar-toggler"
+                                className="navbar-toggler header_navbar_toggler"
                                 type="button"
                                 data-bs-toggle="collapse"
                                 data-bs-target="#navbarNav"
