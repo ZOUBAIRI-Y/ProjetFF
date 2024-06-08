@@ -55,6 +55,12 @@ export default function Property(props) {
         ed;
         console.log("Button clicked!");
     };
+    const truncateAddress = (address, maxLength) => {
+        if (address.length > maxLength) {
+          return address.substring(0, maxLength) + '...';
+        }
+        return address;
+      };
 
     return (
         <div className="card border-success property_component">
@@ -139,7 +145,7 @@ export default function Property(props) {
                     {props.data.category.name}
                 </h5>
                 <p className="text-altdark property_address p-0 m-0">
-                    <strong>{props.data.address}</strong>
+                    <strong>{truncateAddress(props.data.address, 22)}</strong>
                 </p>
                 <p className="text-success property_price p-0 m-0">
                     <strong className="fs-5">{props.data.price} DH</strong>{" "}

@@ -59,9 +59,7 @@ body {
 
 /* Layout styles Ends ------------------------ */
 /* Layout footer style ------------------------ */
-.footer {
-    margin-top: 1.5rem;
-}
+
 .footer_services_list li {
     background: none;
 }
@@ -120,13 +118,19 @@ body {
 .hero_section_main {
     position: absolute;
     width: 80%;
-    top: 38%;
+    max-width: 550px;
+    top: 35%;
     left: 0;
     right: 0;
     margin-left: auto;
     margin-right: auto;
 }
-@media (min-width: 768px) {
+@media (max-width: 768px) {
+    .hero_section_main {
+        top: 38%;
+    }
+}
+@media (min-width: 769px) {
     .hero_section_main {
         width: 50%;
     }
@@ -412,9 +416,10 @@ body {
     object-fit: cover;
 }
 .overview_navbar {
-    z-index: -1;
+    z-index: 10;
     position: sticky;
     top: 0;
+    background-color: #fff;
     border-bottom: 1px solid rgba(var(--primary-rgb), 0.15);
 }
 .property_d_overview_container {
@@ -529,19 +534,19 @@ body {
 @media (min-width: 1200px) {
     .property_d_carousel_container {
         position: relative;
-        height: 360px;
+        height: 300px;
     }
 }
 @media (max-width: 1200px) {
     .property_d_carousel_container {
         position: relative;
-        height: 310px;
+        height: 290px;
     }
 }
 @media (max-width: 992px) {
     .property_d_carousel_container {
         position: relative;
-        height: 310px;
+        height: 280px;
     }
 }
 @media (max-width: 768px) {
@@ -550,13 +555,13 @@ body {
     }
     .property_d_carousel_container {
         position: relative;
-        height: 310px;
+        height: 300px;
     }
 }
 @media (max-width: 576px) {
     .property_d_carousel_container {
         position: relative;
-        height: 280px;
+        height: 300px;
     }
     .slide_btn {
         display: none !important;

@@ -84,16 +84,16 @@ function LessorSidebar() {
                 </ul>
             </div>
             <div className="bottom_navbar">
-                <NavLink to="/lessor/home" className="nav-icon d-flex justify-content-center align-items-center " activeClassName="active">
+                <NavLink to="/lessor/home" className="nav-icon d-flex justify-content-center align-items-center " activeclassname="active">
                     <FaHome />
                 </NavLink>
-                <NavLink to="/lessor/manage-listings" className="nav-icon d-flex justify-content-center align-items-center " activeClassName="active">
+                <NavLink to="/lessor/manage-listings" className="nav-icon d-flex justify-content-center align-items-center " activeclassname="active">
                     <FaList />
                 </NavLink>
-                <NavLink to="/lessor/add-listing" className="nav-icon d-flex justify-content-center align-items-center" activeClassName="active">
+                <NavLink to="/lessor/add-listing" className="nav-icon d-flex justify-content-center align-items-center" activeclassname="active">
                     <FaPlus />
                 </NavLink>
-                <NavLink to="/lessor/my-account" className="nav-icon d-flex justify-content-center align-items-center " activeClassName="active">
+                <NavLink to="/lessor/my-account" className="nav-icon d-flex justify-content-center align-items-center " activeclassname="active">
                     <FaUser />
                 </NavLink>
             </div>

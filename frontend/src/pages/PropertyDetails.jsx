@@ -248,7 +248,7 @@ export default function PropertyDetails() {
                 className="property_d_overview_container container"
                 id="property_overview"
             >
-                <nav className="navbar navbar-expand-lg overview_navbar ">
+                <nav className="navbar navbar-expand-md overview_navbar ">
                     <ul className="navbar-nav me-auto">
                         <li className="nav-item">
                             <Link
@@ -398,42 +398,42 @@ export default function PropertyDetails() {
                             ))}
                     </div>
                 </div>
-                <div className="add-comment mt-3">
-                    <h2 className="fs-4 m-0">Leave a comment</h2>
-                    <div className="text_area_container">
-                        <textarea
-                            value={newCommentText}
-                            className="form-control"
-                            onChange={(e) => setNewCommentText(e.target.value)}
-                            placeholder="Type your comment here..."
-                        ></textarea>
-                        <button
-                            className="btn btn-primary add_comment_btn"
-                            onClick={handleAddComment}
-                        >
-                            Send
-                        </button>
-                    </div>
-                </div>
-                <div className="comments mt-3">
-                    {/* {comments.map((comment) => (
-                        <div key={Math.random()}>
-                            <b>{comment.content}</b>
-                            <p>
-                                Date:{" "}
-                                {new Date(
-                                    comment.createdAt
-                                ).toLocaleDateString()}
-                            </p>
+                <div className="comments_section">
+                    <div className="add-comment mt-3">
+                        <h2 className="fs-4 m-0">Leave a comment</h2>
+                        <div className="text_area_container">
+                            <textarea
+                                value={newCommentText}
+                                className="form-control"
+                                onChange={(e) =>
+                                    setNewCommentText(e.target.value)
+                                }
+                                placeholder="Type your comment here..."
+                            ></textarea>
+                            <button
+                                className="btn btn-primary add_comment_btn"
+                                onClick={handleAddComment}
+                            >
+                                Send
+                            </button>
                         </div>
-                    ))} */}
-                    {/* <ul className="list-group">
-                        {lessorInfo.comments.map(c => {
-                            return (
-                                <li key={Math.random()}>{c.content}</li>
-                            )
-                        })}
-                    </ul> */}
+                    </div>
+                    <div className="comments mt-3">
+                        {comments.map((comment) => (
+                            <div key={Math.random()}>
+                                <b>{comment.content}</b>
+                                <p>
+                                    Date:{" "}
+                                    {new Date(
+                                        comment.createdAt
+                                    ).toLocaleDateString()}
+                                </p>
+                            </div>
+                        ))}
+                        <ul className="list-group">
+                            
+                        </ul>
+                    </div>
                 </div>
             </div>
         </>

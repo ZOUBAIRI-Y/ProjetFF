@@ -34,7 +34,7 @@ export default function AddListing() {
                 "http://localhost:8000/api/users/" + localStorage.getItem("id")
             )
             .then(({ data }) => {
-                console.log(data.data);
+                // console.log(data.data);
                 if (!data.data.avatar || !data.data.phone1) {
                     if (
                         confirm(
@@ -69,12 +69,12 @@ export default function AddListing() {
                     setCategories(res.data);
                 });
         } else {
-            setCities(JSON.parse(localStorage.getItem("categories")));
+            setCategories(JSON.parse(localStorage.getItem("categories")));
         }
     }, []);
 
     const handleForm = (e) => {
-        console.log(data);
+        // console.log(data);
         e.preventDefault();
         // console.log(client.defaults.headers);
         // console.log(data);
@@ -181,7 +181,7 @@ export default function AddListing() {
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
-                                <option value="4">2</option>
+                                <option value="4">4</option>
                                 <option value="...">...</option>
                             </select>
                         </div>

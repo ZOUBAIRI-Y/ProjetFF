@@ -361,7 +361,7 @@ export default function MyAccount() {
                         </button>
                     </div>
                 </div>
-                <div className="border border-danger rounded bg-altlight mt-3 mb-1 p-3 pt-1 pb-1">
+                <div className="border border-danger rounded bg-altlight mt-3 mb-3 p-3 pt-1 pb-1">
                     <p className="text-danger m-0 mt-1 mb-1">
                         <strong>Delete Account</strong>
                     </p>
