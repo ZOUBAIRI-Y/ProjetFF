@@ -9,8 +9,16 @@ export default function Property(props) {
     console.log(props.data);
     const [liked, setLiked] = useState(false);
     const propertyuniqueId = `propertyCarousel_${props.data.id}`;
+    const [userAutehnticated, setUserAuthenticated] = useState(false)
     // const [contact, setContact] = useState(false);
-
+    useEffect(()=> {
+        if (localStorage.getItem("id")) {
+            setUserAuthenticated(true)
+        }
+        else {
+            setUserAuthenticated(false)
+        }
+    },[])
     const lessor_phone = (lessorId) => {
         client
             .get("http://127.0.0.1:8000/api/lessors/" + lessorId)
@@ -136,7 +144,7 @@ export default function Property(props) {
                     }}
                     className="like_btn btn btn-altlight rounded-circle"
                 >
-                    {liked ? <FaHeart /> : <FaRegHeart />}
+                    {liked ? (userAutehnticated ? <FaHeart /> : <FaRegHeart />) : <FaRegHeart />}
                 </button>
             </div>
             <div className="card-body p-2 infos_section">

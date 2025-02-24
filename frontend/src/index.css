@@ -456,6 +456,9 @@ body {
     padding: 8px 20px;
     z-index: 1;
 }
+.comment_date {
+    font-size: 0.7rem;
+}
 .property_d_like_btn {
     padding-top: 4px;
     padding-bottom: 4px;

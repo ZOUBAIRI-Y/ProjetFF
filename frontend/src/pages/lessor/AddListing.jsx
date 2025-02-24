@@ -112,6 +112,7 @@ export default function AddListing() {
                                 })
                             }
                             className="month_daily_inp form-select"
+                            required
                         >
                             <option value="">Monthly/daily</option>
                             <option value="monthly">Monthly</option>
@@ -126,6 +127,7 @@ export default function AddListing() {
                                 })
                             }
                             className="month_daily_inp form-select"
+                            required
                         >
                             <option value="">Select Category</option>
                             {categories &&
@@ -144,6 +146,7 @@ export default function AddListing() {
                                 })
                             }
                             className="month_daily_inp form-select"
+                            required
                         >
                             <option value="">Select City</option>
                             {cities &&
@@ -165,6 +168,7 @@ export default function AddListing() {
                             }
                             placeholder="address"
                             className="address_inp form-control"
+                            required
                         />
                         <div className="num_of_rooms pe-1">
                             <select
@@ -176,6 +180,7 @@ export default function AddListing() {
                                     })
                                 }
                                 className="form-select"
+                                required
                             >
                                 <option value="">? of rooms</option>
                                 <option value="1">1</option>
@@ -195,6 +200,7 @@ export default function AddListing() {
                                     })
                                 }
                                 className="form-select"
+                                required
                             >
                                 <option value="">? of baths</option>
                                 <option value="1">1</option>
@@ -214,6 +220,7 @@ export default function AddListing() {
                                         })
                                     }
                                     className="form-control"
+                                    required
                                     placeholder="Price"
                                 />
                             </div>
@@ -228,6 +235,7 @@ export default function AddListing() {
                                         })
                                     }
                                     className="form-control"
+                                    required
                                     placeholder="Deposit"
                                 />
                             </div>
@@ -242,6 +250,7 @@ export default function AddListing() {
                                         })
                                     }
                                     className="form-control"
+                                    required
                                     placeholder="Space"
                                 />
                             </div>
@@ -255,6 +264,7 @@ export default function AddListing() {
                                 })
                             }
                             className="description_inp form-control"
+                            required
                         />
 
                         {/* <div className="photos_inp_container pe-1">
@@ -289,6 +299,7 @@ export default function AddListing() {
                                 })
                             }
                             className="when_ready_inp form-control"
+                            required
                         />
                     </div>
                     <div className="additional_property_features border rounded pt-1 p-3 bg-altlight mt-2">

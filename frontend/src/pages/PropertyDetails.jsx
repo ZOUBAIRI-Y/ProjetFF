@@ -15,6 +15,9 @@ export default function PropertyDetails() {
     const [newCommentText, setNewCommentText] = useState("");
     const [liked, setLiked] = useState(false);
     const handleAddComment = () => {
+        if (localStorage.getItem("id") === null) {
+            navigate("/login");
+        }
         const commentData = {
             content: newCommentText,
             propertyId: id,
@@ -30,6 +33,27 @@ export default function PropertyDetails() {
             .catch((err) => {
                 console.error("Error adding comment:", err);
             });
+    };
+    const calculateTimeDifference = (createdAt) => {
+        const currentDate = new Date();
+        const commentDate = new Date(createdAt);
+        const timeDifference = currentDate - commentDate;
+        const daysDifference = Math.floor(
+            timeDifference / (1000 * 60 * 60 * 24)
+        );
+        const hoursDifference = Math.floor(
+            (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutesDifference = Math.floor(
+            (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
+        );
+        if (daysDifference > 0) {
+            return `${daysDifference} days ago`;
+        } else if (hoursDifference > 0) {
+            return `${hoursDifference} hours ago`;
+        } else {
+            return `${minutesDifference} minutes ago`;
+        }
     };
     const handleLikeToggle = async () => {
         try {
@@ -398,9 +422,9 @@ export default function PropertyDetails() {
                             ))}
                     </div>
                 </div>
-                <div className="comments_section">
-                    <div className="add-comment mt-3">
-                        <h2 className="fs-4 m-0">Leave a comment</h2>
+                <div className="comments_section border rounded p-2 pt-0 mt-3">
+                    <div className="add-comment mt-1">
+                        <h2 className="fs-4 m-0 mb-1">Leave a comment</h2>
                         <div className="text_area_container">
                             <textarea
                                 value={newCommentText}
@@ -418,22 +442,36 @@ export default function PropertyDetails() {
                             </button>
                         </div>
                     </div>
-                    <div className="comments mt-3">
+                    <hr className="mt-2 mb-2" />
+                    <ul className="list-group comments p-3 pt-0">
                         {comments.map((comment) => (
-                            <div key={Math.random()}>
-                                <b>{comment.content}</b>
-                                <p>
-                                    Date:{" "}
-                                    {new Date(
-                                        comment.createdAt
-                                    ).toLocaleDateString()}
-                                </p>
-                            </div>
+                            <li
+                                key={Math.random()}
+                                className="list-group-item d-flex flex-row "
+                            >
+                                <div className="lessor_side_img_container align-self-start me-3">
+                                    <img
+                                        src={
+                                            "http://127.0.0.1:8000" +
+                                            lessorInfo.avatar
+                                        }
+                                        alt="profilePic"
+                                    />
+                                </div>
+                                <div className="d-flex flex-column justify-content-center">
+                                    <p className="m-0 comment_date text-light fw-medium">
+                                        {calculateTimeDifference(
+                                            comment.createdAt
+                                        )}
+                                    </p>
+                                    <p className="m-0">
+                                        {comment.content}
+                                    </p>
+                                </div>
+                            </li>
                         ))}
-                        <ul className="list-group">
-                            
-                        </ul>
-                    </div>
+                        <ul className="list-group"></ul>
+                    </ul>
                 </div>
             </div>
         </>
